@@ -27,6 +27,7 @@ This repo contains a summary of things I am learning outside of Gatech.
 * LIL: Amazon Web Services: Data Services
 * LIL: Cloud Hadoop: Scaling Apache Spark
 * LIL: Advanced Snowflake
+* LIL: Learning Kubernetes
 * LIL: Statistics Foundations
 * LIL: Looker Studio for Beginners
 * LIL: Tableau Essential Training
