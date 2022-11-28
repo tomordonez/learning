@@ -34,7 +34,8 @@ Pass arguments in IntelliJ
 
 # 4. Manage String values
 
-* Strings are immutable
+**Strings are immutable**
+
 * Concatenating a String will not modify the current String like `String s1 =
     "java"; s1.concat(" rules");`. Printing `s1` will return `java` and not
     `java rules`. However a new String object is created with `java rules`
@@ -46,6 +47,16 @@ Pass arguments in IntelliJ
     new StringBuilder("java"); s2.append(" rules);`. Printing `s2` will return
     `java rules`. Although, the append method will still create an additional
     object to the String constant pool.
+
+**Convert primitive values to strings**
+* Concatenate a primitive number with a string to get a string
+* `int result = 5; String answer = "The answer is " + result;`
+
+**Format numeric values as strings**
+**Interpolate strings with placeholders**
+**Compare string values**
+**Parse string values**
+**Get string values from user input**
 
 # 5. Manage program flow
 # 6. Debugging and exception handling
