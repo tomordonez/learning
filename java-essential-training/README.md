@@ -35,7 +35,6 @@ Pass arguments in IntelliJ
 # 4. Manage String values
 
 **Strings are immutable**
-
 * Concatenating a String will not modify the current String like `String s1 =
     "java"; s1.concat(" rules");`. Printing `s1` will return `java` and not
     `java rules`. However a new String object is created with `java rules`
@@ -53,6 +52,42 @@ Pass arguments in IntelliJ
 * `int result = 5; String answer = "The answer is " + result;`
 
 **Format numeric values as strings**
+For example, formatting the number `10_000.53;` to have commas like `10,000.53`.
+
+    import java.text.NumberFormat;
+    
+    var doubleValue = 10_000.53;
+    var numF = NumberFormat.getNumberInstance();
+    System.out.println(numF.format(doubleValue));
+
+Other methods:
+* `NumberFormat.getIntegerInstance()`
+* `NumberFormat.getCurrencyInstance()`
+* `NumberFormat.getPercentInstance()`
+
+Format the number using a locale for a specific country. For example in Latin America you use periods for thousands, and commas for decimals. The Locale constructor requires two string parameters for the language and country.
+
+Get a list of available languages and countries:
+
+    System.out.println(Locale.getISOLanguages());
+
+This returns an object so wrap the array to string:
+
+    System.out.println(Arrays.toString(Locale.getISOLanguages()))
+    System.out.println(Arrays.toString(Locale.getISOCountries()))
+
+Then create the Locale object to format `10_000.53` to Latin American format `10.000,53`
+
+    var locale = new Locale("es", "CO");
+    var numES = NumberFormat.getNumberInstance(locale);
+    System.out.println("Number " + numES.format(doubleValue);
+
+Format a number with two decimals using the pattern `$0.00`
+
+    var decimal = new Decimal("$0.00")
+    System.out.println("Price: " + decimal.format(3.4555));
+    // Output: $3.45
+
 **Interpolate strings with placeholders**
 **Compare string values**
 **Parse string values**
