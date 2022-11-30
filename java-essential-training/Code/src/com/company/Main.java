@@ -1,24 +1,29 @@
 package com.company;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.Locale;
+
 public class Main {
     public static void main(String[] args) {
-        int result = 10 + 12;
-        String answer = "The answer is " + result;
-        System.out.println(answer);
+        var doubleValue = 10_000_000.53;
 
-        String howMany = 20 + " things";
-        System.out.println(howMany);
+        var numF = NumberFormat.getInstance();
+        System.out.println("Number: " + numF.format(doubleValue));
 
-        int intValue = 42;
-        var fromInt = Integer.toString(intValue);
-        System.out.println(fromInt);
+        var intF = NumberFormat.getIntegerInstance();
+        System.out.println("Number: " + intF.format(doubleValue));
 
-        boolean boolValue = true;
-        var fromBool = Boolean.toString(boolValue);
-        System.out.println(fromBool);
+        var locale = new Locale("es", "CO");
+        var numES = NumberFormat.getNumberInstance(locale);
+        System.out.println("Number: " + numES.format(doubleValue));
 
-        long longValue = 10_000_000;
-        var fromLong = Long.toString(longValue);
-        System.out.println(fromLong);
+        var currencyFormat = NumberFormat.getCurrencyInstance(locale);
+        System.out.println("Number: " + currencyFormat.format(doubleValue));
+
+        var decimal = new DecimalFormat("$0.00");
+        System.out.println("Number: " + decimal.format(3.1415));
+        // Output: $3.14
     }
 }
