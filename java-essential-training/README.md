@@ -106,6 +106,28 @@ Format a number with two decimals using the pattern `$0.00`
 
 **Get string values from user input**
 
+Use the scanner class to capture user input in the command line
+
+    var scanner = new Scanner(System.in);
+
+Use `nextLine()` to capture input until enter is pressed.
+
+    System.out.println("Enter your name: ");
+    var name = scanner.nextLine();
+
+Convert a string to date and get the age from a birthdate.
+
+    System.out.println("Enter your birthdate: ");
+    var birthdateString = scanner.nextLine();
+
+    try {
+        var birthdate = LocalDate.parse(birthdateString, DateTimeFormatter.ofPattern("MM-d-yyyy"));
+        var age = LocalDate.now().getYear() - birthdate.getYear();
+        System.out.printf("You are %s years old", age);
+    } catch (Exception e) {
+        System.out.println("Wrong format, enter birthdate as MM-DD-YYYY")
+    }
+
 # 5. Manage program flow
 # 6. Debugging and exception handling
 # 7. Create custom classes
