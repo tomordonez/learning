@@ -35,6 +35,7 @@ Pass arguments in IntelliJ
 # 4. Manage String values
 
 **Strings are immutable**
+
 * Concatenating a String will not modify the current String like `String s1 =
     "java"; s1.concat(" rules");`. Printing `s1` will return `java` and not
     `java rules`. However a new String object is created with `java rules`
@@ -48,10 +49,12 @@ Pass arguments in IntelliJ
     object to the String constant pool.
 
 **Convert primitive values to strings**
+
 * Concatenate a primitive number with a string to get a string
 * `int result = 5; String answer = "The answer is " + result;`
 
 **Format numeric values as strings**
+
 For example, formatting the number `10_000.53;` to have commas like `10,000.53`.
 
     import java.text.NumberFormat;
@@ -89,6 +92,10 @@ Format a number with two decimals using the pattern `$0.00`
     // Output: $3.45
 
 **Interpolate strings with placeholders**
+
+* Use placeholders `%s` or `%f` or similar in a string template. Use `%.2f` to print two decimals.
+* Then use `String.format()` passing the template and the objects or variables corresponding to the placeholders.
+
 **Compare string values**
 **Parse string values**
 **Get string values from user input**
