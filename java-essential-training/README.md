@@ -97,6 +97,9 @@ Format a number with two decimals using the pattern `$0.00`
 * Then use `String.format()` passing the template and the objects or variables corresponding to the placeholders.
 
 **Compare string values**
+
+* Strings aren't compared with double equal operator but using the string method `String.equals()`, otherwise you might be comparing references to the same object.
+
 **Parse string values**
 **Get string values from user input**
 
