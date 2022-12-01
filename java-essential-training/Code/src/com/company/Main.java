@@ -2,21 +2,18 @@ package com.company;
 
 public class Main {
     public static void main(String[] args) {
+        var s1 = "Hola Namor";
+        System.out.println("Length of string: " + s1.length());
 
-        String s1 = "Hello!";
-        var s2 = "Hello!";
+        int position = s1.indexOf("Namor");
+        System.out.println("Position of string: " + position);
 
-        // the comparison is referencing the same object with the same value
-        if (s1.equals(s2)) {
-            System.out.printf("%s and %s are equal", s1, s2);
-        }
+        System.out.println("Trim whitespace: " + s1.trim());
 
-        String s3 = new String("HOLA");
-        String s4 = new String("HOLA");
+        var namorString = s1.substring(5);
+        System.out.println("String is: " + namorString);
 
-        // the comparison is referencing different objects with the same value
-        if (s3.equals(s4)) {
-            System.out.printf("%s y %s son iguales%n", s3, s4);
-        }
+        var namString = s1.substring(5, 7);
+        System.out.println("Other substring method: " + namString);
     }
 }

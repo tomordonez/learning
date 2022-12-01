@@ -101,6 +101,9 @@ Format a number with two decimals using the pattern `$0.00`
 * Strings aren't compared with double equal operator but using the string method `String.equals()`, otherwise you might be comparing references to the same object.
 
 **Parse string values**
+
+* Find the position of a string with `indexOf`, trim whitespace with `trim`, use `substring` with either a start value or start and end values.
+
 **Get string values from user input**
 
 # 5. Manage program flow
