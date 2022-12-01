@@ -128,6 +128,19 @@ Convert a string to date and get the age from a birthdate.
         System.out.println("Wrong format, enter birthdate as MM-DD-YYYY")
     }
 
+**A simple calculator**
+
+The example problem was to get user input from the command line for two numbers, then divide them and print the result. I added JUnit tests and followed TDD.
+
+* Switched the project to Maven. Right-click the project root, add framework support, select Maven.
+* Add JUnit to `pom.xml` with `Alt+Insert`, add dependency, search for `org.junit.jupiter:junit-jupiter`, click add, at the top right load maven changes.
+* Created a `Calculator` class
+* Created an empty `divide` method
+* Created a test for this class and method (right click on class name, show context actions, create test)
+* Modified the test to assert that `divide(4, 2)` equals `2`
+* Ran the test to see it fails
+* Implemented the `divide` method
+
 # 5. Manage program flow
 # 6. Debugging and exception handling
 # 7. Create custom classes
