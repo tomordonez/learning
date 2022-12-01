@@ -35,6 +35,7 @@ Pass arguments in IntelliJ
 # 4. Manage String values
 
 **Strings are immutable**
+
 * Concatenating a String will not modify the current String like `String s1 =
     "java"; s1.concat(" rules");`. Printing `s1` will return `java` and not
     `java rules`. However a new String object is created with `java rules`
@@ -48,10 +49,12 @@ Pass arguments in IntelliJ
     object to the String constant pool.
 
 **Convert primitive values to strings**
+
 * Concatenate a primitive number with a string to get a string
 * `int result = 5; String answer = "The answer is " + result;`
 
 **Format numeric values as strings**
+
 For example, formatting the number `10_000.53;` to have commas like `10,000.53`.
 
     import java.text.NumberFormat;
@@ -89,9 +92,54 @@ Format a number with two decimals using the pattern `$0.00`
     // Output: $3.45
 
 **Interpolate strings with placeholders**
+
+* Use placeholders `%s` or `%f` or similar in a string template. Use `%.2f` to print two decimals.
+* Then use `String.format()` passing the template and the objects or variables corresponding to the placeholders.
+
 **Compare string values**
+
+* Strings aren't compared with double equal operator but using the string method `String.equals()`, otherwise you might be comparing references to the same object.
+
 **Parse string values**
+
+* Find the position of a string with `indexOf`, trim whitespace with `trim`, use `substring` with either a start value or start and end values.
+
 **Get string values from user input**
+
+Use the scanner class to capture user input in the command line
+
+    var scanner = new Scanner(System.in);
+
+Use `nextLine()` to capture input until enter is pressed.
+
+    System.out.println("Enter your name: ");
+    var name = scanner.nextLine();
+
+Convert a string to date and get the age from a birthdate.
+
+    System.out.println("Enter your birthdate: ");
+    var birthdateString = scanner.nextLine();
+
+    try {
+        var birthdate = LocalDate.parse(birthdateString, DateTimeFormatter.ofPattern("MM-d-yyyy"));
+        var age = LocalDate.now().getYear() - birthdate.getYear();
+        System.out.printf("You are %s years old", age);
+    } catch (Exception e) {
+        System.out.println("Wrong format, enter birthdate as MM-DD-YYYY")
+    }
+
+**A simple calculator**
+
+The example problem was to get user input from the command line for two numbers, then divide them and print the result. I added JUnit tests and followed TDD.
+
+* Switched the project to Maven. Right-click the project root, add framework support, select Maven.
+* Add JUnit to `pom.xml` with `Alt+Insert`, add dependency, search for `org.junit.jupiter:junit-jupiter`, click add, at the top right load maven changes.
+* Created a `Calculator` class
+* Created an empty `divide` method
+* Created a test for this class and method (right click on class name, show context actions, create test)
+* Modified the test to assert that `divide(4, 2)` equals `2`
+* Ran the test to see it fails
+* Implemented the `divide` method
 
 # 5. Manage program flow
 # 6. Debugging and exception handling
