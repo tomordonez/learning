@@ -198,6 +198,9 @@ Iterating an array using for each:
     }
 
 **Create reusable code with methods**
+
+* Refactor/Extract/Method
+
 **Create overloaded methods**
 **Pass arguments by reference vs value**
 
