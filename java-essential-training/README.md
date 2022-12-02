@@ -182,6 +182,21 @@ Not on the video here is the switch enhanced, which IntelliJ gives a warning to 
     }
 
 **Create looping code blocks**
+
+Use the typical for loop:
+
+    for (var i = 0; i < variable.length; i ++) {
+        // do something like
+        System.out.println(i);
+    }
+
+Iterating an array using for each:
+
+    String[] months = {"January", "February", "March"}
+    for (var month : months) {
+        System.out.println(month);
+    }
+
 **Create reusable code with methods**
 **Create overloaded methods**
 **Pass arguments by reference vs value**
