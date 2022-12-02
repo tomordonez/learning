@@ -142,6 +142,88 @@ The example problem was to get user input from the command line for two numbers,
 * Implemented the `divide` method
 
 # 5. Manage program flow
+
+**Evaluate conditions with if-else**
+
+Just the usual if else
+
+    if (namorBirthYear > ThorBirthYear) {
+        System.out.println("Namor is older");
+    } else {
+        System.out.println("Thor is older");
+    }
+
+Not on the video. Here is the shorthand if else, aka ternary operator
+
+    var result = (namorBirthYear > ThorBirthYear) ? "Namor is older" : "Thor is older";
+    System.out.println(result);
+
+**Evaluate conditions with switch-case**
+
+Just the usual switch/case/default
+
+    switch(parameter) {
+        case parameter1:
+            // do something
+            break;
+        case parameter2:
+            // do something
+            break;
+        default:
+            // do something else
+    }
+
+Not on the video here is the switch enhanced, which IntelliJ gives a warning to refactor to. It uses the arrow: dash with greater than sign `->` and it doesn't need the `break` keyword.
+
+    switch(parameter) {
+        case parameter1 -> // do something
+        case parameter2 -> // do something
+        default -> // do something else
+    }
+
+**Create looping code blocks**
+
+Use the typical for loop:
+
+    for (var i = 0; i < variable.length; i ++) {
+        // do something like
+        System.out.println(i);
+    }
+
+Iterating an array using for each:
+
+    String[] months = {"January", "February", "March"}
+    for (var month : months) {
+        System.out.println(month);
+    }
+
+**Create reusable code with methods**
+
+* Refactor/Extract/Method
+
+**Create overloaded methods**
+
+Create methods with the same name but different signature
+
+    private static int addValues (int a, int b) {
+        return a + b;
+    }
+
+    private static int addValues (int a, int b, int c) {
+        return a + b + c;
+    }
+
+Use the triple dot syntax to pass multiple arguments
+
+    private static int addValues (int... values) {
+        return a + b + c + d;
+    }
+
+**Pass arguments by reference vs value**
+
+* Passing an argument into a method, it is making a copy of the variable
+* The values referenced by the two copies may be the same
+
 # 6. Debugging and exception handling
 # 7. Create custom classes
 # 8. Work with inheritance
