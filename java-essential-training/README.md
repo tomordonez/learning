@@ -213,13 +213,16 @@ Create methods with the same name but different signature
         return a + b + c;
     }
 
-Use the triple dot syntax to pass multiple parameters
+Use the triple dot syntax to pass multiple arguments
 
     private static int addValues (int... values) {
         return a + b + c + d;
     }
 
 **Pass arguments by reference vs value**
+
+* Passing an argument into a method, it is making a copy of the variable
+* The values referenced by the two copies may be the same
 
 # 6. Debugging and exception handling
 # 7. Create custom classes
