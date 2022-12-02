@@ -202,6 +202,23 @@ Iterating an array using for each:
 * Refactor/Extract/Method
 
 **Create overloaded methods**
+
+Create methods with the same name but different signature
+
+    private static int addValues (int a, int b) {
+        return a + b;
+    }
+
+    private static int addValues (int a, int b, int c) {
+        return a + b + c;
+    }
+
+Use the triple dot syntax to pass multiple parameters
+
+    private static int addValues (int... values) {
+        return a + b + c + d;
+    }
+
 **Pass arguments by reference vs value**
 
 # 6. Debugging and exception handling
