@@ -159,6 +159,28 @@ Not on the video. Here is the shorthand if else, aka ternary operator
     System.out.println(result);
 
 **Evaluate conditions with switch-case**
+
+Just the usual switch/case/default
+
+    switch(parameter) {
+        case parameter1:
+            // do something
+            break;
+        case parameter2:
+            // do something
+            break;
+        default:
+            // do something else
+    }
+
+Not on the video here is the switch enhanced, which IntelliJ gives a warning to refactor to. It uses the arrow: dash with greater than sign `->` and it doesn't need the `break` keyword.
+
+    switch(parameter) {
+        case parameter1 -> // do something
+        case parameter2 -> // do something
+        default -> // do something else
+    }
+
 **Create looping code blocks**
 **Create reusable code with methods**
 **Create overloaded methods**

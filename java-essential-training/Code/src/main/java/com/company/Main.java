@@ -1,17 +1,15 @@
 package com.company;
 
-import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        var scanner = new Scanner(System.in);
-        System.out.print("Enter score for USA: ");
-        var usaScore = scanner.nextInt();
+        var monthNumber = LocalDate.now().getMonthValue();
 
-        System.out.print("Enter score for England: ");
-        var englandScore = scanner.nextInt();
-
-        var winner = (usaScore > englandScore) ? "USA won" : "England won";
-        System.out.println(winner);
+        switch (monthNumber) {
+            case 1 -> System.out.println("Month is January");
+            case 2 -> System.out.println("Month is February");
+            default -> System.out.println("Es otro mes guey");
+        }
     }
 }
