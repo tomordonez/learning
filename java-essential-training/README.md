@@ -142,6 +142,28 @@ The example problem was to get user input from the command line for two numbers,
 * Implemented the `divide` method
 
 # 5. Manage program flow
+
+**Evaluate conditions with if-else**
+
+Just the usual if else
+
+    if (namorBirthYear > ThorBirthYear) {
+        System.out.println("Namor is older");
+    } else {
+        System.out.println("Thor is older");
+    }
+
+Not on the video. Here is the shorthand if else, aka ternary operator
+
+    var result = (namorBirthYear > ThorBirthYear) ? "Namor is older" : "Thor is older";
+    System.out.println(result);
+
+**Evaluate conditions with switch-case**
+**Create looping code blocks**
+**Create reusable code with methods**
+**Create overloaded methods**
+**Pass arguments by reference vs value**
+
 # 6. Debugging and exception handling
 # 7. Create custom classes
 # 8. Work with inheritance

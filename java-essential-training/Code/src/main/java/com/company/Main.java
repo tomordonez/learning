@@ -4,19 +4,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // A simple calculator with TDD and JUnit tests
-        // Enter a numeric value: 24.2
-        // Enter a numeric value: 12.1
-        // The answer is 2.0
-
         var scanner = new Scanner(System.in);
-        System.out.print("Enter a numeric value: ");
-        var dividend = scanner.nextDouble();
+        System.out.print("Enter score for USA: ");
+        var usaScore = scanner.nextInt();
 
-        System.out.print("Enter a numeric value: ");
-        var divisor = scanner.nextDouble();
+        System.out.print("Enter score for England: ");
+        var englandScore = scanner.nextInt();
 
-        double quotient = Calculator.divide(dividend, divisor);
-        System.out.printf("The answer is %.1f", quotient);
+        var winner = (usaScore > englandScore) ? "USA won" : "England won";
+        System.out.println(winner);
     }
 }
