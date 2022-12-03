@@ -225,6 +225,16 @@ Use the triple dot syntax to pass multiple arguments
 * The values referenced by the two copies may be the same
 
 # 6. Debugging and exception handling
+
+**Handle exceptions with try/catch**
+
+* Surround an expression with code/surround with/try catch
+* The default creates `throw new RuntimeException(e)`
+* Alternatively use `e.printStackTrace()`
+
+**Create multiple catch blocks**
+**Close objects with try-with-resources**
+
 # 7. Create custom classes
 # 8. Work with inheritance
 # 9. Manage data collections
