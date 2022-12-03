@@ -233,6 +233,22 @@ Use the triple dot syntax to pass multiple arguments
 * Alternatively use `e.printStackTrace()`
 
 **Create multiple catch blocks**
+
+Chain multiple catch expressions for specific exception
+
+    try {
+        // do something
+    } catch (NullPointerException e) {
+        e.printStackTrace();
+        System.out.println(e.getMessage());
+    } catch (StringIndexOutOfBoundsException e) {
+        e.printStackTrace();
+        System.out.println(e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Similar to default keyword in switch to catch everything else")
+    }
+
 **Close objects with try-with-resources**
 
 # 7. Create custom classes
