@@ -225,6 +225,43 @@ Use the triple dot syntax to pass multiple arguments
 * The values referenced by the two copies may be the same
 
 # 6. Debugging and exception handling
+
+**Handle exceptions with try/catch**
+
+* Surround an expression with code/surround with/try catch
+* The default creates `throw new RuntimeException(e)`
+* Alternatively use `e.printStackTrace()`
+
+**Create multiple catch blocks**
+
+Chain multiple catch expressions for specific exception
+
+    try {
+        // do something
+    } catch (NullPointerException e) {
+        e.printStackTrace();
+        System.out.println(e.getMessage());
+    } catch (StringIndexOutOfBoundsException e) {
+        e.printStackTrace();
+        System.out.println(e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Similar to default keyword in switch to catch everything else")
+    }
+
+**Close objects with try-with-resources**
+
+This is similar to `with open('some-file.csv') as file` in python to open and close files. Using try/catch, create the reading and buffering objects inside a `try(objects)`. Although the following code will only read the first line, it needs the data to be stored in an `ArrayList<String[]>`, where each row is a `String[]`, reading each line into a temporary String list variable, then adding this to the array. See the complete code in the branch `java-ET/6/research/load-csv`
+
+    var file = "some-file.csv";
+    InputStream inputStream = Main.class.getClass.getClassLoader.getResourceAsStream(file);
+    try (InputStreamReader streamReader = new InputStreamReader(inputStream);
+         BufferedReader reader = new BufferedReader(streamReader);) {
+        System.out.println(reader.readLine());
+    } catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
+
 # 7. Create custom classes
 # 8. Work with inheritance
 # 9. Manage data collections

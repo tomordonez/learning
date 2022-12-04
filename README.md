@@ -1,9 +1,10 @@
 # Learning
 
-This repo contains a summary of things I am learning outside of Gatech.
+This repo contains a summary of courses and code I am learning outside Gatech.
 
-**Learning**
-* LIL: Java Essential Training
+**In Progress**
+
+* LIL: Java Essential Training (took it in 2021, reviewing in 2022)
 
 **Backlog**
 
@@ -65,23 +66,65 @@ This repo contains a summary of things I am learning outside of Gatech.
 * LIL: Linkedin Learning
 * ACG: A Cloud Guru
 * Y: Youtube
-* T: Online Tutorial
+* W: Web Tutorial
 
 ## Documenting
 
-* Each topic has a directory with a `README` and `Code` directory
-* Create a branch with the topic name or a combination of technology and topic
-    initials. For example 'Building Modern Projects with React', the branch
-    could be `react-BMP`.
-* Commit and push the branch.
-* Create a Github PR, merge to main, don't delete branch.
+I didn't want to create a repo for each course. Instead, documenting all my learning in one big repo following this directory structure:
+
+    Learning
+        Course 1
+            Code
+            Readme
+        Course 2
+            Code
+            Readme
+
+**Branch name: A course has sections that don't build upon each other**
+
+I took Java Essential Training in 2021 and I was reviewing it again in 2022. The course has sections, each sections has videos, and each of these videos don't build upon each other, but are self-contained mini-tutorials.
+
+This is the directory structure of the course:
+
+    ...
+    5. Manage Program Flow
+        Evaluate conditions with if-else
+        Evaluate conditions with switch-case
+    
+    6. Debugging and Exception Handling
+        ...
+
+I found it complicated to follow a branch convention like `dev`, since the examples don't build on each other. I was using the branch `Java-ET` and creating a commit per section. However, reviewing the merged commits, it was confusing seeing all the deletions and additions, which basically was deleting all the previous code and adding the new one. 
+
+I also found some videos a bit too trivial, since I was reviewing the course again, sometimes a bit outdated, without data structures, OOP, or tests. For some mini tutorial videos I added my own research. This turned to creating a branch naming convention using a git directory structure like this:
+
+    course-name/section-number/[video | research]/section-subtopic
+
+Where `video` follows the exact tutorial and `research` adds my own implementation of that tutorial. 
+
+Then branch names could be:
+
+    Java-ET/5/video/if-else
+    Java-ET/5/video/switch
+    Java-ET/5/research/load-csv
+
+This would obviously create a lot of branches. If the course has 5 sections with 5 videos each. That's 25 branches. Each branch (with smaller commits) would need to be pushed and merged.
+
+**Branch name: A course has sections that build upon each other**
+
+If the sections build upon each other, it could be as simple as a `dev` branch. Or follow a similar convention that doesn't require `section-subtopic`.
+
+    course-name/section-number/video
+    course-name/section-number/research/short-description
+
+This would create fewer branches where a commit is a video in each section. Only use `short-description` for a branch that deviates from the videos.
 
 **CLI**
 
-    (main)$ git checkout -b react-BMP
+    (main)$ git checkout -b branch-name 
     (react-BMP)$ git add .
     (react-BMP)$ git commit -m "a message..."
-    (react-BMP)$ git push -u origin react-BMP
+    (react-BMP)$ git push -u origin branch-name
     (react-BMP)$ git checkout main
     (main)$ git pull
 
