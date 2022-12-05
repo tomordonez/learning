@@ -322,9 +322,51 @@ Main.java
     import com.company.utilities.Calculator
 
 **Create instance fields and methods**
+
+This is a different code example
+
+* Create a package `model`
+* Inside create the class `ClothingItem`
+* Add private fields: `String type`, `String size`, `double price`, `int quantity`
+* Then generate setters/getters
+* In `Main` create an instance of the class
+* Then set the values for an example
+* Create a `totalPrice` and compute `price * quantity`
+
+Using `String.format()`
+
+    var formatter = NumberFormat.getCurrencyInstance();
+    var output = String.format("Item: %s, Total Price: %s", item.getType(), formatter.format(totalPrice))
+
+More about `NumberFormat` in the Oracle docs [here](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html)
+
 **Declare multiple constructor methods**
+
+Following the previous example:
+
+* Create multiple constructor methods but with different signatures
+* Create a constructor with no arguments
+* Create a constructor with all fields
+* Call the constructor and remove the setters from Main
+
 **Use static fields as constants**
+
+* Declare constants with `public static final String CONSTANT_NAME = "a string";` since the usual upper case CONSTANT is not available in Java.
+* Use the shortcut `psfs`
+* Constants help avoid mistyping strings that are used often
+
 **Declare and use Enum types**
+
+Follows previous example:
+
+* Create an enum for clothing sizes. Used to set a finite number of choices.
+* In the `model` package create an enum `ClothingSize` with `S, M, L`
+* Create a field in `ClothingItem` for `private ClothingSize size`
+* In `ClothingSize` create a field string `description` and constructor with argument `String description`
+* Change the constructor for the sizes such as `S("Small")`
+* Then display the `description` such as `Small` and not the constant name `S`
+  * Override the `toString()` method.
+  * Use Generate, then `toString()`, then return `description`
 
 # 8. Work with inheritance
 # 9. Manage data collections

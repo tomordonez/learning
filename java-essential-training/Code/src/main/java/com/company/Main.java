@@ -1,35 +1,32 @@
 package com.company;
 
-import java.util.Scanner;
+import com.company.model.ClothingItem;
+import com.company.model.ClothingSize;
+
+import java.text.NumberFormat;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        ClothingItem newItem = new ClothingItem(ClothingItem.SHIRT,
+                ClothingSize.L,
+                2,
+                55.56);
 
-        double firstNumber, secondNumber;
-        try {
-            System.out.print("Enter the first number value: ");
-            firstNumber = Double.parseDouble(scanner.nextLine());
+        var itemType = newItem.getItemType();
+        var size = newItem.getSize();
+        var quantity = newItem.getQuantity();
+        var price = newItem.getPrice();
 
-            System.out.print("Enter the second number value: ");
-            secondNumber = Double.parseDouble(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Enter a number only!");
-            throw new RuntimeException(e);
-        }
+        var totalPrice = quantity * price;
 
-        System.out.print("Select an operation (+ - * /): ");
-        var operation = scanner.nextLine();
+        var priceCurrencyFormat = NumberFormat.getCurrencyInstance();
+        var output = String.format("Item: %s. Size: %s. Total price: %s",
+                itemType,
+                size,
+                priceCurrencyFormat.format(totalPrice));
 
-        double result = 0;
-        switch (operation) {
-            case "+" -> result = Calculator.add(firstNumber, secondNumber);
-            case "-" -> result = Calculator.subtract(firstNumber, secondNumber);
-            case "*" -> result = Calculator.product(firstNumber, secondNumber);
-            case "/" -> result = Calculator.divide(firstNumber, secondNumber);
-            default -> System.out.println("Only enter one of: + - * /");
-        }
-        System.out.printf("The answer is: %.1f", result);
+        System.out.println(output);
+
     }
 
 }
