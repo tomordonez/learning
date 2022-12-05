@@ -5,6 +5,12 @@ public class ClothingItem {
     private int quantity;
     private double price;
 
+    public ClothingItem(String itemType, int quantity, double price) {
+        this.itemType = itemType;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public String getItemType() {
         return itemType;
     }

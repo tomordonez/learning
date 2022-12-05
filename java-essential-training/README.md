@@ -341,6 +341,14 @@ Using `String.format()`
 More about `NumberFormat` in the Oracle docs [here](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html)
 
 **Declare multiple constructor methods**
+
+Following the previous example:
+
+* Create multiple constructor methods but with different signatures
+* Create a constructor with no arguments
+* Create a constructor with all fields
+* Call the constructor and remove the setters from Main
+
 **Use static fields as constants**
 **Declare and use Enum types**
 

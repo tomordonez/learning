@@ -6,10 +6,7 @@ import java.text.NumberFormat;
 
 public class Main {
     public static void main(String[] args) {
-        ClothingItem newItem = new ClothingItem();
-        newItem.setItemType("Shirt");
-        newItem.setQuantity(2);
-        newItem.setPrice(55.45);
+        ClothingItem newItem = new ClothingItem("Shirt", 2, 55.56);
 
         var itemType = newItem.getItemType();
         var quantity = newItem.getQuantity();
