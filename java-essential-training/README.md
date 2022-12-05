@@ -322,6 +322,24 @@ Main.java
     import com.company.utilities.Calculator
 
 **Create instance fields and methods**
+
+This is a different code example
+
+* Create a package `model`
+* Inside create the class `ClothingItem`
+* Add private fields: `String type`, `String size`, `double price`, `int quantity`
+* Then generate setters/getters
+* In `Main` create an instance of the class
+* Then set the values for an example
+* Create a `totalPrice` and compute `price * quantity`
+
+Using `String.format()`
+
+    var formatter = NumberFormat.getCurrencyInstance();
+    var output = String.format("Item: %s, Total Price: %s", item.getType(), formatter.format(totalPrice))
+
+More about `NumberFormat` in the Oracle docs [here](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html)
+
 **Declare multiple constructor methods**
 **Use static fields as constants**
 **Declare and use Enum types**
