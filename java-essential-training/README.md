@@ -38,9 +38,9 @@ Pass arguments in IntelliJ
 
 * Concatenating a String will not modify the current String like `String s1 =
     "java"; s1.concat(" rules");`. Printing `s1` will return `java` and not
-    `java rules`. However a new String object is created with `java rules`
+    `java rules`. However, a new String object is created with `java rules`
     without a reference. The new object remains in an area of memory called
-    String constant pool. Running `s1.concat(" rules")` on jshell will output
+    String constant pool. Running `s1.concat(" rules")` on `jshell` will output
     `$2 ==> "java rules"` and typing `$2` will return such String object.
 * Use `StringBuilder(stringValue)` to create a String object like
     `StringBuilder s2 =
@@ -290,5 +290,41 @@ What I learned is that pressing enter, after number `2` is captured by `scanner.
     var operation = scanner.nextLine();
 
 # 7. Create custom classes
+
+**Declare and use custom classes**
+
+I implemented this in the previous section. Creating a class and methods corresponding to the Calculator exercise. For example:
+
+    public class Calculator {
+        public static double addNumbers(double... operands) {
+            return operands[0] + operands[1];
+        }
+    }
+
+**Organize code with packages**
+
+Explains what a package is and how libraries are imported. For example
+
+Main.java
+
+    package com.company;
+
+Calculator.java
+
+    package com.company
+
+If Calculator.java was inside another package called 'utilities' then Main would need an import
+
+Main.java
+
+    package com.company;
+
+    import com.company.utilities.Calculator
+
+**Create instance fields and methods**
+**Declare multiple constructor methods**
+**Use static fields as constants**
+**Declare and use Enum types**
+
 # 8. Work with inheritance
 # 9. Manage data collections
