@@ -350,6 +350,11 @@ Following the previous example:
 * Call the constructor and remove the setters from Main
 
 **Use static fields as constants**
+
+* Declare constants with `public static final String CONSTANT_NAME = "a string";` since the usual upper case CONSTANT is not available in Java.
+* Use the shortcut `psfs`
+* Constants help avoid mistyping strings that are used often
+
 **Declare and use Enum types**
 
 # 8. Work with inheritance

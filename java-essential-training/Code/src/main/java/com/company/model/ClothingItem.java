@@ -1,7 +1,10 @@
 package com.company.model;
 
 public class ClothingItem {
+
     private String itemType;
+    public static final String SHIRT = "Shirt";
+    public static final String PANTS = "Pants";
     private int quantity;
     private double price;
 

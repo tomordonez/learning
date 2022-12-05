@@ -1,3 +1,5 @@
-*/*.swp
+*.swp
+*.class
+*.jar
 java-essential-training/Code/out/*
 java-essential-training/Code/.idea/*
