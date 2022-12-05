@@ -357,5 +357,16 @@ Following the previous example:
 
 **Declare and use Enum types**
 
+Follows previous example:
+
+* Create an enum for clothing sizes. Used to set a finite number of choices.
+* In the `model` package create an enum `ClothingSize` with `S, M, L`
+* Create a field in `ClothingItem` for `private ClothingSize size`
+* In `ClothingSize` create a field string `description` and constructor with argument `String description`
+* Change the constructor for the sizes such as `S("Small")`
+* Then display the `description` such as `Small` and not the constant name `S`
+  * Override the `toString()` method.
+  * Use Generate, then `toString()`, then return `description`
+
 # 8. Work with inheritance
 # 9. Manage data collections

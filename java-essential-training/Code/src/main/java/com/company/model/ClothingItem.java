@@ -5,11 +5,14 @@ public class ClothingItem {
     private String itemType;
     public static final String SHIRT = "Shirt";
     public static final String PANTS = "Pants";
+
+    private final ClothingSize size;
     private int quantity;
     private double price;
 
-    public ClothingItem(String itemType, int quantity, double price) {
+    public ClothingItem(String itemType, ClothingSize size, int quantity, double price) {
         this.itemType = itemType;
+        this.size = size;
         this.quantity = quantity;
         this.price = price;
     }
@@ -36,5 +39,9 @@ public class ClothingItem {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public ClothingSize getSize() {
+        return size;
     }
 }
