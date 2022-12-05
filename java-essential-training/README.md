@@ -262,6 +262,33 @@ This is similar to `with open('some-file.csv') as file` in python to open and cl
         System.out.println(e.getMessage());
     }
 
+**Complex Calculator**
+
+Add the option to type in the operation (+ - * /). However I found that when capturing input using `nextDouble` and `nextLine` it moves the cursor forward skipping input for the operation. This doesn't work:
+
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter first number: ");
+    var firstNumber = scanner.nextDouble();
+    System.out.print("Enter second number: ");
+    var secondNumber = scanner.nextDouble();
+    System.out.print("Enter operation (+ - * /): ");
+    var operation = scanner.nextLine();
+
+The output is:
+
+    Enter first number: 1 (enter number 1 and press enter)
+    Enter second number: 2 (enter number 2 and press enter)
+    Enter operation (+ - * /):  (this is skipped and it exits the program)
+
+What I learned is that pressing enter, after number `2` is captured by `scanner.nextLine()`. Instead, use only `scanner.nextLine()` but parsing the input to the corresponding primitive.
+
+    ...
+    var firstNumber = Double.parseDouble(scanner.nextLine());
+    ...
+    var secondNumber = Double.parseDouble(scanner.nextLine());
+    System.out.print("Enter operation (+ - * /): ");
+    var operation = scanner.nextLine();
+
 # 7. Create custom classes
 # 8. Work with inheritance
 # 9. Manage data collections
