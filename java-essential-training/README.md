@@ -302,6 +302,25 @@ I implemented this in the previous section. Creating a class and methods corresp
     }
 
 **Organize code with packages**
+
+Explains what a package is and how libraries are imported. For example
+
+Main.java
+
+    package com.company;
+
+Calculator.java
+
+    package com.company
+
+If Calculator.java was inside another package called 'utilities' then Main would need an import
+
+Main.java
+
+    package com.company;
+
+    import com.company.utilities.Calculator
+
 **Create instance fields and methods**
 **Declare multiple constructor methods**
 **Use static fields as constants**
