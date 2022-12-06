@@ -369,4 +369,33 @@ Follows previous example:
   * Use Generate, then `toString()`, then return `description`
 
 # 8. Work with inheritance
+
+**About inheritance**
+
+* Java supports single inheritance
+* A class can extend only one superclass
+* Classes can implement many interfaces
+* All classes are derived from `Object`
+
+Polymorphism example where class `Hat` extends `ClothingItem` and it overrides returning the string `Hat`:
+
+    ClothingItem item = new Hat();
+    System.out.println("This is a " + item.getType());
+    // Output
+    // This is a Hat
+
+**Extend classes and override methods**
+
+* Create a class `Shirt` in package `model`
+* Extend the class from `ClothingItem`
+* Create a constructor where `super` uses `ClothingItem.SHIRT`
+* The shirt constructor doesn't need type as an argument
+* In `Main` change the constructor to `Shirt`
+
+**Use objects as their super types**
+
+* Extract a method to `displayItemDetails`
+* Create another class `Hat`
+* Create another item in `Main` and display details
+
 # 9. Manage data collections
