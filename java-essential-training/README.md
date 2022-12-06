@@ -385,6 +385,13 @@ Polymorphism example where class `Hat` extends `ClothingItem` and it overrides r
     // This is a Hat
 
 **Extend classes and override methods**
+
+* Create a class `Shirt` in package `model`
+* Extend the class from `ClothingItem`
+* Create a constructor where `super` uses `ClothingItem.SHIRT`
+* The shirt constructor doesn't need type as an argument
+* In `Main` change the constructor to `Shirt`
+
 **Use objects as their super types**
 
 # 9. Manage data collections
