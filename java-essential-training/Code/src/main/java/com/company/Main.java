@@ -6,9 +6,7 @@ import com.company.model.Hat;
 import com.company.model.Shirt;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -57,6 +55,23 @@ public class Main {
 
         for (ClothingItem item : itemsLinkedList) {
             displayItemDetails(item);
+        }
+
+        Map<String, ClothingItem> itemsMap = new HashMap<>();
+        itemsMap.put("Shirt", new Shirt(
+                ClothingSize.S,
+                1,
+                123.45));
+        itemsMap.put("Hat", new Hat(
+                ClothingSize.L,
+                1,
+                50.99));
+
+        displayItemDetails(itemsMap.get("Shirt"));
+
+        var keys = itemsMap.keySet();
+        for (String key : keys) {
+            displayItemDetails(itemsMap.get(key));
         }
     }
 
