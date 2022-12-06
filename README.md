@@ -80,44 +80,41 @@ I didn't want to create a repo for each course. Instead, documenting all my lear
             Code
             Readme
 
-**Branch name: A course has sections that don't build upon each other**
+### Branches
 
-I took Java Essential Training in 2021 and I was reviewing it again in 2022. The course has sections, each sections has videos, and each of these videos don't build upon each other, but are self-contained mini-tutorials.
+I've seen two types of course content for Linkedin Learning, where a course has sections and each section has videos.
 
-This is the directory structure of the course:
+* Each video is an independent example/code that doesn't build upon the previous video.
+* Each video is an example/code that builds upon the previous video.
 
-    ...
-    5. Manage Program Flow
-        Evaluate conditions with if-else
-        Evaluate conditions with switch-case
-    
-    6. Debugging and Exception Handling
-        ...
+Also, sometimes I find the examples trivial and I want to add my own spice, like using OOP, adding test cases, or other methods that might be outdated in the content.
 
-I found it complicated to follow a branch convention like `dev`, since the examples don't build on each other. I was using the branch `Java-ET` and creating a commit per section. However, reviewing the merged commits, it was confusing seeing all the deletions and additions, which basically was deleting all the previous code and adding the new one. 
+After some experimentation, I found it easier to follow this naming convention:
 
-I also found some videos a bit too trivial, since I was reviewing the course again, sometimes a bit outdated, without data structures, OOP, or tests. For some mini tutorial videos I added my own research. This turned to creating a branch naming convention using a git directory structure like this:
+    course-name-short/section-number/section-name-short
 
-    course-name/section-number/[video | research]/section-subtopic
+Such as:
 
-Where `video` follows the exact tutorial and `research` adds my own implementation of that tutorial. 
+    Java-ET/7/custom-classes
+    Java-ET/8/inheritance
 
-Then branch names could be:
+Each section has videos like the following structure
 
-    Java-ET/5/video/if-else
-    Java-ET/5/video/switch
-    Java-ET/5/research/load-csv
+    7. Custom Classes
+      - Declare and use custom classes
+      - Organize code with packages
+      - Create instance fields and methods
 
-This would obviously create a lot of branches. If the course has 5 sections with 5 videos each. That's 25 branches. Each branch (with smaller commits) would need to be pushed and merged.
+Create a commit for each video and use the exact video title as the commit comment.
 
-**Branch name: A course has sections that build upon each other**
+When adding my own research then use:
 
-If the sections build upon each other, it could be as simple as a `dev` branch. Or follow a similar convention that doesn't require `section-subtopic`.
-
-    course-name/section-number/video
     course-name/section-number/research/short-description
 
-This would create fewer branches where a commit is a video in each section. Only use `short-description` for a branch that deviates from the videos.
+Such as:
+
+    Java-ET/7/research/load-csv
+
 
 **CLI**
 

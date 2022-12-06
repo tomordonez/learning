@@ -369,4 +369,22 @@ Follows previous example:
   * Use Generate, then `toString()`, then return `description`
 
 # 8. Work with inheritance
+
+**About inheritance**
+
+* Java supports single inheritance
+* A class can extend only one superclass
+* Classes can implement many interfaces
+* All classes are derived from `Object`
+
+Polymorphism example where class `Hat` extends `ClothingItem` and it overrides returning the string `Hat`:
+
+    ClothingItem item = new Hat();
+    System.out.println("This is a " + item.getType());
+    // Output
+    // This is a Hat
+
+**Extend classes and override methods**
+**Use objects as their super types**
+
 # 9. Manage data collections
