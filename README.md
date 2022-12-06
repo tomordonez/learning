@@ -4,13 +4,22 @@ This repo contains a summary of courses and code I am learning outside Gatech.
 
 **In Progress**
 
-* LIL: Java Essential Training (took it in 2021, reviewing in 2022)
+* LIL: Java OOP
+
+**Done**
+
+* LIL: IntelliJ Refresher
+* LIL: Java Essential Training (took in 2021, reviewed in 2022)
 
 **Backlog**
 
 *Java*
-* LIL: Java data structures and algorithms
+* LIL: Java Algorithms
+* LIL: Advanced Java Programming
+* LIL: Java Data Structures
+* LIL: Java Lambdas and Streams
 * LIL: Java and Docker
+* LIL: Java data structures and algorithms (this course is pure theory)
 * LIL: Java Objects and APIs
 * LIL: JUnit
 * LIL: Spring Boot
@@ -58,8 +67,6 @@ This repo contains a summary of courses and code I am learning outside Gatech.
 * LIL: React Software Architecture
 * LIL: React Authentication
 
-**Done**
-* LIL: IntelliJ Refresher
 
 ## Legend
 
