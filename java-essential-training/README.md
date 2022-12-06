@@ -409,4 +409,13 @@ Polymorphism example where class `Hat` extends `ClothingItem` and it overrides r
 * Print the item objects using a for each
 
 **Manage resizable arrays with Lists**
+
+* Create a `List<string>` to hold an `ArrayList` of colors
+* Add the same three colors
+* Print the colors
+* Create a `List<ClothingItem>` and repeat above
+* Not in the video, use a `LinkedList`
+
+More about `ArrayList` vs `LinkedList` in stackoverflow [here](https://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist-in-java). Basically it says, they are both implementation of List but with different algorithmic runtimes.
+
 **Manage key-value pairs with Maps**

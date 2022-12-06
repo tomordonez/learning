@@ -6,6 +6,9 @@ import com.company.model.Hat;
 import com.company.model.Shirt;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,21 +22,42 @@ public class Main {
             System.out.println(color);
         }
 
-        ClothingItem[] items = {
-            new Shirt(
-                    ClothingSize.L,
-                    2,
-                    55.56),
-            new Hat(
-                    ClothingSize.M,
-                    1,
-                    25.99)
-        };
+        List<String> colorsList = new ArrayList<>();
+        colorsList.add("Blanco");
+        colorsList.add("Amarillo");
+        colorsList.add("Gris");
 
-        for (ClothingItem item : items) {
+        for (String color : colorsList) {
+            System.out.println(color);
+        }
+
+        List<ClothingItem> itemsList = new ArrayList<>();
+        itemsList.add(new Shirt(
+                ClothingSize.L,
+                2,
+                55.56));
+        itemsList.add(new Hat(
+                ClothingSize.M,
+                1,
+                25.99));
+
+        for (ClothingItem item : itemsList) {
             displayItemDetails(item);
         }
 
+        List<ClothingItem> itemsLinkedList = new LinkedList<>();
+        itemsLinkedList.add(new Shirt(
+                ClothingSize.S,
+                1,
+                250.33));
+        itemsLinkedList.add(new Hat(
+                ClothingSize.L,
+                1,
+                50.99));
+
+        for (ClothingItem item : itemsLinkedList) {
+            displayItemDetails(item);
+        }
     }
 
     private static void displayItemDetails(ClothingItem item) {
