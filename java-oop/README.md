@@ -30,6 +30,11 @@
 * Create a static method in `Tree` to print out a message
 
 **Built-in Java class**
+
+* Read the source code of `Color` class
+* In `Main` create a default white color variable using a static member
+* Create a blue color variable using a static method
+
 **Build an employee class**
 
 # 2. Encapsulation

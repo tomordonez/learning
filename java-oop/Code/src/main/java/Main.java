@@ -1,5 +1,8 @@
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
+
         Tree myTree = new Tree(TreeType.OAK, 120, 10);
         myTree.displayTallTree();
 
@@ -8,5 +11,9 @@ public class Main {
 
         System.out.println(Tree.TREE_COLOR);
         Tree.cutTree();
+
+        var whiteColor = Color.WHITE;
+        var darkerWhite = whiteColor.darker();
+
     }
 }
