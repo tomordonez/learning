@@ -37,6 +37,14 @@
 
 **Build an employee class**
 
+* Create an Employee class
+* Attributes: name, age, salary, location
+* Behavior: raiseSalary
+* Create a Main class
+  * Build two instances
+  * Give an employee a raise
+  * Display salary of both employees
+
 # 2. Encapsulation
 # 3. Inheritance
 # 4. Polymorphism

@@ -1,19 +1,13 @@
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        Tree myTree = new Tree(TreeType.OAK, 120, 10);
-        myTree.displayTallTree();
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee("Namor", 500, "The Sea", 95000));
+        employees.add(new Employee("Black Panther", 30, "Wakanda", 5000000));
 
-        Tree myOtherTree = new Tree(TreeType.ROSEWOOD, 100, 20);
-        myOtherTree.displayTallTree();
-
-        System.out.println(Tree.TREE_COLOR);
-        Tree.cutTree();
-
-        var whiteColor = Color.WHITE;
-        var darkerWhite = whiteColor.darker();
-
+        System.out.println(employees.get(0).raiseSalary());
     }
 }
