@@ -9,18 +9,31 @@ import java.text.NumberFormat;
 
 public class Main {
     public static void main(String[] args) {
-        ClothingItem shirt = new Shirt(
-                ClothingSize.L,
-                2,
-                55.56);
 
-        ClothingItem hat = new Hat(
-                ClothingSize.M,
-                1,
-                25.99);
+        String[] colors = new String[3];
+        colors[0] = "rojo";
+        colors[1] = "azul";
+        colors[2] = "verde";
 
-        displayItemDetails(shirt);
-        displayItemDetails(hat);
+        for (String color : colors) {
+            System.out.println(color);
+        }
+
+        ClothingItem[] items = {
+            new Shirt(
+                    ClothingSize.L,
+                    2,
+                    55.56),
+            new Hat(
+                    ClothingSize.M,
+                    1,
+                    25.99)
+        };
+
+        for (ClothingItem item : items) {
+            displayItemDetails(item);
+        }
+
     }
 
     private static void displayItemDetails(ClothingItem item) {

@@ -399,3 +399,14 @@ Polymorphism example where class `Hat` extends `ClothingItem` and it overrides r
 * Create another item in `Main` and display details
 
 # 9. Manage data collections
+
+**Store values in simple arrays**
+
+* In `Main` create a `String[]` of length `3` to hold colors
+* Assign colors for each string
+* Print the colors using a for loop
+* Enclose the `shirt` and `hat` objects inside a `ClothingItem[]`
+* Print the item objects using a for each
+
+**Manage resizable arrays with Lists**
+**Manage key-value pairs with Maps**
