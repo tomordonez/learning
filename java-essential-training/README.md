@@ -394,4 +394,8 @@ Polymorphism example where class `Hat` extends `ClothingItem` and it overrides r
 
 **Use objects as their super types**
 
+* Extract a method to `displayItemDetails`
+* Create another class `Hat`
+* Create another item in `Main` and display details
+
 # 9. Manage data collections

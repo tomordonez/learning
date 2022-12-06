@@ -4,7 +4,7 @@ public class ClothingItem {
 
     private String itemType;
     public static final String SHIRT = "Shirt";
-    public static final String PANTS = "Pants";
+    public static final String HAT = "Hat";
 
     private final ClothingSize size;
     private int quantity;
