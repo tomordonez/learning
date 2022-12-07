@@ -46,6 +46,14 @@
   * Display salary of both employees
 
 # 2. Encapsulation
+
+**Access modifiers**
+
+* Public: visible anywhere in the program
+* Private: visible in the class
+* Protected: visible to the package and subclasses
+* No modifier: visible in the package
+
 # 3. Inheritance
 # 4. Polymorphism
 # 5. Abstraction
