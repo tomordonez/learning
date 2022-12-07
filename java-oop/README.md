@@ -54,6 +54,14 @@
 * Protected: visible to the package and subclasses
 * No modifier: visible in the package
 
+**Implement encapsulation with access modifiers**
+
+* Set fields to private in Tree class
+* Create getters
+* Use them in `Main` to print each field
+* Create a `grow` method in Tree to change the height
+* Create setters
+
 # 3. Inheritance
 # 4. Polymorphism
 # 5. Abstraction
