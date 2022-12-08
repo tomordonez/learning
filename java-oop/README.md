@@ -46,6 +46,34 @@
   * Display salary of both employees
 
 # 2. Encapsulation
+
+**Access modifiers**
+
+* Public: visible anywhere in the program
+* Private: visible in the class
+* Protected: visible to the package and subclasses
+* No modifier: visible in the package
+
+**Implement encapsulation with access modifiers**
+
+* Set fields to private in Tree class
+* Create getters
+* Use them in `Main` to print each field
+* Create a `grow` method in Tree to change the height
+* Create setters
+
+**Banking exercise**
+
+* Create a `BankAccount` class with fields `owner` (String) and `balance` (double)
+* Add methods: withdraw, deposit
+* Withdraw some amount
+* Retrieve the balance
+
+Additionally, created:
+
+* A menu with options to view account name, balance, make deposit, and withdrawal
+* Some JUnit tests
+
 # 3. Inheritance
 # 4. Polymorphism
 # 5. Abstraction

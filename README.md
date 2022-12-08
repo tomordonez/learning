@@ -87,6 +87,13 @@ I didn't want to create a repo for each course. Instead, documenting all my lear
             Code
             Readme
 
+### Testing/TDD
+
+So far courses aren't in TDD or don't use testing.
+
+* For Java, I am using JUnit. In IntelliJ, use Maven, go to `pom.xml`, type `Alt+Insert` to add a dependency and add `org.junit.jupiter:junit-jupiter`, then reload the maven icon.
+
+
 ### Branches
 
 I've seen two types of course content for Linkedin Learning, where a course has sections and each section has videos.
