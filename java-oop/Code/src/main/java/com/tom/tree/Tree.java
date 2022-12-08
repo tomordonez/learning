@@ -1,3 +1,5 @@
+package com.tom.tree;
+
 import java.awt.*;
 
 public class Tree {
@@ -5,7 +7,7 @@ public class Tree {
     private double heightFt;
     private final double trunkDiameterInches;
 
-    protected Color TREE_COLOR = new Color(120, 145, 110);
+    protected static Color TREE_COLOR = new Color(120, 145, 110);
 
     public Tree(TreeType treeType, double heightFt, double trunkDiameterInches) {
         this.treeType = treeType;
