@@ -148,3 +148,20 @@ Such as:
 * `Ctrl+K` or right click select Commit
 * Enter a message
 * Top menu Git/Push
+
+### Organizing code with packages
+
+In Java courses, as they go through the sections, they often change examples and overwrite `Main` with completely different code. Then it is confusing to read the branch changes history in `Main` that don't correspond to classes created for every example.
+
+A solution is to create packages for each example and contain all classes and a `Main` class for that example. For example there were two examples in a course, one was about a banking app, another was about an employee app:
+
+    java
+        com.tom
+            bank
+                BankMain
+                Account
+                Menu
+            employee
+                EmployeeMain
+                Employee
+                Job

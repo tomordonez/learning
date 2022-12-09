@@ -1,23 +1,26 @@
 package com.tom.employee;
 
-import java.text.NumberFormat;
-
-public class Employee {
-    private String name;
-    private int age;
-    private String location;
+public class Employee extends Person {
     private double salary;
 
-    public Employee(String name, int age, String location, double salary) {
-        this.name = name;
-        this.age = age;
-        this.location = location;
+    public Employee(String name, int age) {
+        super(name, age);
+    }
+
+    public Employee(String name, int age, double salary) {
+        super(name, age);
         this.salary = salary;
     }
 
-    public String raiseSalary() {
-        // this example doesn't change the variable, only formats the change in currency
-        var formatter = NumberFormat.getCurrencyInstance();
-        return formatter.format(this.salary + 10000);
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public double raiseSalary() {
+        return this.salary += 10000;
     }
 }

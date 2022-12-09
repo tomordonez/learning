@@ -3,9 +3,9 @@
 **Using classes as blueprints**
 
 * Create a `Tree` class
-  * Add an enum field for `treeType`
-  * Add double fields for `heightFt`, `trunkDiameterInches`
-  * Add a function `grow` that increases height by 10 and diameter by 1
+    * Add an enum field for `treeType`
+    * Add double fields for `heightFt`, `trunkDiameterInches`
+    * Add a function `grow` that increases height by 10 and diameter by 1
 
 **Building objects with a constructor**
 
@@ -41,9 +41,9 @@
 * Attributes: name, age, salary, location
 * Behavior: raiseSalary
 * Create a Main class
-  * Build two instances
-  * Give an employee a raise
-  * Display salary of both employees
+    * Build two instances
+    * Give an employee a raise
+    * Display salary of both employees
 
 # 2. Encapsulation
 
@@ -75,5 +75,52 @@ Additionally, created:
 * Some JUnit tests
 
 # 3. Inheritance
+
+**What is inheritance**
+
+* Subclass: inherits properties, child class
+* Superclass: inherited from, parent class
+
+Representing different employees
+
+* Employee: name, ID, salary attributes/behaviors
+* Salesperson: Employee, commission attributes/behaviors
+
+Is-A relationship
+
+* The Salesperson is an Employee
+* All Salesperson instances are also Employees
+
+**Types of inheritance**
+
+* Single level: Employee > Salesperson
+* Hierarchical
+    * One parent has many subclasses
+    * Employee > {Analyst, Salesperson}
+    * Person > Employee > {Analyst, Salesperson}
+
+**Reduce code duplication**
+
+Use the keyword `extends`
+
+* Create a Person class with fields: name, age
+* Create an Employee subclass with field: salary. And method: raiseSalary
+* Create an Analyst subclass with method: getAnnualBonus
+* Create a SalesPerson subclass with fields: commissionPercentage, and method: raiseCommission
+
+Create classes and subclasses. Added tests to methods.
+
+When creating a List of superclass and adding subclasses. The subclass has to be casted to get access to its members.
+
+    List<Employee> employees = new ArrayList<>();
+    employees.add(new SalesPerson("Loki", 35, 95000)) // name, age, salary
+    employees.add(new Analyst("Love", 10, 55000))
+
+    SalesPerson salesperson = (SalesPerson) employees.get(0);
+    System.out.println(salesperson.calculcateBonus());
+
+**Inheritance in built-in classes**
+**Exercise**
+
 # 4. Polymorphism
 # 5. Abstraction
