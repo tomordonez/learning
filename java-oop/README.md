@@ -120,7 +120,25 @@ When creating a List of superclass and adding subclasses. The subclass has to be
     System.out.println(salesperson.calculcateBonus());
 
 **Inheritance in built-in classes**
+
+* Create a Stack object of characters
+* Push each character for 'thor'
+* Then printout a pop for each character
+
+Review the Stack class in more detail
+* It extends the Vector class
+* The Vector class inherits from AbstractList
+
 **Exercise**
+
+* Create a ModArrayList class
+  * Should have all the functionality of ArrayList
+* Add a getUsingMod method that takes in an index and retrieves an item from the list at that index.
+* If the index is invalid, then the mod and absolute value operations should be used to make the index positive and mod the index based on the length of the list
+* Example: 4 % 3 = 1
+  * Using the method with index 4
+  * The list only has 3 items
+  * Return the first item
 
 # 4. Polymorphism
 # 5. Abstraction
