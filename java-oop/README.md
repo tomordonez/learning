@@ -3,9 +3,9 @@
 **Using classes as blueprints**
 
 * Create a `Tree` class
-  * Add an enum field for `treeType`
-  * Add double fields for `heightFt`, `trunkDiameterInches`
-  * Add a function `grow` that increases height by 10 and diameter by 1
+    * Add an enum field for `treeType`
+    * Add double fields for `heightFt`, `trunkDiameterInches`
+    * Add a function `grow` that increases height by 10 and diameter by 1
 
 **Building objects with a constructor**
 
@@ -41,9 +41,9 @@
 * Attributes: name, age, salary, location
 * Behavior: raiseSalary
 * Create a Main class
-  * Build two instances
-  * Give an employee a raise
-  * Display salary of both employees
+    * Build two instances
+    * Give an employee a raise
+    * Display salary of both employees
 
 # 2. Encapsulation
 
@@ -75,5 +75,70 @@ Additionally, created:
 * Some JUnit tests
 
 # 3. Inheritance
+
+**What is inheritance**
+
+* Subclass: inherits properties, child class
+* Superclass: inherited from, parent class
+
+Representing different employees
+
+* Employee: name, ID, salary attributes/behaviors
+* Salesperson: Employee, commission attributes/behaviors
+
+Is-A relationship
+
+* The Salesperson is an Employee
+* All Salesperson instances are also Employees
+
+**Types of inheritance**
+
+* Single level: Employee > Salesperson
+* Hierarchical
+    * One parent has many subclasses
+    * Employee > {Analyst, Salesperson}
+    * Person > Employee > {Analyst, Salesperson}
+
+**Reduce code duplication**
+
+Use the keyword `extends`
+
+* Create a Person class with fields: name, age
+* Create an Employee subclass with field: salary. And method: raiseSalary
+* Create an Analyst subclass with method: getAnnualBonus
+* Create a SalesPerson subclass with fields: commissionPercentage, and method: raiseCommission
+
+Create classes and subclasses. Added tests to methods.
+
+When creating a List of superclass and adding subclasses. The subclass has to be casted to get access to its members.
+
+    List<Employee> employees = new ArrayList<>();
+    employees.add(new SalesPerson("Loki", 35, 95000)) // name, age, salary
+    employees.add(new Analyst("Love", 10, 55000))
+
+    SalesPerson salesperson = (SalesPerson) employees.get(0);
+    System.out.println(salesperson.calculcateBonus());
+
+**Inheritance in built-in classes**
+
+* Create a Stack object of characters
+* Push each character for 'thor'
+* Then printout a pop for each character
+
+Review the Stack class in more detail
+* It extends the Vector class
+* The Vector class inherits from AbstractList
+
+**Exercise**
+
+* Create a ModArrayList class
+  * Should have all the functionality of ArrayList
+* Add a getUsingMod method that takes in an index and retrieves an item from the list at that index.
+* If the index is invalid, then the mod and absolute value operations should be used to make the index positive and mod the index based on the length of the list
+* Example: 4 % 3 = 1
+  * Using the method with index 4
+  * The list only has 3 items
+  * Return the first item
+
 # 4. Polymorphism
 # 5. Abstraction
