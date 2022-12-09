@@ -1,6 +1,6 @@
 # Learning
 
-This repo contains a summary of courses and code I am learning outside Gatech.
+This repo contains a summary of courses and code I am learning outside Gatech. Also here my [reading](https://github.com/tomordonez/reading) progress.
 
 **In Progress**
 
@@ -67,8 +67,7 @@ This repo contains a summary of courses and code I am learning outside Gatech.
 * LIL: React Software Architecture
 * LIL: React Authentication
 
-
-## Legend
+Legend
 
 * LIL: Linkedin Learning
 * ACG: A Cloud Guru
@@ -91,7 +90,26 @@ I didn't want to create a repo for each course. Instead, documenting all my lear
 
 So far courses aren't in TDD or don't use testing.
 
-* For Java, I am using JUnit. In IntelliJ, use Maven, go to `pom.xml`, type `Alt+Insert` to add a dependency and add `org.junit.jupiter:junit-jupiter`, then reload the maven icon.
+**Java**
+
+Using JUnit. In IntelliJ.
+
+* Use Maven
+* Go to `pom.xml`, type `Alt+Insert` to add a dependency.
+* Add `org.junit.jupiter:junit-jupiter`.
+* Then reload the maven icon.
+
+
+**Test methods naming convention**
+
+Use this format `methodName_StateUnderTest_ExpectedBehavior` with the exact letter casing and underscore. Such as:
+
+    void getUsingMod_PositiveIndexInRange_IndexedItem()
+    void getUsingMod_PositiveIndexOutOfRange_ModIndexedItem()
+    void getUsingMod_NegativeIndex_ModIndexedItem()
+    void getUsingMod_IndexIsAString_ExceptionThrown()
+
+It follows the guideline from [this](https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html) blog post by Roy Osherove. In the past I named tests just using the method name, or methodName_Test1, which found it confusing after running many tests, also for a while I thought that having long names was a bad practice, but having a descriptive name with input and expected output improved readability while looking at code I wrote in the past. It was easier to decipher the program's features by reading the test names.
 
 
 ### Branches
