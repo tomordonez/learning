@@ -141,4 +141,34 @@ Review the Stack class in more detail
   * Return the first item
 
 # 4. Polymorphism
+
+**What is polymorphism**
+
+* Object/function can take many forms
+* Runtime and compile polymorphism
+
+**Runtime polymorphism**
+
+* Create an OddArrayList that extends ArrayList of Integers but only allowed to enter odd numbers
+* Override the add method signatures
+* Check if the element is odd using a static method: isOdd
+* Then super.add the element
+* Override the addAll methods
+* Override the set method, if not odd return Integer.MIN_VALUE
+* Override the replaceAll, to remove the invalid elements
+* Create a constructor to take multiple numbers. Call super Arrays.stream to filter only the odd numbers
+* In Main, print the original list and the filtered odd list
+
+*Lessons Learned*
+* Extending an ArrayList is not good practice in Java (research: stackoverflow)
+* Reviewed SOLID again
+* Got stuck overriding the add method, since it doesn't return anything, the source code of ArrayList accesses private members and methods that cannot be accessed through inheritance.
+* Read about type parameters
+
+**Different forms in a single object**
+**Accessing specific object forms with instanceof**
+**Compile-time polymorphism**
+**Built-in classes that use polymorphism**
+**Exercise**
+
 # 5. Abstraction

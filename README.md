@@ -1,6 +1,6 @@
 # Learning
 
-This repo contains a summary of courses and code I am learning outside Gatech. Also here my [reading](https://github.com/tomordonez/reading) progress.
+This repo contains a summary of courses and code I am learning outside Gatech. Also, here is my [reading](https://github.com/tomordonez/reading) progress.
 
 **In Progress**
 
