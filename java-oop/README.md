@@ -146,6 +146,8 @@ Review the Stack class in more detail
 
 * Object/function can take many forms
 * Runtime and compile polymorphism
+  * Compile: A class can have a constructor or method with the same name but different signatures
+  * Runtime: A class method set to override to provide specific implementation with inheritance
 
 **Runtime polymorphism**
 
