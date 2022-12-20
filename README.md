@@ -10,6 +10,8 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 
 * LIL: IntelliJ Refresher
 * LIL: Java Essential Training (took in 2021, reviewed in 2022)
+* LIL: Python with PyCharm
+* LIL: Learning Python
 
 **Backlog**
 
@@ -27,7 +29,6 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 * LIL: React and Spring
 
 *Data Engineering*
-* LIL: Python with PyCharm
 * LIL: Data engineering foundations
 * LIL: Apache Spark Essential Training
 * LIL: Introduction to Spark SQL and DataFrames
