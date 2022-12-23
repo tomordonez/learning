@@ -132,13 +132,13 @@ Review the Stack class in more detail
 **Exercise**
 
 * Create a ModArrayList class
-  * Should have all the functionality of ArrayList
+    * Should have all the functionality of ArrayList
 * Add a getUsingMod method that takes in an index and retrieves an item from the list at that index.
 * If the index is invalid, then the mod and absolute value operations should be used to make the index positive and mod the index based on the length of the list
 * Example: 4 % 3 = 1
-  * Using the method with index 4
-  * The list only has 3 items
-  * Return the first item
+    * Using the method with index 4
+    * The list only has 3 items
+    * Return the first item
 
 # 4. Polymorphism
 
@@ -146,8 +146,8 @@ Review the Stack class in more detail
 
 * Object/function can take many forms
 * Runtime and compile polymorphism
-  * Compile: A class can have a constructor or method with the same name but different signatures
-  * Runtime: A class method set to override to provide specific implementation with inheritance
+    * Compile: A class can have a constructor or method with the same name but different signatures
+    * Runtime: A class method set to override to provide specific implementation with inheritance
 
 **Runtime polymorphism**
 
@@ -167,10 +167,28 @@ Review the Stack class in more detail
 * Got stuck overriding the add method, since it doesn't return anything, the source code of ArrayList accesses private members and methods that cannot be accessed through inheritance.
 * Read about type parameters
 
+Overriding a method requires the same signature, otherwise the compiler complains that you are not overriding the superclass method. For example, I was overriding the `ArrayList.addAll()` method. The original signature has this:
+
+    public boolean addAll(Collection<? extends E> c)
+
+I thought I could override like this:
+
+    @Override
+    public boolean addAll(Integer numberList)
+
+It complains that you are not overriding the super method. Then corrected to this:
+
+    @Override
+    public boolean addAll(Collection<? extends Integer> numberList)
+
 **Different forms in a single object**
+
 **Accessing specific object forms with instanceof**
+
 **Compile-time polymorphism**
+
 **Built-in classes that use polymorphism**
+
 **Exercise**
 
 # 5. Abstraction
