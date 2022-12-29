@@ -3,7 +3,7 @@ package com.tom.randomodd;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RandomOddMain {
+public class Main {
 
     public static void main(String[] args) {
         ArrayList<Integer> oddEvenNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4,5));

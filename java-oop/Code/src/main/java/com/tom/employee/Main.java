@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeMain {
+public class Main {
     public static void main(String[] args) {
 
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
