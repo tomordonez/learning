@@ -3,9 +3,9 @@
 **Using classes as blueprints**
 
 * Create a `Tree` class
-    * Add an enum field for `treeType`
-    * Add double fields for `heightFt`, `trunkDiameterInches`
-    * Add a function `grow` that increases height by 10 and diameter by 1
+	* Add an enum field for `treeType`
+	* Add double fields for `heightFt`, `trunkDiameterInches`
+	* Add a function `grow` that increases height by 10 and diameter by 1
 
 **Building objects with a constructor**
 
@@ -41,9 +41,9 @@
 * Attributes: name, age, salary, location
 * Behavior: raiseSalary
 * Create a Main class
-    * Build two instances
-    * Give an employee a raise
-    * Display salary of both employees
+	* Build two instances
+	* Give an employee a raise
+	* Display salary of both employees
 
 # 2. Encapsulation
 
@@ -95,9 +95,9 @@ Is-A relationship
 
 * Single level: Employee > Salesperson
 * Hierarchical
-    * One parent has many subclasses
-    * Employee > {Analyst, Salesperson}
-    * Person > Employee > {Analyst, Salesperson}
+	* One parent has many subclasses
+	* Employee > {Analyst, Salesperson}
+	* Person > Employee > {Analyst, Salesperson}
 
 **Reduce code duplication**
 
@@ -132,13 +132,13 @@ Review the Stack class in more detail
 **Exercise**
 
 * Create a ModArrayList class
-    * Should have all the functionality of ArrayList
+	* Should have all the functionality of ArrayList
 * Add a getUsingMod method that takes in an index and retrieves an item from the list at that index.
 * If the index is invalid, then the mod and absolute value operations should be used to make the index positive and mod the index based on the length of the list
 * Example: 4 % 3 = 1
-    * Using the method with index 4
-    * The list only has 3 items
-    * Return the first item
+	* Using the method with index 4
+	* The list only has 3 items
+	* Return the first item
 
 # 4. Polymorphism
 
@@ -146,8 +146,8 @@ Review the Stack class in more detail
 
 * Object/function can take many forms
 * Runtime and compile polymorphism
-    * Compile: A class can have a constructor or method with the same name but different signatures
-    * Runtime: A class method set to override to provide specific implementation with inheritance
+	* Compile: A class can have a constructor or method with the same name but different signatures
+	* Runtime: A class method set to override to provide specific implementation with inheritance
 
 **Runtime polymorphism**
 
@@ -182,6 +182,18 @@ It complains that you are not overriding the super method. Then corrected to thi
     public boolean addAll(Collection<? extends Integer> numberList)
 
 **Different forms in a single object**
+
+In runtime polymorphism, the implementation is determined at runtime based on the instances original types.
+
+For example, the original implementation is:
+
+	ArrayList.add(number)
+
+And the override implementation that extends ArrayList:
+
+	OddArrayList.add(number)
+
+The implementation is determined at runtime.
 
 **Accessing specific object forms with instanceof**
 

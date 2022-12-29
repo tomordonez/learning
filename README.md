@@ -91,18 +91,27 @@ I didn't want to create a repo for each course. Instead, documenting all my lear
             Code
             Readme
 
+## Course exercises
+
+A course has many sections and each section has many videos. Each video follows an exercise and I have seen these variations:
+
+* An exercise is built iteratively after each section.
+* Different exercises are built in each section.
+* Different exercises are built in each section's videos.
+
 ## Testing/TDD
 
 So far courses aren't in TDD or don't use testing.
 
-**Java**
+**Learning with TDD**
 
-Using JUnit. In IntelliJ.
+Follow this learning methodology:
 
-* Use Maven
-* Go to `pom.xml`, type `Alt+Insert` to add a dependency.
-* Add `org.junit.jupiter:junit-jupiter`.
-* Then reload the maven icon.
+* Play/pause the video and take notes in the corresponding course README
+* After the video is done, without looking at it, write the exercise using TDD
+* Commit everytime a test passes
+* Google things when feeling stuck
+* Re-watch the video as a last resource.
 
 **Test methods naming convention**
 
@@ -115,19 +124,80 @@ Use this format `methodName_StateUnderTest_ExpectedBehavior` with the exact lett
 
 It follows the guideline from [this](https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html) blog post by Roy Osherove.
 
-## Branches and Commits
+**Setup Java JUnit in IntelliJ**
 
-I went through a few workflows for creating branches. I tried `course/section/summary` but this turns out to be too many branches. Now I am using a branch per course with dashes separating words.
+* Use Maven
+* Go to `pom.xml`, type `Alt+Insert` to add a dependency.
+* Add `org.junit.jupiter:junit-jupiter`.
+* Then reload the maven icon.
+
+**Setup Python unittest in PyCharm**
+
+See below `Organizing code with packages`.
+
+* Create a `tests` package directory
+
+Go to a class. Right-click. `Go to` and select `Test`.
+
+* Create a test case per class
+* Import `from unittest import TestCase`
+* Import `from unittest.mock import Mock, patch`
+
+## Branches
+
+I went through a few workflows for creating branches. I tried `course/section/summary` but this turns out to be too many branches.
+
+Now I am using a branch per course with dashes separating words, all lower case.
 
 **Branch name**
 
     course-name
 
-For commits, I am following a convention of creating one commit per video. A course has many sections, and a section has many videos. Following this format for the message where everything after the colon (inclusive) is optional.
+## Commits
+
+**Commit frequency**
+
+Following an answer in Stackoverflow [here](https://softwareengineering.stackexchange.com/a/74765).
+
+Commit every time a new test passes.
 
 **Commit message**
 
-    course-name/section-number/video-title: Short description.
+Following these best practices I found on git commits [here](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53).
+
+Separate the subject from the body with a blank line. In IntelliJ/PyCharm
+
+	Here is the subject
+
+	Then the body
+
+In the command line as seen in [this](https://stackoverflow.com/a/40506149) Stackoverflow answer. Separate subject and body with two `-m` messages. This concatenates the messages as separate paragraphs, separated by an empty line.
+
+	git commit -m "Here is the subject" -m "Then the body"
+
+**Commit Subject**
+
+Use this template, where `course-name` can be the same as `branch-name`.
+
+    course-name/section-number/short-video-title
+
+Such as:
+
+    java-OOP/4/runtime-polymorphism
+
+**Commit body**
+
+The best practices I found said that this is for the subject line. It should complete the following sentence `If applied, this commit will (subject line)` and start with an imperative verb.
+
+For example, use `Test that constructor removes even numbers`, instead of `Tested that constructor...`. The subject line should complete the sentence `If applied, this commit will test that constructor removes even numbers`.
+
+I am applying this concept to the commit body, since I am using the `course/section/title` template as the subject line to try to organize commits in the soup of courses.
+
+A complete example:
+
+	java-OOP/4/runtime-polymorphism
+
+	Test that constructor removes even numbers
 
 ### Creating branches
 
@@ -135,8 +205,11 @@ For commits, I am following a convention of creating one commit per video. A cou
 
     (main)$ git checkout -b branch-name 
     (react-BMP)$ git add .
-    (react-BMP)$ git commit -m "a message..."
+    (react-BMP)$ git commit -m "Subject line" -m "body of commit"
     (react-BMP)$ git push -u origin branch-name
+
+In GitHub create a PR and merge with main. If updating local main then:
+
     (react-BMP)$ git checkout main
     (main)$ git pull
 
@@ -146,15 +219,15 @@ For commits, I am following a convention of creating one commit per video. A cou
 * Make changes
 * Left margin, click on tab `commit`
 * Select files under Changes and Unversioned files
-* `Ctrl+K` or right click select Commit
-* Enter a message
+* Enter a message. Subject line, empty line, Body of commit
+* Click Commit
 * Top menu Git/Push
 
 ## Organizing code with packages
 
 **Java**
 
-If a course uses different examples, then create a package by example. (Omit the parentheses)
+If a course uses different exercises, then create a package by exercise. (Omit the parentheses)
 
     src
         main
