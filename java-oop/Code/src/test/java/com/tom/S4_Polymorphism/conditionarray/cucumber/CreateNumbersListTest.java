@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"classpath:conditionarray/features/CreateNumbersList.feature"},
-        glue = {"com.tom.conditionarray.cucumber"})
+        features = {"classpath:features/S4_Polymorphism/conditionarray/CreateNumbersList.feature"},
+        glue = {"com.tom.S4_Polymorphism.conditionarray.cucumber"})
 public class CreateNumbersListTest {
 }

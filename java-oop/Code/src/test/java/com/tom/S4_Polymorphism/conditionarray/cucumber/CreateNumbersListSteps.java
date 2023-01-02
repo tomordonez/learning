@@ -27,4 +27,14 @@ public class CreateNumbersListSteps {
     public void a_list_of_positive_odd_numbers_is_created() {
         System.out.println(filteredNumberList);
     }
+
+    @When("I filter by even numbers")
+    public void i_filter_by_even_numbers() {
+        filteredNumberList = numberList.filterByPredicate(listElement -> (listElement % 2 == 0));
+    }
+
+    @Then("A list of positive even numbers is created")
+    public void a_list_of_positive_even_numbers_is_created() {
+        System.out.println(filteredNumberList);
+    }
 }
