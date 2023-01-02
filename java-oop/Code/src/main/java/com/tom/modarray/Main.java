@@ -2,7 +2,7 @@ package com.tom.modarray;
 
 import java.util.Arrays;
 
-public class ModArrayListMain {
+public class Main {
     public static void main(String[] args) {
         ModArrayList marvel = new ModArrayList();
         marvel.addAll(Arrays.asList("Namor", "Thor", "Hope", "Groot"));

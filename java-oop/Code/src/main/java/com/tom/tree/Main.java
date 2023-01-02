@@ -2,7 +2,7 @@ package com.tom.tree;
 
 import java.awt.*;
 
-public class TreeMain {
+public class Main {
     public static void main(String[] args) {
         Tree myTree = new Tree(TreeType.OAK, 120, 10);
         myTree.displayTallTree();

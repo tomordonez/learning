@@ -2,5 +2,6 @@
 *.class
 *.jar
 .idea*
+classpath.index
 java-essential-training/Code/out/*
 java-essential-training/Code/.idea/*

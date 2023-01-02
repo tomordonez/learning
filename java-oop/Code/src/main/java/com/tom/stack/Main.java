@@ -2,7 +2,7 @@ package com.tom.stack;
 
 import java.util.Stack;
 
-public class StackMain {
+public class Main {
     public static void main(String[] args) {
         Stack <Character> characterStack= new Stack<>();
         characterStack.push('T');
