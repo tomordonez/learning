@@ -235,6 +235,7 @@ Add the following code to `FeatureNameTest`:
 	}
 
 **Testing Life Cycle**
+
 As seen in this LinkedIn Learning course about Cucumber [here](https://www.linkedin.com/learning/cucumber-essential-training)
 
 1. Define acceptance tests
@@ -256,6 +257,7 @@ As seen in this LinkedIn Learning course about Cucumber [here](https://www.linke
 3. Test runner: Glues feature with step definition files using JUnit
 
 **Example Mapping**
+
 Story: Create a list of odd numbers
 - Rule: A list of positive integers should keep only odd numbers
 	- Example: Input [0, 1, 2, 3, 4, 5] Output [1, 3, 5]

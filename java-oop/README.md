@@ -201,7 +201,7 @@ With `instanceOf` cast an object to a more specific form.
 
 This video is very convoluted. I implemented my own version to learn to use Predicate and instanceOf. Also learned BDD using Cucumber.
 
-* Implement ConditionArrayList extending ArrayList. Create a constructor that filters using a predicate instead of the isOdd method.
+* Implement `ConditionArrayList` extending ArrayList. Create a constructor that filters using a predicate instead of the isOdd method.
 * Add a `Predicate<Integer>` to a method that takes in a value and returns a boolean, to add items based on a condition.
 * The predicate can check if the number is positive or divisible by a number or other boolean check.
 
