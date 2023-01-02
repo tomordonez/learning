@@ -100,6 +100,30 @@ A course has many sections and each section has many videos. Each video follows 
 * Different exercises are built in each section.
 * Different exercises are built in each section's videos.
 
+Organize exercises in packages by course sections (with template `S#_SectionName`). For example if Java:
+
+	Course 1
+	  Code/
+	    src/
+		  S1_Objects/
+			name-of-excercise-package/
+			  ExerciseName.java
+		  S2_Encapsulation/
+			...
+		test/
+		  java/
+			S1_Objects/
+			  name-of-excercise-package/
+				cucumber/
+					FeatureNameSteps.java
+					FeatureNameTest.java
+				ExerciseNameTest.java
+		  resources
+			features/
+			  S1_Objects/
+				name-of-excercise-directory/
+					FeatureName.feature
+
 ## Testing/TDD
 
 So far courses aren't in TDD or don't use testing.
@@ -144,192 +168,11 @@ Go to a class. Right-click. `Go to` and select `Test`.
 * Import `from unittest import TestCase`
 * Import `from unittest.mock import Mock, patch`
 
-***
-
 ## Testing/BDD
 
-**Setup IntelliJ Cucumber**
+**Setup Cucumber in IntelliJ**
 
-As seen in the Jetbrains doc [here](https://www.jetbrains.com/help/idea/enabling-cucumber-support-in-project.html#c839be76)
-
-In IntelliJ Ultimate the plugins are enabled by default.
-
-- Settings/Plugins
-- Scroll down to see Gherkin, then Cucumber for Java
-
-**Add the Cucumber library to Maven**
-
-- Open `pom.xml`
-- Do `Alt+Insert`
-- Select `Add Dependency`
-- Search for Cucumber
-- Look for `Cucumber-JVM: Java io.cucumber:cucumber-java`
-- Click Add
-- Look for `Cucumber-JVM: JUnit io.cucumber:cucumber-junit`
-- Click Add
-
-It should look like this:
-
-	<dependency>
-				<groupId>io.cucumber</groupId>
-				<artifactId>cucumber-java</artifactId>
-				<version>7.10.1</version>
-				<scope>test</scope>
-	</dependency>
-	<dependency>
-				<groupId>io.cucumber</groupId>
-				<artifactId>cucumber-junit</artifactId>
-				<version>7.10.1</version>
-				<scope>test</scope>
-	</dependency>
-
-**Reload Maven**
-
-- Open the Maven tab (on the right). Click on the reload icon (first icon, hovering says 'Reload all Maven projects')
-
-**Prepare folder structure. Inside the `test` directory**
-
-- There should be a green `java` directory. It's green because it should have been (right-clicked) `Mark Directory As` then selected `Test Sources Root`
-- Create another directory `resources`. Right-click the `test` directory, and it should give the option to add a `resources` subdirectory already marked as `Test Resources Root` (the icon has a red/green diamond as shown in the Jetbrains page). Otherwise, create a subdirectory, Mark Directory As, then select `Test Resources Root`
-
-**Create feature files**
-
-- As seen in the Cucumber blog [here](https://cucumber.io/blog/bdd/solving-how-to-organise-feature-files/). Don't create a feature file for each user story.
-- Inside `resources` create a directory `features`. Inside this directory, create the `file-name.feature` files.
-- In my case, since I have many packages for many course sections. Recreate the package tree as seen in the `test/java/` directory. However, the `resources` directory won't let you create a package, instead create a directory.
-    - In `test/resources/`
-    - Create the directory using the template `course-example`
-    - Inside this directory, create the directory `features`
-    - It will now show the directory as `resources/course-example.features/`
-    - Create the feature file in this directory using the template `FeatureName.feature`
-    - A file is created and it shows the cucumber icon next to it
-    - Right-click/Run the `.feature` file to see Test Results
-
-**Create step definitions**
-
-* As seen in the Jetbrains doc [here](https://www.jetbrains.com/help/idea/creating-step-definition.html), steps definitions should be located in a dedicated package.
-* In `test/java/`, in the specific `course-example` package created by JUnit (if created), create a package `cucumber`
-* Go to the `feature` file and hover over a step (it should be underlined in yellow). In the popup menu select `Create step definition`
-* Name the file `FeatureNameSteps`, select Java, and specify the location.
-* Copy the methods from Test Results that have the annotations `@Given`, `@When`, `@Then`. Import these classes.
-* From a `feature` file step go to a step definition by placing the cursor at a step, press `Ctrl`, it turns into a link, click the link to go to the step definition
-
-**Run Cucumber tests with JUnit**
-
-* Right-click the package with the step definitions
-* Select New, Java Class
-* Name the class `FeatureNameTest`
-* Right-click Run
-
-Add the following code to `FeatureNameTest`:
-
-	import io.cucumber.junit.Cucumber;
-	import io.cucumber.junit.CucumberOptions;
-	import org.junit.runner.RunWith;
-	
-	@RunWith(Cucumber.class)
-	@CucumberOptions(
-		features = {"classpath:course-example/features/FeatureName.feature"},
-		glue = {"com.tom.course-example.cucumber"})
-	public class RunCucumberTest {
-	}
-
-**Testing Life Cycle**
-
-As seen in this LinkedIn Learning course about Cucumber [here](https://www.linkedin.com/learning/cucumber-essential-training)
-
-1. Define acceptance tests
-2. Define features - cover as many scenarios (write BDD tests)
-3. Write TDD unit tests
-
-**3 key components of Cucumber**
-
-1. Feature files (Feature, Scenario, Given/When/Then) in business domain language (using Gherkin)
-
-	Feature: Reading an ebook
-		Scenario: View Index Section
-			Given: I am on any page of my ebook
-			When: I access "Index" section
-			Then: I should be navigated to the Index section
-
-2. Step definition files: In code write `Given/When/Then` annotations with methods
-
-3. Test runner: Glues feature with step definition files using JUnit
-
-**Example Mapping**
-
-Story: Create a list of odd numbers
-- Rule: A list of positive integers should keep only odd numbers
-	- Example: Input [0, 1, 2, 3, 4, 5] Output [1, 3, 5]
-	- Example: Input [5, 5, 2, 0, 3, 1] Output [5, 5, 3, 1]
-
-Story: Create a list of even numbers
-- Rule: A list of positive integers should keep only even numbers
-	- Example: Input [0, 1, 2, 3, 4, 5] Output [0, 2, 4]
-	- Example: Input [5, 5, 2, 0, 3, 1] Output [2, 0]
-
-Story: Create a list of prime numbers
-- Rule: A list of positive integers should keep only prime numbers
-	- Example: Input [0, 1, 2, 3, 4, 5] Output [2, 3, 5]
-	- Example: Input [5, 5, 2, 0, 3, 1] Output [5, 5, 2, 3]
-
-**Create a feature file**
-
-* In the corresponding `features` package in the `test/resources` directory
-* Create a features file `CreateNumbersList.feature`
-
-Example:
-
-	Feature: Create Numbers List
-
-	  Scenario: Create a list of positive odd numbers
-	    Given I have a list of positive numbers
-	    When I filter by odd numbers
-	    Then A list of positive odd numbers is created
-
-**Create steps file**
-
-* In the corresponding package in `test/java/package-name/cucumber`
-* Create the Java class `CreateNumbersListSteps`
-
-Example:
-	
-	import com.tom.conditionarray.ConditionArrayList;
-	import com.tom.conditionarray.RandomNumberList;
-	import io.cucumber.java.en.Given;
-	import io.cucumber.java.en.Then;
-	import io.cucumber.java.en.When;
-	
-	import java.util.ArrayList;
-	
-	public class CreateNumbersListSteps {
-	
-		ConditionArrayList numberList;
-		ArrayList<Integer> filteredNumberList;
-
-		@Given("I have a list of positive numbers")
-		public void iHaveAListOfPositiveNumbers() {
-			numberList = new ConditionArrayList(RandomNumberList.createList(5, 10, 10));
-		}
-	
-		@When("I filter by odd numbers")
-		public void i_filter_by_odd_numbers() {
-			filteredNumberList = numberList.filterByPredicate(listElement -> (listElement % 2 == 1));
-		}
-
-		@Then("A list of positive odd numbers is created")
-		public void a_list_of_positive_odd_numbers_is_created() {
-			System.out.println(filteredNumberList);
-		}
-	}
-
-**Create JUnit Cucumber Test Runner**
-
-* In the same directory `test/java/package-name/cucumber`
-* Create the Java class `CreateNumbersListTest`
-* Run this file to see the test results
-
-***
+I wrote a detailed blog post about it here: [BDD with Cucumber in IntelliJ](https://www.tomordonez.com/bdd-cucumber-intellij/)
 
 ## Branches
 
