@@ -12,6 +12,7 @@ public class CreateNumbersListSteps {
 
     ConditionArrayList numberList;
     ArrayList<Integer> filteredNumberList;
+
     @Given("I have a list of positive numbers")
     public void iHaveAListOfPositiveNumbers() {
         numberList = new ConditionArrayList(RandomNumberList.createList(5, 10, 10));
@@ -21,6 +22,7 @@ public class CreateNumbersListSteps {
     public void i_filter_by_odd_numbers() {
         filteredNumberList = numberList.filterByPredicate(listElement -> (listElement % 2 == 1));
     }
+
     @Then("A list of positive odd numbers is created")
     public void a_list_of_positive_odd_numbers_is_created() {
         System.out.println(filteredNumberList);
