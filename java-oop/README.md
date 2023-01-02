@@ -197,13 +197,13 @@ The implementation is determined at runtime.
 
 **Accessing specific object forms with instanceof**
 
-With `instanceOf` cast an object to a more specific form. This video is very convoluted. I implemented my own version to learn to use Predicate and instanceOf.
+With `instanceOf` cast an object to a more specific form.
+
+This video is very convoluted. I implemented my own version to learn to use Predicate and instanceOf. Also learned BDD using Cucumber.
 
 * Implement ConditionArrayList extending ArrayList. Create a constructor that filters using a predicate instead of the isOdd method.
-* Add a `Predicate<Integer>` to the constructor that takes in a value and returns a boolean, to add items based on a condition.
+* Add a `Predicate<Integer>` to a method that takes in a value and returns a boolean, to add items based on a condition.
 * The predicate can check if the number is positive or divisible by a number or other boolean check.
-* Access the predicate in instance methods. Create it as an instance variable `private Predicate<Integer> variable_name`
-* Set up the instance variable in the constructor
 
 Review how to replace these with my own version:
 
