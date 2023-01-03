@@ -207,8 +207,25 @@ This video is very convoluted. I implemented my own version to learn to use Pred
 
 **Compile-time polymorphism**
 
+* Create constructors with different signatures
+* Java uses the constructor based on the input types and number of arguments
+
 **Built-in classes that use polymorphism**
 
+* Compile-time polymorphism:`ArrayList` has two implementations for `addAll`
+* Run-time polymorphism: `ArrayList` extends `AbstractList` overriding the `add` method
+
 **Exercise**
+
+* Create a program that allows to create contacts with different levels of information
+  * There are different levels of info about each contact
+  * Name, phone number, email
+  * Print the contact info
+
+Skipped. The solution shows:
+
+* Create attributes for name, phone, email
+* Create constructors with different signatures
+* Override the `toString` method to print the objects values
 
 # 5. Abstraction
