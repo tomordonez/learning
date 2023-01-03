@@ -10,21 +10,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConditionArrayListTest {
 
-    ConditionArrayList numberList;
+    ConditionArrayList randomNumberList;
+    ArrayList<Integer> filteredNumberList;
     @BeforeEach
     void setUp() {
-        numberList = new ConditionArrayList(RandomNumberList.createList(5, 10, 10));
+        randomNumberList = new ConditionArrayList(RandomNumberList.createList(5, 10, 10));
     }
 
     @Test
-    void filterByPredicate_OddEvenIntegerList_FilterByOddIntegerList() {
-        ArrayList<Integer> filteredNumberList = numberList.filterByPredicate(listElement -> (listElement % 2 == 1));
+    void filterByPredicate_OddEvenIntegerList_OddIntegerList() {
+        filteredNumberList = randomNumberList.filterByPredicate(listElement -> (listElement % 2 == 1));
         assertEquals(Arrays.asList(7, 5, 1, 1), filteredNumberList, "The ArrayList should only have odd numbers");
     }
 
     @Test
-    void filterByPredicate_OddEvenIntegerList_FilterByEvenIntegerList() {
-        ArrayList<Integer> filteredNumberList = numberList.filterByPredicate(listElement -> (listElement % 2 == 0));
+    void filterByPredicate_OddEvenIntegerList_EvenIntegerList() {
+        filteredNumberList = randomNumberList.filterByPredicate(listElement -> (listElement % 2 == 0));
         assertEquals(Arrays.asList(2, 4, 4, 6, 4, 2), filteredNumberList, "The ArrayList should only have odd numbers");
+    }
+
+    @Test
+    void filterByPredicate_OddEvenIntegerList_PrimeNumberList()  {
+        ConditionArrayList numberList = new ConditionArrayList(Arrays.asList(0, 1, 2, 3, 4, 5));
+        filteredNumberList = numberList.filterByPredicate(ConditionArrayList::isPrime);
+        assertEquals(Arrays.asList(2, 3, 5), filteredNumberList, "The ArrayList should only have prime numbers");
+
     }
 }

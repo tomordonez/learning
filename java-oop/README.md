@@ -205,13 +205,6 @@ This video is very convoluted. I implemented my own version to learn to use Pred
 * Add a `Predicate<Integer>` to a method that takes in a value and returns a boolean, to add items based on a condition.
 * The predicate can check if the number is positive or divisible by a number or other boolean check.
 
-Review how to replace these with my own version:
-
-* Replace the method `isOdd` with `isEligible` non-static and return `variable_name.test(element)`
-* In Main use the constructor to create an odd list, an even list, and an odd/even list, using the predicate
-* Update addRandomNumber to check if the method parameter is an instance of ConditionArrayList, then cast it.
-* Check if the cast list is not eligible `!conditionList.isEligible(n)` then add the eligible number to the list.
-
 **Compile-time polymorphism**
 
 **Built-in classes that use polymorphism**
