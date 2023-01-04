@@ -5,10 +5,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.List;
+
 public class ExtractDigitsFromFileSteps {
+
+    List<List<String>> textFileData;
     @Given("I have a text file")
     public void i_have_a_text_file(DataTable dataTable) {
-        throw new io.cucumber.java.PendingException();
+        textFileData = dataTable.asLists();
     }
 
     @When("I extract the digits from the file")
