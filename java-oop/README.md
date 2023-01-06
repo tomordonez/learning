@@ -297,5 +297,13 @@ Example:
 
 **Discovering abstraction in source code**
 
-**Exercise**
+* `ArrayList` extends `AbstractList` and implements `List` and other interfaces.
+* `AbstractList` extends `AbstractCollection`
 
+Pattern in Java source code:
+* An interface is created
+* An abstract class implements the interface
+* A class extends the abstract class with specific implementation
+
+**Exercise**
+Skipped

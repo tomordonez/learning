@@ -4,7 +4,6 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 
 **In Progress**
 
-* LL: Java OOP
 * LL: Python OOP
 * LL: Python TDD
 * LL: Cucumber Essential Training
@@ -16,6 +15,7 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 * LL: Java Essential Training (took in 2021, reviewed in 2022)
 * LL: Python with PyCharm
 * LL: Learning Python
+* LL: Java OOP
 
 **Backlog**
 
