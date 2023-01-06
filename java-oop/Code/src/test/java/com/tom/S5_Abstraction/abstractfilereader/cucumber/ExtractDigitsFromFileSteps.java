@@ -6,7 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,18 +15,16 @@ public class ExtractDigitsFromFileSteps {
 
     List<List<String>> textFileData;
     DigitFileReader digitFileReader;
-    InputStream inputStream;
     ArrayList<Integer> digitsFromTextFile;
 
     @Given("I have a text file")
     public void i_have_a_text_file(DataTable dataTable) {
         textFileData = new ArrayList<>(dataTable.asLists());
-        inputStream = null;
     }
 
     @When("I extract the digits from the file")
     public void i_extract_the_digits_from_the_file() {
-        digitFileReader = new DigitFileReader(inputStream);
+        digitFileReader = new DigitFileReader();
         digitsFromTextFile = digitFileReader.parseDigits(textFileData);
     }
 

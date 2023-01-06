@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractFileReader {
-    private final InputStream fileInputStream;
 
-    protected AbstractFileReader(InputStream fileInputStream) {
-        this.fileInputStream = fileInputStream;
+    protected AbstractFileReader() {
     }
 
     protected abstract ArrayList<Integer> parseDigits(List<List<String>> textFileData);
+
+    protected abstract ArrayList<Integer> parseDigits(InputStream fileInputStream, List<List<String>> textFileData);
 }

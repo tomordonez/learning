@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 public class DigitFileReader extends AbstractFileReader{
 
-    public DigitFileReader(InputStream inputStream) {
-        super(inputStream);
+    public DigitFileReader() {
+        super();
     }
 
     @Override
@@ -25,5 +25,10 @@ public class DigitFileReader extends AbstractFileReader{
             }
         }
         return digitsFromTextFile;
+    }
+
+    @Override
+    protected ArrayList<Integer> parseDigits(InputStream fileInputStream, List<List<String>> textFileData) {
+        return null;
     }
 }
