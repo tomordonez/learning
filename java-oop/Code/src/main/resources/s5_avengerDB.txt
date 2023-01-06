@@ -1,0 +1,5 @@
+name,year_first_appearance,planet_origin,team
+Star-Lord,1976,Earth,Guardians of the Galaxy
+Rocket,1976,Halfworld,Guardians of the Galaxy
+Gamora,1975,Zen-Whoberi,Guardians of the Galaxy
+Spider-Man,1962,Earth,Avengers

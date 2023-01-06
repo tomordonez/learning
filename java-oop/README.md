@@ -285,6 +285,16 @@ Feature `ExtractDigitsFromFile.feature`
 
 **Using interfaces to provide conformity**
 
+* A set of method signatures without implementation
+
+Example:
+* Create an interface class two methods
+* Create a class that implements the interface
+  * Add attributes to this class that don't change after creating an instance
+  * Create a constructor with these attributes
+  * Implement the interface methods
+* Create an instance in Main
+
 **Discovering abstraction in source code**
 
 **Exercise**
