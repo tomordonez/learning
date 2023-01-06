@@ -207,8 +207,85 @@ This video is very convoluted. I implemented my own version to learn to use Pred
 
 **Compile-time polymorphism**
 
+* Create constructors with different signatures
+* Java uses the constructor based on the input types and number of arguments
+
 **Built-in classes that use polymorphism**
+
+* Compile-time polymorphism:`ArrayList` has two implementations for `addAll`
+* Run-time polymorphism: `ArrayList` extends `AbstractList` overriding the `add` method
 
 **Exercise**
 
+* Create a program that allows to create contacts with different levels of information
+  * There are different levels of info about each contact
+  * Name, phone number, email
+  * Print the contact info
+
+Skipped. The solution shows:
+
+* Create attributes for name, phone, email
+* Create constructors with different signatures
+* Override the `toString` method to print the objects values
+
 # 5. Abstraction
+
+**What is abstraction?**
+
+* Hide implementation complexity
+* Provide user with example input, output, and description of what the system does
+* Abstract classes and interfaces
+
+**Using abstract classes to reduce code complexity**
+
+* Like a template class, some functionality is not implemented yet
+* Other classes extend the abstract class
+* Classes with abstract method must be defined with `abstract` keyword
+
+Example:
+
+* Read a file in different ways
+* Create a abstract class `AbstractFileReader`
+* Create a Path type attribute `filePath` and make it `final` so it's not changed for the instance
+* Create a protected constructor that takes the `filePath` as a String
+* In the constructor set `filePath` into a Path object
+* Create a getter to get the `filePath` to string
+* Create a method `readFile` that reads the file and returns a list of strings
+  * Parse each line using a `parseLine` method
+* Create protected abstract method `parseLine`, not implemented, other classes will always override this method
+  * Cannot instantiate this method from the abstract class
+* Create another class that extends this abstract class `DigitsOnlyFileReader`
+  * Create a constructor to get the `filePath`
+  * Override and implement `parseLine`
+  * Replace all non-numeric with an empty string (the file contains a secret message in digits)
+* In `Main` create a `DigitsOnlyFileReader` with `message.txt`
+  * Read the file and print the contents using `readFile` (it should have the lines parsed)
+  * Print the path with `getPath`
+
+Example `message.txt`
+
+	There are 12 apples and 29 pears at the store on 40th street today.
+	I heard 2 people from the 75 center are going to the party
+	in Brooklyn on 6th avenue.
+
+My implementation using BDD
+
+Feature `ExtractDigitsFromFile.feature`
+
+	Feature: Extract Digits From File
+	  Scenario: Extract digits from a text file
+		Given I have a text file
+			| There are 12 apples and 29 pears at the store on 40th street today. |
+			| I heard 2 people from the 75 center are going to the party |
+			| in Brooklyn on 6th avenue. |
+		When I extract the digits from the file
+		Then A list of digits is extracted
+			| 12 | 29 | 40 | 2 | 75 | 6 |
+
+
+**Using interfaces to provide conformity**
+
+**Discovering abstraction in source code**
+
+**Exercise**
+
