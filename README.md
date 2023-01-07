@@ -100,29 +100,75 @@ A course has many sections and each section has many videos. Each video follows 
 * Different exercises are built in each section.
 * Different exercises are built in each section's videos.
 
-Organize exercises in packages by course sections (with template `S#_SectionName`). For example if Java:
+Organize exercises in packages by course sections, with template `S#_SectionName`. For example: 
+`S1_Objects`, `S2_Inheritance`,..., etc.
 
-	Course 1
+**Java: Maven project with Cucumber**
+
+Omit the parentheses.
+
+	Course Name/
+      README.md
 	  Code/
 	    src/
-		  S1_Objects/
-			name-of-excercise-package/
-			  ExerciseName.java
-		  S2_Encapsulation/
-			...
-		test/
-		  java/
-			S1_Objects/
-			  name-of-excercise-package/
-				cucumber/
-					FeatureNameSteps.java
-					FeatureNameTest.java
-				ExerciseNameTest.java
-		  resources
-			features/
-			  S1_Objects/
-				name-of-excercise-directory/
-					FeatureName.feature
+            main/
+                java/
+                    S1_SectionName/ (package)
+                        exercise-name/ (package)
+                            AJavaClass.java
+                            Main.java
+                resources/
+                    data.txt
+            test/
+                java/
+                    S1_SectionName/ (package)
+                        exercise-name/ (package)
+                            cucumber/ (package)
+                                FeatureNameSteps.java
+                                FeatureNameTest.java
+                            ExerciseNameTest.java
+                resources/
+                    features/
+                      S1_SectionName/ (directory)
+                        exercise-name/ (directory)
+                            FeatureName.feature
+
+**Python**
+
+Omit the parentheses.
+
+    Course Name/
+        README.md
+        Code/
+            S1_SectionName/ (package)
+                exercise-name/ (package)
+                    app.py
+                    __main__.py
+                    src/ (package)
+                        class-file (py file)
+                    tests/ (package)
+                    data/ (package, if needed)
+                
+                other-exercise-name/ (package)
+
+            S2_OtherSectionName/
+                ...
+
+Inside `__main__.py`. Right click to run or in the terminal use `python -m exercise-name`:
+
+    from S1_SectionName.exercise-name import app
+    
+    if __name__ == '__main__':
+        app.run()
+
+Inside `app.py` import other packages like this:
+
+    from S1_SectionName.exercise-name.src.class-file import ClassName
+
+    run():
+        pass
+
+See more details about [setting a project in PyCharm](https://github.com/tomordonez/learning/tree/main/python-pycharm#setup-a-project).
 
 ## Testing/TDD
 
@@ -253,50 +299,3 @@ In GitHub create a PR and merge with main. If updating local main then:
 * Enter a message. Subject line, empty line, Body of commit
 * Click Commit
 * Top menu Git/Push
-
-## Organizing code with packages
-
-**Java**
-
-If a course uses different exercises, then create a package by exercise. (Omit the parentheses)
-
-    src
-        main
-            java (directory)
-                example-name (package)
-                    AClass (class)
-                    AnotherClass (class)
-                other-example-name (package)
-                    AClassOther (class)
-                    AnotherClassOther (class)
-        test
-            java (directory)
-                example-name ...
-
-**Python**
-
-See more details about [setting a project in PyCharm](https://github.com/tomordonez/learning/tree/main/python-pycharm#setup-a-project).
-
-Create this structure (Omit the parentheses)
-
-    course-name (directory)
-        example-name (package)
-            app.py
-            __main__.py
-            src (package)
-                class-file (py file)
-            tests (package)
-            data (package, if relevant)
-        other-example (package)
-            ...
-
-Inside `__main__.py`. Right click to run or in the terminal use `python -m example-name`:
-
-    from example_name import app
-    
-    if __name__ == '__main__':
-    app.run()
-
-Inside `app.py` import other packages like this:
-
-    from example-name.src.class-file import ClassName
