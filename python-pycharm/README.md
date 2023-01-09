@@ -59,9 +59,7 @@ I updated the same settings I had in IntelliJ
 This is not on the videos. After watching all the lessons and playing with PyCharm, I learned
 that it doesn't create any project structure in the same way that IntelliJ does.
 
-Follow the structure as seen in [this](https://dev.
-to/codemouse92/dead-simple-python-project-structure-and-imports-38c6) blog post. Author of a
-book "Dead Simple Python".
+Follow the structure as seen in [this](https://dev.to/codemouse92/dead-simple-python-project-structure-and-imports-38c6) blog post. Author of a book "Dead Simple Python".
 
 Create this structure (omit the words in parentheses):
 
