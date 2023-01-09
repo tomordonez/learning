@@ -66,6 +66,17 @@ In `Book` class
 Code: `S2_Inheritance`
 
 **Understanding inheritance**
+
+* Create 3 classes:
+  * Book: title, price, author, pages
+  * Magazine: title, price, period, publisher
+  * Newspaper: title, price, period, publisher
+* Refactor repetitive code
+  * Create a class Publication
+    * Book inherits from this class
+    * Create a class Periodical that inherits from this class
+      * Magazine and Newspaper inherit from this class
+
 **Abstract base classes**
 **Using multiple inheritance**
 **Interfaces**
