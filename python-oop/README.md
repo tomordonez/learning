@@ -37,7 +37,29 @@ Here is an explanation about the purpose of the double underscore aka dunder as 
 * Not recommended to call them "magic methods"
 
 **Checking instance types**
+
+* Create a `Newspaper` class
+* Print the instance of two objects Book and Newspaper
+* Compare if a Book instance is an instance of Book
+* Compare if a Book instance is an instance of the object class
+
 **Class methods and members**
+
+In `Book` class
+* Create a class attribute `BOOK_TYPES` with tuple values: Hardcover, Paperback, Ebook
+* Initialize this attribute and check that a valid value is passed, otherwise raise a ValueError
+* Create a class method with `@classmethod` that returns the book types list
+* Print the book types using this method
+* Keeping track of a list of books
+  * Implement a singleton design pattern (only one instance of a variable or obj is created)
+  * Instead of creating a global variable, encapsulate the behavior in the Book class
+  * Create a private `__booklist` variable and create a static method that accesses this behavior
+    * Initialize to `None`
+  * Create a static method `get_book_list`
+    * Check if the `__booklist` is None then create a new one, else return the existing one.
+    * In main, use the reference of the static method in `thebooks` variable
+    * Append books to this list
+    * Print the books
 
 # 2. Inheritance and Composition
 
