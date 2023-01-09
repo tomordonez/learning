@@ -78,6 +78,18 @@ Code: `S2_Inheritance`
       * Magazine and Newspaper inherit from this class
 
 **Abstract base classes**
+
+* Create a super class `Shape` with a method to calculate the area
+  * Prevent from being instantiated
+  * Import `ABC` and `abstractmethod`
+  * Inherit class from `ABC`
+  * Use `@abstractmethod` decorator for `calculate_area`
+    * No implementation `pass`
+    * Each subclass has to override this method
+* Create subclasses and enforce they use the `calculate_area` method
+  * `Circle`: radius
+  * `Square`: side
+
 **Using multiple inheritance**
 **Interfaces**
 **Understanding composition**
