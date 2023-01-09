@@ -91,6 +91,21 @@ Code: `S2_Inheritance`
   * `Square`: side
 
 **Using multiple inheritance**
+
+* Create two classes
+  * Add an attribute or method with the same name
+* Create a third class that inherits from the two above
+* In main, create an object (from third class)
+  * Calling the attribute, will print the attribute from the first class only.
+  * This is based on `MRO` (method resolution order), in the order in which they are defined in 
+    the subclass, from left to right
+  * See an object's MRO with `obj.__mro__`
+
+My example:
+
+* Superclasses: Superhero, Human
+* Subclasses: Avenger
+
 **Interfaces**
 **Understanding composition**
 
