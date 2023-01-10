@@ -1,0 +1,8 @@
+from S2_Inheritance.publication.src.Publication import Publication
+
+
+class Periodical(Publication):
+    def __init__(self, title, price, period, publisher):
+        super().__init__(title, price)
+        self.period = period
+        self.publisher = publisher

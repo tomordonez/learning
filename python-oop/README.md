@@ -66,10 +66,76 @@ In `Book` class
 Code: `S2_Inheritance`
 
 **Understanding inheritance**
+
+* Create 3 classes:
+  * Book: title, price, author, pages
+  * Magazine: title, price, period, publisher
+  * Newspaper: title, price, period, publisher
+* Refactor repetitive code
+  * Create a class Publication
+    * Book inherits from this class
+    * Create a class Periodical that inherits from this class
+      * Magazine and Newspaper inherit from this class
+
 **Abstract base classes**
+
+* Create a super class `Shape` with a method to calculate the area
+  * Prevent from being instantiated
+  * Import `ABC` and `abstractmethod`
+  * Inherit class from `ABC`
+  * Use `@abstractmethod` decorator for `calculate_area`
+    * No implementation `pass`
+    * Each subclass has to override this method
+* Create subclasses and enforce they use the `calculate_area` method
+  * `Circle`: radius
+  * `Square`: side
+
 **Using multiple inheritance**
+
+* Create two classes
+  * Add an attribute or method with the same name
+* Create a third class that inherits from the two above
+* In main, create an object (from third class)
+  * Calling the attribute, will print the attribute from the first class only.
+  * This is based on `MRO` (method resolution order), in the order in which they are defined in 
+    the subclass, from left to right
+  * See an object's MRO with `obj.__mro__`
+
+My example:
+
+* Superclasses: Superhero, Human
+* Subclasses: Avenger
+
 **Interfaces**
+
+* Python doesn't have a built-in interface feature
+  * As seen in Stackoverflow [here](https://stackoverflow.
+    com/questions/372042/difference-between-abstract-class-and-interface-in-python). The 
+    Java-style distinction between abstract and interface doesn't exist. The only difference 
+    would be the stated intent in the docstring
+* In the `Shape` example
+  * Create an abstract class `JSONify`
+    * Create an abstract method `toJSON`
+  * In the `Circle` class, inherit `JSONify`
+    * Implement the `toJSON` method. Create a JSON representation of the object
+      * `{"Circle": area}`
+
 **Understanding composition**
+
+* An object `has` another
+* A Book (title, price, author) has an Author (first_name, last_name)
+* Create a Book class
+  * title, price, author_first_name, author_last_name, chapters []
+  * Create an instance method `add_chapter` (name_of_chapter, number_of_pages)
+    * Append a tuple
+    * name_of_chapter can be "Ch1", "Ch2", etc.
+* Refactor
+  * Extract author info in another class
+    * Override the repr method to return first_name, last_name
+  * In Book use as a parameter an author object
+  * Extract chapter in another class
+  * In Book create a book page count (based on pages by chapter)
+  * In add_chapter use as parameter a chapter object
 
 # 3. Magic Object Methods
 
