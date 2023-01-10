@@ -120,7 +120,22 @@ My example:
     * Implement the `toJSON` method. Create a JSON representation of the object
       * `{"Circle": area}`
 
-  **Understanding composition**
+**Understanding composition**
+
+* An object `has` another
+* A Book (title, price, author) has an Author (first_name, last_name)
+* Create a Book class
+  * title, price, author_first_name, author_last_name, chapters []
+  * Create an instance method `add_chapter` (name_of_chapter, number_of_pages)
+    * Append a tuple
+    * name_of_chapter can be "Ch1", "Ch2", etc.
+* Refactor
+  * Extract author info in another class
+    * Override the repr method to return first_name, last_name
+  * In Book use as a parameter an author object
+  * Extract chapter in another class
+  * In Book create a book page count (based on pages by chapter)
+  * In add_chapter use as parameter a chapter object
 
 # 3. Magic Object Methods
 
