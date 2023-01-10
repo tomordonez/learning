@@ -107,7 +107,20 @@ My example:
 * Subclasses: Avenger
 
 **Interfaces**
-**Understanding composition**
+
+* Python doesn't have a built-in interface feature
+  * As seen in Stackoverflow [here](https://stackoverflow.
+    com/questions/372042/difference-between-abstract-class-and-interface-in-python). The 
+    Java-style distinction between abstract and interface doesn't exist. The only difference 
+    would be the stated intent in the docstring
+* In the `Shape` example
+  * Create an abstract class `JSONify`
+    * Create an abstract method `toJSON`
+  * In the `Circle` class, inherit `JSONify`
+    * Implement the `toJSON` method. Create a JSON representation of the object
+      * `{"Circle": area}`
+
+  **Understanding composition**
 
 # 3. Magic Object Methods
 

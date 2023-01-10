@@ -105,7 +105,14 @@ Organize exercises in packages by course sections, with template `S#_SectionName
 
 **Java: Maven project with Cucumber**
 
-Omit the parentheses.
+Setup a Java project with Maven as seen in the Jetbrains docs [here](https://www.jetbrains.com/help/idea/convert-a-regular-project-into-a-maven-project.html#add_maven_support)
+
+* After creating an IntelliJ project
+* In the Project window. Right-click on the root folder
+* Select Add Framework Support
+* Select Maven
+
+Project structure. Omit the parentheses.
 
 	Course Name/
       README.md
@@ -135,7 +142,7 @@ Omit the parentheses.
 
 **Python**
 
-Omit the parentheses.
+Project structure. Omit the parentheses.
 
     Course Name/
         README.md
