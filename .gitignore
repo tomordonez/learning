@@ -3,6 +3,7 @@ target/
 *.class
 *.jar
 .idea*
+*.pyc
 classpath.index
 .attach_pid*
 java-essential-training/Code/out/*

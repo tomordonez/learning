@@ -161,13 +161,6 @@ Project structure. Omit the parentheses.
             S2_OtherSectionName/
                 ...
 
-Inside `__main__.py`. Right click to run or in the terminal use `python -m exercise-name`:
-
-    from S1_SectionName.exercise-name import app
-    
-    if __name__ == '__main__':
-        app.run()
-
 Inside `app.py` import other packages like this:
 
     from S1_SectionName.exercise-name.src.class-file import ClassName
@@ -175,7 +168,30 @@ Inside `app.py` import other packages like this:
     run():
         pass
 
+Inside `__main__.py`. Enter the following:
+
+    from S1_SectionName.exercise-name import app
+    
+    if __name__ == '__main__':
+        app.run()
+
+
+To run the app:
+
+* In IntelliJ
+  * Right click/run `__main__.py`
+
+* In VSC
+  * Open the terminal, go to the root directory. In above example this would be `cd Code`
+  * Run as a module `python -m S1_SectionName.exercise-name`
+  * If you Right click/run `main`, most likely you get `ModuleNotFoundError` if the imports use absolute paths.
+
+* In the Terminal
+  * Use absolute paths in the import
+  * Run the same as VSC above
+
 See more details about [setting a project in PyCharm](https://github.com/tomordonez/learning/tree/main/python-pycharm#setup-a-project).
+
 
 ## Testing/TDD
 
