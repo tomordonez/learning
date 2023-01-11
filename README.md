@@ -16,6 +16,7 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 * LL: Python with PyCharm
 * LL: Learning Python
 * LL: Java OOP
+* LL: Python with VSC
 
 **Backlog**
 
@@ -259,13 +260,29 @@ Now I am using a branch per course with dashes separating words, all lower case.
 
 Following an answer in Stackoverflow [here](https://softwareengineering.stackexchange.com/a/74765).
 
-Commit every time a new test passes.
+Commit every time a new test passes. I would add:
 
-**Commit message**
+* When you modify a class or method
+* When you refactor something
+* When you add/delete/move a lot of files
+* When you pass a test
 
-Following these best practices I found on git commits [here](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53).
+**Commit message: What I was doing before**
 
-Separate the subject from the body with a blank line. In IntelliJ/PyCharm
+I've been experimenting with this. I was using subject/body
+
+* Subject: the issue number.
+  * In my case my issue numbers have this template `branch/#/word_summary`
+  * Where `branch` should be the same as the course folder name.
+  * `#` is a digit (a course is divided into sections).
+  * `word_summary` is a word (or two) selected from the section title.
+  * Example:
+    * `java-OOP/4/runtime-polymorphism`
+  * Issue numbers could be JIRA issues or some other type of tracking number
+* A blank line to separate subject from body
+* Body: a short summary of the commit.
+
+For reference. Separate the subject from the body with a blank line. In IntelliJ/PyCharm/VSC
 
 	Here is the subject
 
@@ -275,29 +292,24 @@ In the command line as seen in [this](https://stackoverflow.com/a/40506149) Stac
 
 	git commit -m "Here is the subject" -m "Then the body"
 
-**Commit Subject**
+What I didn't like about the subject/newline/body template was that reviewing commits locally or in Github, you can only see the commit subject. Unless you click on the commit details, then you can see the body.
 
-Use this template, where `course-name` can be the same as `branch-name`.
+**Commit message: What I am doing now**
 
-    course-name/section-number/short-video-title
+Use the subject only in one line. Follow this template:
+
+    issue-number: Imperative verb then short summary < 50 chars
 
 Such as:
 
-    java-OOP/4/runtime-polymorphism
+    java-OOP/4/polymorphism: Pass test for add method
 
-**Commit body**
+Where:
 
-The best practices I found said that this is for the subject line. It should complete the following sentence `If applied, this commit will (subject line)` and start with an imperative verb.
-
-For example, use `Test that constructor removes even numbers`, instead of `Tested that constructor...`. The subject line should complete the sentence `If applied, this commit will test that constructor removes even numbers`.
-
-I am applying this concept to the commit body, since I am using the `course/section/title` template as the subject line to try to organize commits in the soup of courses.
-
-A complete example:
-
-	java-OOP/4/runtime-polymorphism
-
-	Test that constructor removes even numbers
+* The issue number follows `branch/section_number/oneword_summary`
+* Then a colon `:`
+* Action verb. For example `Pass`
+* Then a summary in less than 50 characters
 
 ### Creating branches
 
