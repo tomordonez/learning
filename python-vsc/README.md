@@ -108,4 +108,31 @@ Added these changes:
   * Select a statement or a line, right-click `Refactor` a popup shows to extract method or variable
 
 ## 3. Code Debugging
+
+**config file launch.json**
+
+Debugging requires a config file `launch.json` in the `.vscode` folder
+
+* Go to Debug, add configuration
+* Select Python file
+* Add `"stopOnEntry": true` to pause debugging upon start
+* Debug won't recognize a breaking point on a file that doesn't have the program's entry point
+  * In `launch.json` replace the `program` value from `{file}` to the program's entry path. See [link](https://code.visualstudio.com/docs/python/debugging#_program)
+  * Example:
+    * `"program": "${workspaceFolder}/Code/hello/__main__.py"`
+    * Where `workspaceFolder` is the root directory. This avoids prefixing the path with the Linux `/home/user/...`
+  * You can also update the name of the config file. This name is shown on the Run/Debug interface, on the drop down config file to run.
+    * `"name": "Python: __main__.py"`
+
+**Breakpoint**
+
+* Similar to IntelliJ/PyCharm, click on the gutter.
+* Add conditional breakpoint (right-click gutter)
+  * Enter an expression. It will go to the breakpoint when true.
+  * Use a `hit count` to run that line a number of times until the breakpoint triggers
+  * Use `logpoints` when execution cannot be stopped, example an API or a live app
+
+More about debugging in VSC [here](https://code.visualstudio.com/docs/python/debugging)
+
 ## 4. Coding Extensions
+
