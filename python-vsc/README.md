@@ -76,6 +76,7 @@ Added these changes:
 * Select Python interpreter
   * `Ctrl+Shift+P`
   * Python select interpreter
+  * Alternatively, opening a Python file, on the IDE bottom right, it shows the interpreter selected. Click that field to change to another one.
   * Using my `base` conda environment
     * For another environment. Create a new conda env or use an `environment.yml`
 
@@ -85,5 +86,26 @@ Added these changes:
 
 
 ## 2. Code Editing
+
+* Use `Ctrl + Space` to activate Intellisense on a line to see an object methods
+* On automcomplete use snippets as code templates
+* Use the REPL (python shell) by selecting lines and press `Shift+Enter`
+* Install PEP8
+  * `pip3 install autopep8`
+    * Instead I installed to my conda env with `conda install autopep8`. Although this requires the interpreter to be set to that conda env.
+    * Find the path `which autopep8`
+  * Go to Preferences/Settings, search for Python formatting
+    * Scroll down to Path and enter the path found above
+    * Scroll down to Provider and select autopep8 
+  * In Settings, search for `formatonsave` and enable
+  * In comparison to PyCharm, the formatting there shows up as warning popups that you have to click to fix. In VSC, when you save the file, then PEP autoformats the file.
+
+**Refactoring**
+* Rename
+  * Right click it shows `Rename symbol`. 
+  * If the change doesn't work, choose to install the `rope` library globally
+* Extract
+  * Select a statement or a line, right-click `Refactor` a popup shows to extract method or variable
+
 ## 3. Code Debugging
 ## 4. Coding Extensions
