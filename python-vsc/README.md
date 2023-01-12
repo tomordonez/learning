@@ -124,6 +124,13 @@ Debugging requires a config file `launch.json` in the `.vscode` folder
   * You can also update the name of the config file. This name is shown on the Run/Debug interface, on the drop down config file to run.
     * `"name": "Python: __main__.py"`
 
+**Adding multiple configurations**
+
+VSC supports only one `launch.json` as explained in this stackoverflow [link](https://stackoverflow.com/a/30289979). You can add multiple configurations to one file.
+
+* In the current debug config. Add configuration. Select Python File
+* Change the name and program path
+
 **Breakpoint**
 
 * Similar to IntelliJ/PyCharm, click on the gutter.
@@ -136,3 +143,14 @@ More about debugging in VSC [here](https://code.visualstudio.com/docs/python/deb
 
 ## 4. Coding Extensions
 
+* Docstrings
+  * After a method type triple quote `"""` it will autocomplete docstrings
+* Better comments
+  * A sort of markdown for python comments
+* REST client
+  * Test API endpoints
+  * After installing, creating a `test.http` file
+    * `GET http://example.com HTTP/1.1`
+    * Click `Send Request` to see the response on another window
+    * Right-click the `GET` or `POST` command and `Generate Code Snippet` to Python
+      * It generates the corresponding Python code
