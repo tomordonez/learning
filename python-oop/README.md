@@ -159,7 +159,7 @@ Code: `S3_Magic`
 **Equality and comparison**
 
 * Create two Book objects with same values and print their comparison (should be false)
-* Override the `__eq__` method
+* Override the `__eq__` method:
   * Check if the other object is an instance of Book
   * Compare if the values of self are equal to the values of the other object
   * Compare two objects (with same values) again

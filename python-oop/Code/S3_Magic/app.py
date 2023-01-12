@@ -9,5 +9,26 @@ def run():
     book_python = Book("Learning Python", "Mark Lutz",
                        45, book_discount_january)
 
+    book_python_ebook = Book("Learning Python", "Mark Lutz",
+                             45, book_discount_january)
+
+    book_java = Book("Thinking in Java", "Bruce Eckel",
+                     35, book_discount_january)
+
+    book_tdd = Book("Clean Code", "Robert Martin", 55, book_discount_january)
+
     book_python_discount = book_python.get_20_percent_discount()
     print(f"{book_python.title} by {book_python.author}. Price: ${book_python.price}. Discount Price: ${book_python_discount}")
+
+    # True, compares if title and author are equal
+    print(book_python == book_python_ebook)
+
+    # True, compares if obj1 price >= obj2 price
+    print(book_python >= book_java)
+
+    # Sort method uses __lt__
+    book_list = [book_python.title, book_java.title, book_tdd.title]
+    print(book_list)
+
+    book_list.sort()
+    print([book for book in book_list])

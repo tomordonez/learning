@@ -275,7 +275,7 @@ I've been experimenting with this. I was using subject/body
   * In my case my issue numbers have this template `branch/#/word_summary`
   * Where `branch` should be the same as the course folder name.
   * `#` is a digit (a course is divided into sections).
-  * `word_summary` is a word (or two) selected from the section title.
+  * `word_summary` is a word (or two) selected from the section title. I removed this from my current workflow. The `README.md` should have the documentation about section number and section title.
   * Example:
     * `java-OOP/4/runtime-polymorphism`
   * Issue numbers could be JIRA issues or some other type of tracking number
@@ -296,17 +296,17 @@ What I didn't like about the subject/newline/body template was that reviewing co
 
 **Commit message: What I am doing now**
 
-Use the subject only in one line. Follow this template:
+Use the subject only in one line with a shorter `issue-number` and a total of less than 50 characters (VSC shows a warning for this limit). Follow this template:
 
     issue-number: Imperative verb then short summary < 50 chars
 
 Such as:
 
-    java-OOP/4/polymorphism: Pass test for add method
+    java-OOP/4: Pass test for add method
 
 Where:
 
-* The issue number follows `branch/section_number/oneword_summary`
+* The issue number follows `branch/section_number`
 * Then a colon `:`
 * Action verb. For example `Pass`
 * Then a summary in less than 50 characters
