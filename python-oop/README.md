@@ -54,12 +54,12 @@ In `Book` class
   * Implement a singleton design pattern (only one instance of a variable or obj is created)
   * Instead of creating a global variable, encapsulate the behavior in the Book class
   * Create a private `__booklist` variable and create a static method that accesses this behavior
-    * Initialize to `None`
+	* Initialize to `None`
   * Create a static method `get_book_list`
-    * Check if the `__booklist` is None then create a new one, else return the existing one.
-    * In main, use the reference of the static method in `thebooks` variable
-    * Append books to this list
-    * Print the books
+	* Check if the `__booklist` is None then create a new one, else return the existing one.
+	* In main, use the reference of the static method in `thebooks` variable
+	* Append books to this list
+	* Print the books
 
 # 2. Inheritance and Composition
 
@@ -73,9 +73,9 @@ Code: `S2_Inheritance`
   * Newspaper: title, price, period, publisher
 * Refactor repetitive code
   * Create a class Publication
-    * Book inherits from this class
-    * Create a class Periodical that inherits from this class
-      * Magazine and Newspaper inherit from this class
+	* Book inherits from this class
+	* Create a class Periodical that inherits from this class
+	  * Magazine and Newspaper inherit from this class
 
 **Abstract base classes**
 
@@ -84,8 +84,8 @@ Code: `S2_Inheritance`
   * Import `ABC` and `abstractmethod`
   * Inherit class from `ABC`
   * Use `@abstractmethod` decorator for `calculate_area`
-    * No implementation `pass`
-    * Each subclass has to override this method
+	* No implementation `pass`
+	* Each subclass has to override this method
 * Create subclasses and enforce they use the `calculate_area` method
   * `Circle`: radius
   * `Square`: side
@@ -98,7 +98,7 @@ Code: `S2_Inheritance`
 * In main, create an object (from third class)
   * Calling the attribute, will print the attribute from the first class only.
   * This is based on `MRO` (method resolution order), in the order in which they are defined in 
-    the subclass, from left to right
+	the subclass, from left to right
   * See an object's MRO with `obj.__mro__`
 
 My example:
@@ -110,15 +110,15 @@ My example:
 
 * Python doesn't have a built-in interface feature
   * As seen in Stackoverflow [here](https://stackoverflow.
-    com/questions/372042/difference-between-abstract-class-and-interface-in-python). The 
-    Java-style distinction between abstract and interface doesn't exist. The only difference 
-    would be the stated intent in the docstring
+	com/questions/372042/difference-between-abstract-class-and-interface-in-python). The 
+	Java-style distinction between abstract and interface doesn't exist. The only difference 
+	would be the stated intent in the docstring
 * In the `Shape` example
   * Create an abstract class `JSONify`
-    * Create an abstract method `toJSON`
+	* Create an abstract method `toJSON`
   * In the `Circle` class, inherit `JSONify`
-    * Implement the `toJSON` method. Create a JSON representation of the object
-      * `{"Circle": area}`
+	* Implement the `toJSON` method. Create a JSON representation of the object
+	  * `{"Circle": area}`
 
 **Understanding composition**
 
@@ -127,11 +127,11 @@ My example:
 * Create a Book class
   * title, price, author_first_name, author_last_name, chapters []
   * Create an instance method `add_chapter` (name_of_chapter, number_of_pages)
-    * Append a tuple
-    * name_of_chapter can be "Ch1", "Ch2", etc.
+	* Append a tuple
+	* name_of_chapter can be "Ch1", "Ch2", etc.
 * Refactor
   * Extract author info in another class
-    * Override the repr method to return first_name, last_name
+	* Override the repr method to return first_name, last_name
   * In Book use as a parameter an author object
   * Extract chapter in another class
   * In Book create a book page count (based on pages by chapter)
@@ -180,20 +180,20 @@ Code: `S3_Magic`
   * Override with the object and the name of the attribute
   * You can perform operations on an attribute before it gets returned
   * Check if the name is `price` (for this example)
-    * You can't access `self.name` or it will create a recursive loop
-      * This calls `self.__getattribute__` inside the already override of `def __getattribute__(self)`
-    * Call super `price = super().__getattribute__("price")`
-    * Call the same for `discount`
-    * Return the price with the discount
+	* You can't access `self.name` or it will create a recursive loop
+	  * This calls `self.__getattribute__` inside the already override of `def __getattribute__(self)`
+	* Call super `price = super().__getattribute__("price")`
+	* Call the same for `discount`
+	* Return the price with the discount
   * Else
-    * Return the super attribute with name
+	* Return the super attribute with name
   * When you print the object, with `__str__` override that has price, it will return the discounted price
 
 * Use `__setattr__` to modify an attribute's value
   * Example: When a discount is used, format the result in decimals
   * Use the parameters `name` and `value`
   * Check if the name is `price`
-    * Check if the type for `value` is float, otherwise raise an error
+	* Check if the type for `value` is float, otherwise raise an error
   * Return super with name and value
   * In main set the price `book.price = 40` and print book should raise the error
   * Pass the error by casting `float(40)`
@@ -217,7 +217,42 @@ Code: `S3_Magic`
 Code: `S4_Class`
 
 **Defining a data class**
+
+* Convert the Book class to a data class
+  * Data class is used to store all the self variables
+  * `from dataclasses import dataclass`
+  * Use the `@dataclass` decorator on the Book class
+  * Remove the `init` function
+  * Replace the self variables with this format `variable name : data type`
+	* title and author are str, pages is int, price is float
+* Data classes implement `__repr__` and `__eq__` so you don't have to implement them
+* Define class methods with self and self.attribute
+
 **Using post initialization**
+
+* Override the `__post_init__` function to customize additional initialization, based on other initialized attributes
+* Create an attribute `description` that concats title and author
+
 **Using default values**
+
+* Default values have to come first
+* Set defaults with this syntax `variable_name : data type = Default value`
+* Alternatively use the `field` method in `from dataclasses import field`
+  * With this syntax `variable_name : data type = field(default=value)`
+  * Create book objects without price, they would be set to the default value
+* Alternatively use the `default_factory` to use a class method
+  * Syntax `variable_name : data type = field(default_factory=a-class-method)`
+
 **Immutable data classes**
 
+Use the `frozen` parameter inside the decorator to prevent modifying the class attribute values
+
+	@dataclass(frozen = True)
+	class Chicken:
+		race : str = "Animal"
+
+Try to change the value of the object to get a `FrozenInstanceError`
+
+	chicken = Chicken()
+	chicken.race = "Human"
+	print(chicken.race)
