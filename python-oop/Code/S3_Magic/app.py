@@ -18,7 +18,7 @@ def run():
     book_tdd = Book("Clean Code", "Robert Martin", 55, book_discount_january)
 
     book_python_discount = book_python.get_20_percent_discount()
-    print(f"{book_python.title} by {book_python.author}. Price: ${book_python.price}. Discount Price: ${book_python_discount}")
+    print(f"{book_python.title} by {book_python.author}. Discount Price: ${book_python.price}")
 
     # True, compares if title and author are equal
     print(book_python == book_python_ebook)
@@ -32,3 +32,9 @@ def run():
 
     book_list.sort()
     print([book for book in book_list])
+
+    # Override __getattribute__ to return discounted price
+    print(book_python)
+
+    # Raise invalid attribute in Book
+    print(book_python.publisher)

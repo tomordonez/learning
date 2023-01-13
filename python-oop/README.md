@@ -188,6 +188,7 @@ Code: `S3_Magic`
   * Else
     * Return the super attribute with name
   * When you print the object, with `__str__` override that has price, it will return the discounted price
+
 * Use `__setattr__` to modify an attribute's value
   * Example: When a discount is used, format the result in decimals
   * Use the parameters `name` and `value`
@@ -196,6 +197,7 @@ Code: `S3_Magic`
   * Return super with name and value
   * In main set the price `book.price = 40` and print book should raise the error
   * Pass the error by casting `float(40)`
+
 * Use `__getattr__` when `__getattribute__` lookup fails
   * Comment out the previous `__getattribute__` override
   * Pass the parameter `name`
