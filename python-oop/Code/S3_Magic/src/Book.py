@@ -14,6 +14,12 @@ class Book:
     def __repr__(self) -> str:
         return f"[title={self.title}, author={self.author}, price={self.price}, {self.discount}]"
 
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        self.title = args[0]
+        self.author = args[1]
+        self.price = args[2]
+        self.discount = args[3]
+
     def __eq__(self, __o: object) -> bool:
         if isinstance(__o, Book):
             return (self.title == __o.title and self.author == __o.author)
@@ -42,8 +48,10 @@ class Book:
             return super().__setattr__(__name, __value)
 
     def __getattr__(self, __name: str) -> None:
-        if __name not in self.__dict__:
-            raise ValueError(f"'{__name}' is not a Book attribute")
+        try:
+            self.__dict__[__name] is not None
+        except:
+            return f"'{__name}' is not a Book attribute"
 
     def get_20_percent_discount(self):
         if self.discount.discount_percent == 20:

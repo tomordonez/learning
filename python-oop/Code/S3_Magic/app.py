@@ -38,3 +38,8 @@ def run():
 
     # Raise invalid attribute in Book
     print(book_python.publisher)
+
+    # Call the object like a function
+    print(book_python)
+    book_python("Python Book", "Lutz", 55, book_discount_january)
+    print(book_python)
