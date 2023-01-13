@@ -4,9 +4,9 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 
 **In Progress**
 
-* LL: Python OOP
 * LL: Python TDD
-* LL: Cucumber Essential Training
+* LL: Full Stack Web Dev with Flask
+* LL: Python Data Structures and Algorithms
 * W: Python Koans
 
 **Done**
@@ -17,10 +17,12 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 * LL: Learning Python
 * LL: Java OOP
 * LL: Python with VSC
+* LL: Python OOP
 
 **Backlog**
 
 *Java*
+* LL: Cucumber Essential Training (completed some)
 * LL: Java Algorithms
 * LL: Advanced Java Programming
 * LL: Java Data Structures
