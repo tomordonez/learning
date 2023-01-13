@@ -142,11 +142,76 @@ My example:
 Code: `S3_Magic`
 
 **What are magic methods**
+
+* Define how objects are represented as strings
+* Control access to attribute values for get and set
+* Allow objects to be called like functions
+
+
 **String representation**
+
+* Create a Book class with title, author, price, discount
+* Override the `__str__` function
+  * "Title by Author $price"
+* Override the `__repr__` function
+  * "title={title}, author={author}, price={price}"
+  
 **Equality and comparison**
+
+* Create two Book objects with same values and print their comparison (should be false)
+* Override the `__eq__` method:
+  * Check if the other object is an instance of Book
+  * Compare if the values of self are equal to the values of the other object
+  * Compare two objects (with same values) again
+  * Compare a Book object with an integer, should get the value error exception
+* Override the `__ge__` (greater than or equal to) method
+  * Check if other object is an instance of Book
+  * Compare prices of two objects
+  * Print the comparison as `b1 >= b2`
+* The `sort` method uses the `__lt__` (less than) method
+  * Create 4 book objects
+  * Append books to a list
+  * Apply the `sort` method and print using list comprehension
+  
 **Attribute access**
+
+* Use `__getattribute__` when an attribute is retrieved
+  * Don't directly access the attribute name or a recursive loop is created
+  * Override with the object and the name of the attribute
+  * You can perform operations on an attribute before it gets returned
+  * Check if the name is `price` (for this example)
+    * You can't access `self.name` or it will create a recursive loop
+      * This calls `self.__getattribute__` inside the already override of `def __getattribute__(self)`
+    * Call super `price = super().__getattribute__("price")`
+    * Call the same for `discount`
+    * Return the price with the discount
+  * Else
+    * Return the super attribute with name
+  * When you print the object, with `__str__` override that has price, it will return the discounted price
+
+* Use `__setattr__` to modify an attribute's value
+  * Example: When a discount is used, format the result in decimals
+  * Use the parameters `name` and `value`
+  * Check if the name is `price`
+    * Check if the type for `value` is float, otherwise raise an error
+  * Return super with name and value
+  * In main set the price `book.price = 40` and print book should raise the error
+  * Pass the error by casting `float(40)`
+
+* Use `__getattr__` when `__getattribute__` lookup fails
+  * Comment out the previous `__getattribute__` override
+  * Pass the parameter `name`
+  * Return that the `name` doesn't exist
+  * In main print `book.publisher` should return the above error
+  * More about the difference between `getattr` and `getattribute` in this stackoverflow [link](https://stackoverflow.com/a/3278104)
+  
 **Callable objects**
 
+* Use the `__call__` method to call the object like a function
+  * Take the same parameters as `init`
+* Call the object and change the values
+  * Example: `book("Book name", "book author", 40, 1.10)`
+  
 # 4. Data Classes
 
 Code: `S4_Class`
