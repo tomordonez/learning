@@ -211,3 +211,7 @@ Purpose of "name mangling":
 
 * Name mangling exists to avoid name clash issues when subclassing.
 * It is not for providing effective access protection
+
+## AboutControlStatements
+
+Assertions of `if/else`, `while` and `for` loops.
