@@ -94,3 +94,9 @@ Use `deque` to pop items from the left side for `O(1)`, since if you use `pop(0)
 	avengers_deque.popleft() # 'antman'
 	
 	print(avengers) # ['spiderman', 'thor']
+
+## AboutListAssignments
+
+Parallel assignments
+
+	first_name, last_name = ["Peter", "Parker"]
