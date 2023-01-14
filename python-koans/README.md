@@ -70,3 +70,27 @@ Syntax the `try/except` with the specific exception like in Java.
 		something_happens()
 	except Exception as ex:
 		print(ex)
+
+## AboutLists
+
+A list slice returns a list
+
+	avengers = ['antman', 'spiderman', 'thor']
+	avengers[0:1] # ['antman']
+
+A list slice with the same range numbers returns empty, because the upper range is not inclusive
+
+	avengers[0:0] # []
+
+Some nice Python poetry for best practices
+
+	import this
+
+Use `deque` to pop items from the left side for `O(1)`, since if you use `pop(0)` then it's `O(n)`
+
+	from collections import deque
+
+	avengers_deque = deque(avengers)
+	avengers_deque.popleft() # 'antman'
+	
+	print(avengers) # ['spiderman', 'thor']
