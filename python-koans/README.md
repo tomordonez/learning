@@ -106,3 +106,26 @@ Assert a dictionary based on `k,v` pairs
 Create a dictionary form keys
 
 	{}.fromkeys((a tuple of keys), value)
+
+## AboutStringManipulation
+
+Split a string with a regex pattern
+
+	import re
+
+	text = "A , comma and ; semicolon"
+	pattern = re.compile(';|,')
+	
+	# This doesn't work
+	# TypeError: must be str or None, not re.Pattern
+	text.split(pattern)
+
+	# This works
+	pattern.split(text)
+
+A raw string does not interpret escape characters
+
+	text = r'\n'
+	text # '\\n'
+	print(text) # \n
+
