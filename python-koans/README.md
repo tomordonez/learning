@@ -215,3 +215,18 @@ Purpose of "name mangling":
 ## AboutControlStatements
 
 Assertions of `if/else`, `while` and `for` loops.
+
+## AboutTrueAndFalse
+
+Passing `None` or zero `0` or an empty collection or blank strings to a method are treated as `False`
+
+	def is_false(self, condition):
+		if condition:
+		    return True
+		else:
+			return False
+
+	is_false(None) # False
+	is_false(0) # False
+	is_false({}) # False
+
