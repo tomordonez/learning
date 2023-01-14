@@ -27,3 +27,35 @@ I only committed to my `python-koans` directory, the files I changed in `python3
 File: `koans/about_asserts.py`
 
 These were basic tests to `self.assertTrue`, `self.assertEqual`, and `assert`
+
+## AboutStrings
+
+File: `koans/about_strings.py`
+
+Names of test methods are very descriptive, including prepositions so it reads like formal language:
+
+	def test_use_backslash_for_escaping_quotes_in_strings(self)
+
+Assert that strings were instances of `str` like this: `isinstance(string_variable, str)`
+
+When a string has a newline character like `\n` this is counted as 1 character.
+
+	text = "First Line.\n\
+		Second Line."
+
+	len(text)	
+	# Lenght of text is 24
+	# Length of "First Line." is 11.
+	# Length of "\n" is 1.
+	# Length of "Second Line." is 12
+
+All newlines are counted as characters. This `text` has three `\n`. One after the first triple quotes, and one after each sentence. The length of `text` is the total of visible and non-visible characters.
+
+	text = """
+		A line after 3 quotes
+		A new line
+	"""
+
+Use triple quoted strings to avoid escaping characters
+
+	text = """Don't use escape or "here"."""
