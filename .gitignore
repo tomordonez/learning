@@ -7,3 +7,5 @@ target/
 classpath.index
 .attach_pid*
 java-essential-training/Code/out/*
+python-koans/python3/*
+!python-koans/python3/koans/
