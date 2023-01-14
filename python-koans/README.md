@@ -24,13 +24,9 @@ I only committed to my `python-koans` directory, the files I changed in `python3
 
 ## AboutAsserts
 
-File: `koans/about_asserts.py`
-
 These were basic tests to `self.assertTrue`, `self.assertEqual`, and `assert`
 
 ## AboutStrings
-
-File: `koans/about_strings.py`
 
 Names of test methods are very descriptive, including prepositions so it reads like formal language:
 
@@ -100,3 +96,13 @@ Use `deque` to pop items from the left side for `O(1)`, since if you use `pop(0)
 Parallel assignments
 
 	first_name, last_name = ["Peter", "Parker"]
+
+## AboutDictionaries
+
+Assert a dictionary based on `k,v` pairs
+
+	self.assertDictEqual({}, empty_dict)
+
+Create a dictionary form keys
+
+	{}.fromkeys((a tuple of keys), value)
