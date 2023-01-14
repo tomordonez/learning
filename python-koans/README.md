@@ -59,3 +59,14 @@ All newlines are counted as characters. This `text` has three `\n`. One after th
 Use triple quoted strings to avoid escaping characters
 
 	text = """Don't use escape or "here"."""
+
+## AboutNone
+
+None is an object.
+
+Syntax the `try/except` with the specific exception like in Java.
+
+	try:
+		something_happens()
+	except Exception as ex:
+		print(ex)
