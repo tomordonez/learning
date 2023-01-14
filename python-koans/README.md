@@ -147,3 +147,67 @@ Using the tuple constructor on a string results in a tuple of its characters
 
 	tuple("hello") # ('h', 'e', 'l', 'l', 'o')
 
+## AboutMethods
+
+A method with `*args` is a tuple
+
+	def tuple_args(self, *args):
+		return args
+
+	tuple_args(1, 2) # (1, 2)
+
+Old methods are hidden by redefinition
+
+	def my_method(self):
+		return 1
+
+	old_method = my_method
+
+	def my_method(self):
+		return 2
+
+	self.my_method # 2
+	self.old_method # 1
+
+Methods with one line body doesn't require indentation
+
+	def my_method(self): return 2
+
+A string placed at the beginning of a method is used for documentation
+
+	def my_method(self):
+		"my_method returns 2"
+		return 2
+
+	self.my_method.__doc__ # "my_method returns 2"
+
+Prefixing with one underscore `_` means private scope, but not enforced. The idea is like Java's `private` keyword.
+
+	def _my_method(self):
+		return 2
+
+	print(_my_method()) # 2
+
+Prefixing with two underscores `__` seems to enforce private scope and it causes "name mangling", which prefixes that variable with the class name.
+
+	from dataclasses import dataclass
+
+	@dataclass
+	class Email:
+	    author: str = "Homer Simpson"
+		__pwd: str = "private"
+
+	email = Email()
+	email.author # Homer Simpson
+	email.__pwd # AttributeError: 'Email' object has no attribute '__pwd'
+
+	email.__dict__ # {'name': 'Homer', '_Email__pwd': 'private'}
+
+However, you can still access that "private" attribute
+
+	email._Email__pwd # 'private'
+
+Purpose of "name mangling":
+
+* Name mangling exists to avoid name clash issues when subclassing.
+* It is not for providing effective access protection
