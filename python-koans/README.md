@@ -129,3 +129,21 @@ A raw string does not interpret escape characters
 	text # '\\n'
 	print(text) # \n
 
+## AboutTuples
+
+`assertRegex()` uses regular expression pattern matching
+
+	self.assertRegex(msg, "a message here")
+
+Tuples are immutable. You can't append to a tuple.
+
+* Convert the tuple to list
+* Append to the list
+* Convert back to tuple
+
+A tuple of `(1)` is not a tuple but an int, unless you do `(1,)`.
+
+Using the tuple constructor on a string results in a tuple of its characters
+
+	tuple("hello") # ('h', 'e', 'l', 'l', 'o')
+
