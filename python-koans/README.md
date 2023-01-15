@@ -300,7 +300,7 @@ Raise exception if the sum of two sides is less or equal than the other side. Th
 
 ## AboutIteration
 
-Create an iterator. This creates five iterator objects and not a list of numbers from 1 to 5. It raises `StopIteration` when the iterator is completed, for example in a for loop.
+Create an iterator. This creates five iterator objects. It raises `StopIteration` when the iterator is completed, for example in a for loop.
 
 	it = iter(range(1, 6))
 
@@ -372,3 +372,51 @@ The usual list comprehension
 
 	# create a dictionary
 	{key : value for key, value in other_dictionary.items() if value > 0}
+
+## AboutGenerators
+
+More about Generators:
+
+* [https://wiki.python.org/moin/Generators](https://wiki.python.org/moin/Generators)
+* [What does yield keyword do](https://stackoverflow.com/a/231855)
+
+Compared to iterables like `range` which creates a list and stores it in memory like:
+
+	for i in range(1, 5):
+		print(i)
+
+	# This creates an iterable list, storing numbers from 1 to 5000 in memory
+	# It prints numbers from 1 to 5
+
+A generator has the syntax of a list comprehension but uses parentheses instead of curly braces
+
+	mygenerator = (x for x in range(1,5))
+	for i in mygenerator:
+		print(i)
+
+	# This generates the values on the fly and not a whole list of numbers in memory
+	# It prints five iterable objects
+	# Print the values with next (not in the for loop): print(next(mygenerator))
+
+A generator function is only called in the first iteration and it retains local variables
+
+	def my_generator(sequence):
+		total = 0
+		for i in sequence:
+			total = i - total
+			yield total
+
+	result = my_generator(range(1, 3))
+	list(result) # [1, 1]
+
+Send a value to a generator. As seen here [https://stackoverflow.com/a/19302694](https://stackoverflow.com/a/19302694)
+
+	def double_input():
+		while True:
+			x = yield
+			yield x * 2
+
+	gen = double_input() # creates the generator
+	gen(next) # goes to the first yield
+	gen.send(2) # Sets x to 2, returns 4
+
