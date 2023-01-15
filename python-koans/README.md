@@ -261,3 +261,29 @@ Sets have arithmetic operations
 
 * Create a set with the parameters.
 * Type of triangle is based on the length of the set
+
+## AboutExceptions
+
+When inheriting from `RuntimeError` and calling the method resolution order, the number of methods are different than from the base class
+
+	mro = RuntimeError.mro()
+	mro
+	# [<class 'RuntimeError'>, <class 'Exception'>, <class 'BaseException'>, <class 'object'>]
+
+	class myException(RuntimeError):
+		pass
+
+	mro = myException.mro()
+	mro
+	# [<class '__main__.myException'>, <class 'RuntimeError'>, <class 'Exception'>, <class 'BaseException'>, <class 'object'>]
+
+In inheritance, an object is an instance of the subclass and the superclass
+
+	try:
+		2 / 0
+	except Exception as ex:
+		ex2 = ex
+
+	isinstance(ex2, ZeroDivisionError) # True, this is the subclass
+	isinstance(ex2, Exception) # True, this is the superclass
+	isinstance(ex2, AssertionError) # False, this is a different subclass
