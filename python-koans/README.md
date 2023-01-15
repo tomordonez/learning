@@ -287,3 +287,13 @@ In inheritance, an object is an instance of the subclass and the superclass
 	isinstance(ex2, ZeroDivisionError) # True, this is the subclass
 	isinstance(ex2, Exception) # True, this is the superclass
 	isinstance(ex2, AssertionError) # False, this is a different subclass
+
+## AboutTriangleProject2
+
+Raise exception if any argument (triangle side) is less than 0.
+
+	if any(side <= 0 for side in sides_set):
+
+Raise exception if the sum of two sides is less or equal than the other side. There must be a way to refactor this:
+
+	if ((a + b) <= c or (b + c) <= a or (a + c) <= b):
