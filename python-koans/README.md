@@ -426,3 +426,50 @@ An anonymous function like:
 
 	x = lambda a: a + 1
 	print(x(2)) # returns 3
+
+## AboutScoringProject
+
+This took me about 2-3 hours.
+
+I wanted to create a generator from the dice list. Then count the number of times each item was repeated.
+
+	dice_generator = (x for x in dice)
+	count_of_dice_number = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+	loop_count = 0
+
+    while loop_count < len(dice):
+        next_dice = next(dice_generator)
+        count_of_dice(count_of_dice_number, next_dice)
+        loop_count += 1
+
+The `count_of_dice` method counted the number of times the item was repeated
+
+	def count_of_dice(count_of_dice_number, next_dice):
+		if next_dice == 1:
+			count_of_dice_number[next_dice] += 1
+		elif next_dice == 2:
+			count_of_dice_number[next_dice] += 1
+		...
+
+Then it calculates the points for each dice number
+
+	points = 0
+
+    if len(dice) == 0:
+        return points
+    else:
+        points_one = calculate_points(1, count_of_dice_number)
+        points_two = calculate_points(2, count_of_dice_number)
+
+The `calculate_points` is long and has repetitive code. It could be refactored
+
+	def calculate_points(number, count_of_dice_number):
+		if number not in [1, 5]:
+			if count_of_dice_number[number] == 3:
+				return 100 * number
+			else:
+				return 0
+		elif number == 1:
+			if count_of_dice_number[number] == 0:
+				points = 0
+		...
