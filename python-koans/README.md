@@ -297,3 +297,65 @@ Raise exception if any argument (triangle side) is less than 0.
 Raise exception if the sum of two sides is less or equal than the other side. There must be a way to refactor this:
 
 	if ((a + b) <= c or (b + c) <= a or (a + c) <= b):
+
+## AboutIteration
+
+Create an iterator. This creates five iterator objects and not a list of numbers from 1 to 5. It raises `StopIteration` when the iterator is completed, for example in a for loop.
+
+	it = iter(range(1, 6))
+
+	next(it) # 1
+	next(it) # 2. It doesn't return 1 again.
+	...
+	next(it) # 5.
+	next(it) # StopIteration (exception)
+
+That means that when you define an iterator and use it in a loop. There aren't more iterators when you try to use it again.
+
+	it = iter(range(1,3))
+	for number in it:
+		it
+
+	# <range_iterator object at...>
+	# <range_iterator object at...>
+
+	for number in it:
+		it
+
+	# Nothing is returned
+
+Map is similar to Java. It maps elements of a list.
+
+	class map(object)
+		map(func, *iterables) --> map object
+
+		Make an iterator that computes the function using arguments from each of the iterables. Stops when the shortest iterable is exhausted
+
+The function is called without parameters
+
+	import math
+
+	sequence = [1, 2, 3]
+	sqrt_mapping = map(math.sqrt, sequence)
+	
+	for number in sqrt_mapping:
+		round(number, 2)
+
+	# 1.0
+	# 1.41
+	# 1.73
+
+Filter is similar to Java.
+
+	for item in filter(is_even, seq)
+
+Using `reduce`
+
+	from functools import reduce
+
+	help(reduce)
+	# reduce(function, sequence[, initial]) -> value
+	# Apply a function of two arguments cumulatively to the items of a sequence
+	# from left to right, to reduce the sequence to a single value
+	# If initial is present, it is placed before the items of the sequence in the calculation
+	# and serves as a default when the sequence is empty
