@@ -420,3 +420,9 @@ Send a value to a generator. As seen here [https://stackoverflow.com/a/19302694]
 	gen(next) # goes to the first yield
 	gen.send(2) # Sets x to 2, returns 4
 
+## AboutLambdas
+
+An anonymous function like:
+
+	x = lambda a: a + 1
+	print(x(2)) # returns 3
