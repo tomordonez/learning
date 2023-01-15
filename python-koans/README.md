@@ -230,3 +230,29 @@ Passing `None` or zero `0` or an empty collection or blank strings to a method a
 	is_false(0) # False
 	is_false({}) # False
 
+## AboutSets
+
+Creating a new empty list and a new empty set returns a different syntax
+
+	list() # []
+	set() # set()
+
+Create a set from a string
+
+	set('123')
+	# This returns {'1', '2', '3'}
+
+	{'123'}
+	# This returns {'123'}
+
+Sorting a set converts it to a list
+
+	sorted(set('12345'))
+	['1', '2', '3', '4', '5']
+
+Sets have arithmetic operations
+
+	set1 - set2
+	set1 | set2 # all in set1 and set2
+	set1 & set2 # intersection
+	set1 ^ set2 # all in set1 and set2 but not intersection
