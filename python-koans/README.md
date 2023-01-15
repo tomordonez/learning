@@ -359,3 +359,16 @@ Using `reduce`
 	# from left to right, to reduce the sequence to a single value
 	# If initial is present, it is placed before the items of the sequence in the calculation
 	# and serves as a default when the sequence is empty
+
+## AboutComprehension
+
+The usual list comprehension
+
+	# Create a list
+	[number for number in list_of_numbers if number > 0]
+
+	# Create a set
+	{letter for letter in 'aaabbccc'}
+
+	# create a dictionary
+	{key : value for key, value in other_dictionary.items() if value > 0}
