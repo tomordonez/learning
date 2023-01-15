@@ -256,3 +256,8 @@ Sets have arithmetic operations
 	set1 | set2 # all in set1 and set2
 	set1 & set2 # intersection
 	set1 ^ set2 # all in set1 and set2 but not intersection
+
+## AboutTriangleProject
+
+* Create a set with the parameters.
+* Type of triangle is based on the length of the set
