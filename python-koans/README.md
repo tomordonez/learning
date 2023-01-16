@@ -654,3 +654,169 @@ This topic is pretty confusing, revisit later. I still don't understand how this
     def test_we_can_chain_decorators(self):
         self.assertEqual("D'oh, D'oh, D'oh, D'oh", self.homer())
         self.assertEqual("DOH!", self.homer.__doc__)
+
+## AboutInheritance
+
+Test a subclass:
+
+	issubclass(self.Chihuahua, self.Dog)
+
+Don't forget to call `super` on inheritance
+
+	class Dog:
+		def __init__(self, name):
+			self.name = name
+
+	class Poodle(Dog):
+		def __init__(self, name):
+			super().__init__(name)
+
+## AboutMultipleInheritance
+
+Setup multiple inheritance. Methods are available using `mro` (Method Resolution Order) from left to right: `Pig`, `Spider`, `Nameable`
+
+	class Spiderpig(Pig, Spider, Nameable):
+		def __init__(self):
+			super(AboutMultipleInheritance.Pig, self).__init__()
+			super(AboutMultipleInheritance.Nameable, self).__init__()
+			self._name = "Jeff"
+
+If you call `super` on the current class `Spiderpig` you get its parent `Pig`
+
+	jeff = self.Spiderpig()
+    self.assertRegex(jeff.here(), 'Spiderpig')
+
+	# Parent of Spiderpig is Pig
+    next = super(AboutMultipleInheritance.Spiderpig, jeff)
+    self.assertRegex(next.here(), 'Pig')
+
+If you call `super` on its parent `Pig` you don't get its parent. Instead you get the next in `mro` as in a form of `next_mro`.
+
+`jeff` is a `Spiderpig` with mro: `Spiderpig`, `Pig`, `Spider`, `Animal`, `Nameable`, `object`.
+
+Where `Pig` and `Spider` are superclass of `Spiderpig`. Then `Animal` is superclass of `Pig` and `Spider`. Then `Nameable` is superclass of `Animal`.
+
+		# This doesn't return the superclass of Pig.
+		# Since jeff is a Superpig. It returns the next in the mro after Pig
+		# It should return Spider
+
+        next = super(AboutMultipleInheritance.Pig, jeff)
+        self.assertRegex(next.here(), 'Spider')
+
+## AboutScope
+
+Test with `assertAlmostEqual` to compare floats
+
+	PI = 3.1416
+
+	self.assertAlmostEqual(3.1416, self.PI)
+	# Note, floating point numbers in python are not precise.
+    # assertAlmostEqual will check that it is 'close enough'
+
+Access a global variable in a function
+
+	my_global = 0
+
+	def my_function():
+		global my_global
+		print(my_global) # Prints 0
+
+		my_global = 1 # Change the value of the global variable
+
+	def other_function():
+		my_global = 1 # Change the value of the local variable
+		print(my_global) # Prints 1
+
+Using the keyword `nonlocal`
+
+	def beer():
+		ingredient = "wheat"
+			def ale():
+				nonlocal ingredient
+				return ingredient
+			return ale()
+
+	beer() # Returns "wheat"
+
+## AboutModules
+
+Modules hide attributes prefixed with underscore
+
+	class _SecretSquirrel:
+		@property
+		def name(self):
+			return "Mr Anonymous"
+			
+	with self.assertRaises(NameError):
+		private_squirrel = _SecretSquirrel()
+
+Use the `__all__` function to limit what is imported. It overrides the hidden attribute as shown above.
+
+	# other_file.py
+	__all__ = ('Goat', '_Beer')
+
+	class Goat:
+		@property
+		def name(self):
+			return "Billy"
+
+	class Donut:
+		@property
+		def name(self):
+			return "Homer"
+
+	class _Beer:
+		@property
+		def name(self):
+			return "Homer again"
+
+	# this_file.py
+	from . other_file import *
+
+	goat = Goat()
+	print(goat.name) # "Billy"
+
+	donut = Donut() # NameError
+
+	beer = _Beer()
+	print(beer.name) # "Homer again"
+
+## AboutPackages
+
+A package is a folder with an `__init__.py`. This `init` file can have attributes for example `name = "Homer"`
+
+	from a_package import name
+
+	print(name) # "Homer"
+
+## AboutClassAttributes
+
+Attributes can be defined on object instances
+
+	class Avenger:
+		pass
+
+	antman = Avenger()
+	antman.power = "Change size"
+	print(antman.power) # "Change size"
+
+	thor = Avenger()
+	print(thor.power) # AttributeError
+
+This can be confusing. Class methods are not independent of instance methods
+
+	class Dog2:
+
+		@classmethod
+		def growl(cls):
+			return "classmethod growl, arg: cls=" + cls.__name__
+
+	fido = self.Dog2()
+	fido.growl() # classmethod growl, arg: cls=Dog2
+	Dog2.growl() # classmethod growl, arg: cls=Dog2
+
+Call a class method from an instance
+
+	fido = self.Dog4()
+	fido.__class__.a_class_method()
+	
