@@ -598,3 +598,25 @@ You can't set an attribute to a bound method directly, but you can set it throug
 
 	# This works
 	obj.method.__func__.cherries = 3
+
+## AboutDecoratingWithFunctions
+
+More about decorators for functions and methods [https://peps.python.org/pep-0318/](https://peps.python.org/pep-0318/).
+
+From this:
+
+	def nut(self):
+		# do something
+
+	def do(self):
+		# do something
+	
+	donut = do(nut)
+
+To this:
+
+	@do
+	def nut(self):
+		# do something
+
+I remember it like this. Call `do` with `nut`. Or `do(nut)`
