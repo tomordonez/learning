@@ -620,3 +620,37 @@ To this:
 		# do something
 
 I remember it like this. Call `do` with `nut`. Or `do(nut)`
+
+## AboutDecoratingWithClasses
+
+**REVISIT LATER**
+
+More about `functools` at [https://docs.python.org/3/library/functools.html](https://docs.python.org/3/library/functools.html). Functions that act on or return other functions.
+
+A `partial` in `functools.partial(func, /, *args, **keywords)`, returns a partial object, when called it behaves like `func` with the arguments `args` and `keywords`. The `partial()` freezes portion of a function's arguments, resulting in a new object.
+
+Use the `__call__` built-in method to let the instance behave like a function.
+
+	class TwoNumberSum:
+		def __init__(self):
+			pass
+
+		def __call__(self, a, b):
+			return a + b
+
+	sum = TwoNumberSum()
+	sum(1, 2) # Returns 3
+
+Use the `__get__` built-in method to access the instance `obj` and its owner `class`
+
+This topic is pretty confusing, revisit later. I still don't understand how this code runs:
+
+	@documenter("DOH!")
+	@doubleit
+	@doubleit
+	def homer(self):
+		return "D'oh"
+
+    def test_we_can_chain_decorators(self):
+        self.assertEqual("D'oh, D'oh, D'oh, D'oh", self.homer())
+        self.assertEqual("DOH!", self.homer.__doc__)
