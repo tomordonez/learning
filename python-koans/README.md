@@ -473,3 +473,43 @@ The `calculate_points` is long and has repetitive code. It could be refactored
 			if count_of_dice_number[number] == 0:
 				points = 0
 		...
+
+## AboutClasses
+
+Use `property` for a managed attribute that includes setter, getter, deletion, and docstring
+
+	class Avenger:
+		def __init__(self):
+			self._name = None
+		
+		def get_name(self):
+			return self._name
+
+		def set_name(self, value):
+			self._name = value
+
+		name = property(get_name, set_name)
+
+	avenger = Avenger()
+	avenger.name # None (Invokes the getter)
+	avenger.name = "Thor" (Invokes the setter)
+	avenger.name # Thor
+
+Use the `@property` decorator to set a accesor functions for the decorated method
+
+	class Discount:
+		def __init__(self):
+			self.discount = None
+
+		@property
+		def calculate_discount(self): # Turns this method into a getter
+			return self.discount
+
+		@calculate_discount.setter
+		def calculate_discount(self, value): # Turns this into a setter
+			self.discount = value
+
+	discount = Discount()
+	discount.calculate_discount # Access as an attribute, not a method
+	discount.calculate_discount = 5 # Access the setter
+	discount.calculate_discount # Returns: 5
