@@ -513,3 +513,12 @@ Use the `@property` decorator to set a accesor functions for the decorated metho
 	discount.calculate_discount # Access as an attribute, not a method
 	discount.calculate_discount = 5 # Access the setter
 	discount.calculate_discount # Returns: 5
+
+## AboutWithStatements
+
+I used `with` before but never heard of the sandwich analogy. Top bread (open file), meat (do something), bottom bread (close file).
+
+	with open('filename.txt') as file:
+		for line in file.readlines():
+			# do something
+
