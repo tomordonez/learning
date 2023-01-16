@@ -703,7 +703,7 @@ Where `Pig` and `Spider` are superclass of `Spiderpig`. Then `Animal` is supercl
         next = super(AboutMultipleInheritance.Pig, jeff)
         self.assertRegex(next.here(), 'Spider')
 
-# AboutScope
+## AboutScope
 
 Test with `assertAlmostEqual` to compare floats
 
@@ -737,3 +737,46 @@ Using the keyword `nonlocal`
 			return ale()
 
 	beer() # Returns "wheat"
+
+## AboutModules
+
+Modules hide attributes prefixed with underscore
+
+	class _SecretSquirrel:
+		@property
+		def name(self):
+			return "Mr Anonymous"
+			
+	with self.assertRaises(NameError):
+		private_squirrel = _SecretSquirrel()
+
+Use the `__all__` function to limit what is imported. It overrides the hidden attribute as shown above.
+
+	# other_file.py
+	__all__ = ('Goat', '_Beer')
+
+	class Goat:
+		@property
+		def name(self):
+			return "Billy"
+
+	class Donut:
+		@property
+		def name(self):
+			return "Homer"
+
+	class _Beer:
+		@property
+		def name(self):
+			return "Homer again"
+
+	# this_file.py
+	from . other_file import *
+
+	goat = Goat()
+	print(goat.name) # "Billy"
+
+	donut = Donut() # NameError
+
+	beer = _Beer()
+	print(beer.name) # "Homer again"
