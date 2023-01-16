@@ -670,3 +670,35 @@ Don't forget to call `super` on inheritance
 	class Poodle(Dog):
 		def __init__(self, name):
 			super().__init__(name)
+
+## AboutMultipleInheritance
+
+Setup multiple inheritance. Methods are available using `mro` (Method Resolution Order) from left to right: `Pig`, `Spider`, `Nameable`
+
+	class Spiderpig(Pig, Spider, Nameable):
+		def __init__(self):
+			super(AboutMultipleInheritance.Pig, self).__init__()
+			super(AboutMultipleInheritance.Nameable, self).__init__()
+			self._name = "Jeff"
+
+If you call `super` on the current class `Spiderpig` you get its parent `Pig`
+
+	jeff = self.Spiderpig()
+    self.assertRegex(jeff.here(), 'Spiderpig')
+
+	# Parent of Spiderpig is Pig
+    next = super(AboutMultipleInheritance.Spiderpig, jeff)
+    self.assertRegex(next.here(), 'Pig')
+
+If you call `super` on its parent `Pig` you don't get its parent. Instead you get the next in `mro` as in a form of `next_mro`.
+
+`jeff` is a `Spiderpig` with mro: `Spiderpig`, `Pig`, `Spider`, `Animal`, `Nameable`, `object`.
+
+Where `Pig` and `Spider` are superclass of `Spiderpig`. Then `Animal` is superclass of `Pig` and `Spider`. Then `Nameable` is superclass of `Animal`.
+
+		# This doesn't return the superclass of Pig.
+		# Since jeff is a Superpig. It returns the next in the mro after Pig
+		# It should return Spider
+		
+        next = super(AboutMultipleInheritance.Pig, jeff)
+        self.assertRegex(next.here(), 'Spider')
