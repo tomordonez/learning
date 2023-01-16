@@ -522,3 +522,37 @@ I used `with` before but never heard of the sandwich analogy. Top bread (open fi
 		for line in file.readlines():
 			# do something
 
+## AboutMonkeyPatching
+
+Never heard of this before. You can attach a method to an existing class, without that class having that method. This can be used for unit testing external resources, like simulating opening a file, or a call to an external data source.
+
+	from dataclasses import dataclass
+
+	@dataclass
+	class Avenger:
+		name: str
+
+		def get_name(self):
+			return self.name
+
+		def set_name(self, value):
+			self.name = value
+
+	def blip_avenger():
+		return "You got blipped"
+
+	avenger = Avenger("Spiderman")
+	avenger.blip_avenger = blip_avenger
+	avenger.blip_avenger() # You got blipped
+
+Most built-in classes can't be monkey patched. This won't work. It says you can't set attributes on `int`:
+
+	int.is_even = lambda self: (self % 2) == 0
+
+Subclasses of built-in classes can be monkey patched.
+
+	class MyInt(int):
+		pass
+
+	MyInt.is_even = lambda number: (number % 2) == 0
+	MyInt(2).is_even() # True
