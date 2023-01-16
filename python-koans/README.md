@@ -556,3 +556,20 @@ Subclasses of built-in classes can be monkey patched.
 
 	MyInt.is_even = lambda number: (number % 2) == 0
 	MyInt(2).is_even() # True
+
+## AboutDiceProject
+
+This was a simple list append a range of random numbers.
+
+The tests:
+
+* Descriptive test method names
+* Test that the object is an instance of a list
+* Test that the object has specific length
+
+Test the dice returns a number from 1 to 6
+
+	for value in dice.values:
+		self.assertTrue(value => 1 and value <= 6, f"Value {value} must be between 1 and 6")
+
+Test that the values change between rolls. (test that the list of numbers are random). Altough it's possible that two consecutive or non-consecutive lists are equal.
