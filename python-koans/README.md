@@ -573,3 +573,28 @@ Test the dice returns a number from 1 to 6
 		self.assertTrue(value => 1 and value <= 6, f"Value {value} must be between 1 and 6")
 
 Test that the values change between rolls. (test that the list of numbers are random). Altough it's possible that two consecutive or non-consecutive lists are equal.
+
+## AboutMethodBindings
+
+As seen in [https://stackoverflow.com/a/46001336](https://stackoverflow.com/a/46001336), a `hello()` calls the function, while `hello` is a name bound to the function.
+
+Unbound function `function`
+
+	def function():
+    	return "pineapple"
+
+Bound method `method`
+
+	class Class:
+		def method(self):
+			return "parrot"
+
+You can't set an attribute to a bound method directly, but you can set it through the inner function
+
+	obj = Class()
+
+	# This won't work
+	obj.method.cherries = 3
+
+	# This works
+	obj.method.__func__.cherries = 3
