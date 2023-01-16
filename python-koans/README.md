@@ -654,3 +654,19 @@ This topic is pretty confusing, revisit later. I still don't understand how this
     def test_we_can_chain_decorators(self):
         self.assertEqual("D'oh, D'oh, D'oh, D'oh", self.homer())
         self.assertEqual("DOH!", self.homer.__doc__)
+
+## AboutInheritance
+
+Test a subclass:
+
+	issubclass(self.Chihuahua, self.Dog)
+
+Don't forget to call `super` on inheritance
+
+	class Dog:
+		def __init__(self, name):
+			self.name = name
+
+	class Poodle(Dog):
+		def __init__(self, name):
+			super().__init__(name)
