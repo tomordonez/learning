@@ -699,6 +699,41 @@ Where `Pig` and `Spider` are superclass of `Spiderpig`. Then `Animal` is supercl
 		# This doesn't return the superclass of Pig.
 		# Since jeff is a Superpig. It returns the next in the mro after Pig
 		# It should return Spider
-		
+
         next = super(AboutMultipleInheritance.Pig, jeff)
         self.assertRegex(next.here(), 'Spider')
+
+# AboutScope
+
+Test with `assertAlmostEqual` to compare floats
+
+	PI = 3.1416
+
+	self.assertAlmostEqual(3.1416, self.PI)
+	# Note, floating point numbers in python are not precise.
+    # assertAlmostEqual will check that it is 'close enough'
+
+Access a global variable in a function
+
+	my_global = 0
+
+	def my_function():
+		global my_global
+		print(my_global) # Prints 0
+
+		my_global = 1 # Change the value of the global variable
+
+	def other_function():
+		my_global = 1 # Change the value of the local variable
+		print(my_global) # Prints 1
+
+Using the keyword `nonlocal`
+
+	def beer():
+		ingredient = "wheat"
+			def ale():
+				nonlocal ingredient
+				return ingredient
+			return ale()
+
+	beer() # Returns "wheat"
