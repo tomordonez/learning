@@ -789,3 +789,34 @@ A package is a folder with an `__init__.py`. This `init` file can have attribute
 
 	print(name) # "Homer"
 
+## AboutClassAttributes
+
+Attributes can be defined on object instances
+
+	class Avenger:
+		pass
+
+	antman = Avenger()
+	antman.power = "Change size"
+	print(antman.power) # "Change size"
+
+	thor = Avenger()
+	print(thor.power) # AttributeError
+
+This can be confusing. Class methods are not independent of instance methods
+
+	class Dog2:
+
+		@classmethod
+		def growl(cls):
+			return "classmethod growl, arg: cls=" + cls.__name__
+
+	fido = self.Dog2()
+	fido.growl() # classmethod growl, arg: cls=Dog2
+	Dog2.growl() # classmethod growl, arg: cls=Dog2
+
+Call a class method from an instance
+
+	fido = self.Dog4()
+	fido.__class__.a_class_method()
+	
