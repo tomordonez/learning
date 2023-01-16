@@ -780,3 +780,12 @@ Use the `__all__` function to limit what is imported. It overrides the hidden at
 
 	beer = _Beer()
 	print(beer.name) # "Homer again"
+
+## AboutPackages
+
+A package is a folder with an `__init__.py`. This `init` file can have attributes for example `name = "Homer"`
+
+	from a_package import name
+
+	print(name) # "Homer"
+
