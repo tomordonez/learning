@@ -4,6 +4,8 @@ Course on Linkedin Learning. [Learning SOLID Programming Principles](https://www
 
 The author uses Python for examples.
 
+This is a great course, however all the code is shown on slides. I would need to spend a week or two, writing the examples and refactoring the code to follow the details for each principle. It also mentioned other details in Python that I am not too familiar with.
+
 ## 0. Introduction
 
 **Five principles**
@@ -213,5 +215,69 @@ Which is similar to Java:
 Be sure every subclass can replace its superclass
   
 ## 3. Open/Closed Design (O)
+
+**Intro**
+
+* Software entities (classes, modules, functions) should be open for extension but closed for modification
+* It summarizes the goals of the interface segregation and Liskov substitution principles
+* Add features to a class by creating subclasses
+* There shouldn't be a need to modify the code of a working class
+
+**Modifying a class and fixing bugs**
+
+* If a class is closed for modification, how to fix a bug?
+* Extend the broken class to create a bug-free subclass, leave the old buggy class in place
+* Mark the buggy class as deprecated
+
+**Inheritance and Composition**
+
+* Extend the class with inheritance as seen in Lizkov
+* And also composition
+  * In the Use Case.
+    * The Correlation class was used as a superclass to calculate Regression
+    * This Regression class used another class SampleList to compute the results
+  * Combine multiple objects to do a job, the resulting object has emergent behavior
+
+**More extension techniques**
+
+* Adding features to a class
+  * Composition
+    * In Python, decoration rewrites the class
+    * Mixins and multiple inheritance
+
+**Skimmed through. Revisit later.**
+  
 ## 4. Dependency Inversion (D)
+
+**Intro**
+
+* High level modules should not depend on low-level modules. Both should depend on abstractions
+* Abstractions should not depend on details.
+* Details should depend on abstractions
+* Python doesn't have a first-class abstraction like Java but uses a library `abc`
+
+*3 Approaches to Abstraction*
+
+(In Python)
+
+* Use the abc module `from abc import ABC` and extend a class with this class `class Dog(ABC)`. Define the methods with the decorator `@abstractmethod`. When extending the abstract class, these methods must be implemented `class Poodle(Dog)`.
+* Rely on duck typing and use a protocol type definition
+* Mixin definitions to combine abstractions
+
+**Pending review rest of this section**
+
 ## 5. Single-Responsibility (S)
+
+**Intro**
+
+* A class should be responsible for a single part of the functionality
+* That responsibility should be entirely encapsulated by the class
+* A class should have only one reason to change
+* Controller class
+  * Responsible for the processing of a use case
+    * The reader is a controller for file-parsing algorithm
+    * The correlation computation is a controller for a computation
+* Creator class
+  * Factories and builders
+
+**Pending review rest of this section**
