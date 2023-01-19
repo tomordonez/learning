@@ -1,13 +1,24 @@
 # Learning
 
-This repo contains a summary of courses and code I am learning outside Gatech. Also, here is my [reading](https://github.com/tomordonez/reading) progress.
+This repo contains a summary of courses I am learning on my own and at Gatech.
+
+Repo structure
+
+    courses/
+        gatech/
+        own/
+    reading/
+
+(Note Gatech documentation contains what I can publish publicly to meet honor code)
 
 **In Progress**
 
-* LL: Python TDD
-* LL: Full Stack Web Dev with Flask
-* LL: Python Data Structures and Algorithms
-* W: Python Koans
+* Own
+  * LL: Python TDD
+  * LL: Full Stack Web Dev with Flask
+  * Y: AWS Certified Cloud Practitioner
+* Gatech
+  * Software Architecture (6th class)
 
 **Done**
 
@@ -18,6 +29,8 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 * LL: Java OOP
 * LL: Python with VSC
 * LL: Python OOP
+* W: Python Koans
+* LL: SOLID Principles
 
 **Backlog**
 
@@ -35,6 +48,10 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 * LL: Java design patterns
 * LL: React and Spring
 
+*Python*
+
+* LL: Python Data Structures and Algorithms
+
 *Data Engineering*
 
 * LL: Data engineering foundations
@@ -50,7 +67,6 @@ This repo contains a summary of courses and code I am learning outside Gatech. A
 * LL: Learning Terraform
 
 *AWS*
-* Y: AWS Certified Cloud Practitioner
 * LL: Learning AWS for Developers
 * LL: Amazon Web Services: Data Analytics
 * LL: Amazon Web Services: Data Services
@@ -145,13 +161,13 @@ Project structure. Omit the parentheses.
 
 **Python**
 
-Project structure. Omit the parentheses.
+Project structure. Omit the parentheses. Per PEP8. Packages (directories should be lowercase without underscores). Modules (files should be lowercase with underscores).
 
     Course Name/
         README.md
         Code/
-            S1_SectionName/ (package)
-                exercise-name/ (package)
+            s1sectionname/ (package)
+                exercisename/ (package)
                     app.py
                     __main__.py
                     src/ (package)
@@ -159,21 +175,21 @@ Project structure. Omit the parentheses.
                     tests/ (package)
                     data/ (package, if needed)
                 
-                other-exercise-name/ (package)
+                otherexercisename/ (package)
 
-            S2_OtherSectionName/
+            s2othersectionname/
                 ...
 
 Inside `app.py` import other packages like this:
 
-    from S1_SectionName.exercise-name.src.class-file import ClassName
+    from s1sectionname.exercisename.src.class-file import ClassName
 
     run():
         pass
 
 Inside `__main__.py`. Enter the following:
 
-    from S1_SectionName.exercise-name import app
+    from s1sectionname.exercisename import app
     
     if __name__ == '__main__':
         app.run()
@@ -186,7 +202,7 @@ To run the app:
 
 * In VSC
   * Open the terminal, go to the root directory. In above example this would be `cd Code`
-  * Run as a module `python -m S1_SectionName.exercise-name`
+  * Run as a module `python -m s1sectionname.exercisename`
   * If you Right click/run `main`, most likely you get `ModuleNotFoundError` if the imports use absolute paths.
 
 * In the Terminal
@@ -228,17 +244,21 @@ It follows the guideline from [this](https://osherove.com/blog/2005/4/3/naming-s
 * Add `org.junit.jupiter:junit-jupiter`.
 * Then reload the maven icon.
 
+
 **Setup Python unittest in PyCharm**
 
-See below `Organizing code with packages`.
-
-* Create a `tests` package directory
+Create a `tests` package directory
 
 Go to a class. Right-click. `Go to` and select `Test`.
 
 * Create a test case per class
 * Import `from unittest import TestCase`
 * Import `from unittest.mock import Mock, patch`
+
+
+**Setup Python unittest in VSC**
+
+Full details in `courses/own/python-tdd/`
 
 ## Testing/BDD
 
@@ -269,34 +289,7 @@ Commit every time a new test passes. I would add:
 * When you add/delete/move a lot of files
 * When you pass a test
 
-**Commit message: What I was doing before**
-
-I've been experimenting with this. I was using subject/body
-
-* Subject: the issue number.
-  * In my case my issue numbers have this template `branch/#/word_summary`
-  * Where `branch` should be the same as the course folder name.
-  * `#` is a digit (a course is divided into sections).
-  * `word_summary` is a word (or two) selected from the section title. I removed this from my current workflow. The `README.md` should have the documentation about section number and section title.
-  * Example:
-    * `java-OOP/4/runtime-polymorphism`
-  * Issue numbers could be JIRA issues or some other type of tracking number
-* A blank line to separate subject from body
-* Body: a short summary of the commit.
-
-For reference. Separate the subject from the body with a blank line. In IntelliJ/PyCharm/VSC
-
-	Here is the subject
-
-	Then the body
-
-In the command line as seen in [this](https://stackoverflow.com/a/40506149) Stackoverflow answer. Separate subject and body with two `-m` messages. This concatenates the messages as separate paragraphs, separated by an empty line.
-
-	git commit -m "Here is the subject" -m "Then the body"
-
-What I didn't like about the subject/newline/body template was that reviewing commits locally or in Github, you can only see the commit subject. Unless you click on the commit details, then you can see the body.
-
-**Commit message: What I am doing now**
+**Commit message**
 
 Use the subject only in one line with a shorter `issue-number` and a total of less than 50 characters (VSC shows a warning for this limit). Follow this template:
 
@@ -319,7 +312,7 @@ Where:
 
     (main)$ git checkout -b branch-name 
     (react-BMP)$ git add .
-    (react-BMP)$ git commit -m "Subject line" -m "body of commit"
+    (react-BMP)$ git commit -m "Subject line"
     (react-BMP)$ git push -u origin branch-name
 
 In GitHub create a PR and merge with main. If updating local main then:
@@ -327,7 +320,7 @@ In GitHub create a PR and merge with main. If updating local main then:
     (react-BMP)$ git checkout main
     (main)$ git pull
 
-**IntelliJ**
+**IntelliJ/PyCharm**
 
 * Bottom right, click on `main`, click New Branch
 * Make changes
@@ -336,3 +329,9 @@ In GitHub create a PR and merge with main. If updating local main then:
 * Enter a message. Subject line, empty line, Body of commit
 * Click Commit
 * Top menu Git/Push
+
+**VSC**
+
+* Bottom left
+* Click current branch
+* On the overlay popup. Create new branch. Enter a name, press Enter.
