@@ -5,5 +5,5 @@
 5. Get "Fizz" when I pass in 3 *done*
 6. Get "Buzz" when I pass in 5 *done*
 7. Get "Fizz" when I pass in 6 (a multiple of 3) *done*
-8. Get "Buzz" when I pass in 10 (a multiple of 5)
+8. Get "Buzz" when I pass in 10 (a multiple of 5) *done*
 9. Get "FizzBuzz" when I pass in 15 (a multiple of 3 and 5)
