@@ -15,3 +15,5 @@ class FizzBuzz:
     def calculate_fizzbuzz(self):
         if self._number == 1:
             return "1"
+        elif self._number == 2:
+            return "2"

@@ -19,6 +19,11 @@ class TestFizzBuzz(unittest.TestCase):
         fizzbuzz_result = self.fizzbuzz.calculate_fizzbuzz()
         self.assertEqual("1", fizzbuzz_result)
 
+    def test_get_string_two_when_passing_int_two(self):
+        self.fizzbuzz.number = 2
+        fizzbuzz_result = self.fizzbuzz.calculate_fizzbuzz()
+        self.assertEqual("2", fizzbuzz_result)
+
 
 if __name__ == "__main__":
     unittest.main()
