@@ -192,27 +192,8 @@ This video is in PyCharm using pytest. I used VSC with unittest. First I tried m
 
 Code in `Code/s1overview/`.
 
-Following the use cases. I initially created tests so when you pass integers like 1 or 2, then you get the corresponding string "1" or "2". However, I didn't understand what the point was for doing this. What if you pass the integer 4. It returns the string "4". Or pass integer 3. It returns "3".
+I debated about the use cases from the video for a while. I wasn't familiar with FizzBuzz and according to Wikipedia, this is a game where participants start counting from 1 and if they get a number divisible by `3` then they say `Fizz`, if they get a number divisible by `5` they say `Buzz`, if they get a number divisible by `15` (divisible by both 3 and 5) they say `FizzBuzz`, for any other number they say that number.
 
-1. Can I call FizzBuzz
-2. Get "1" when I pass in 1
-3. Get "2" when I pass in 2
+In the implementation of a program, who inputs the number. Does the program ask for the next number? Or does it ask for the number of turns, and it prints all the computed results?
 
-According to the game instructions in Wikipedia, which is not explained in the introduction of the lesson.
-
-* Players sit in a circle.
-* The first player says the number `1`
-* Then the next players each count upwards in turn.
-* When a player gets a number divisible by `3` they say the word `Fizz`.
-* When they get a number divisible by `5` they say the word `Buzz`.
-* When they get a number divisible by `15` (by both 3 and 5). They say the word `FizzBuzz`
-
-I modified the use cases to this:
-
-1. Can I call FizzBuzz?
-2. If I set a number, return that number.
-3. Is the number an integer >= 1?
-4. If number is divisible by 3 return the string Fizz
-5. If number is divisible by 5 return the string Buzz
-6. If number is divisible by 15 return the string FizzBuzz
-7. If the number is not divisible by any of 3, 5, or 15, return the string of the input number
+Perhaps the implementation of the interface doesn't matter at this point. You just test the input compared to the calculated output.
