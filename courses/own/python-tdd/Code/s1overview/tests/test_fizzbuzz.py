@@ -14,6 +14,10 @@ class TestFizzBuzz(unittest.TestCase):
         self.fizzbuzz.number = 1
         self.assertEqual("1", self.fizzbuzz.number)
 
+    def test_return_string_two_when_passing_int_two(self):
+        self.fizzbuzz.number = 2
+        self.assertEqual("2", self.fizzbuzz.number)
+
 
 if __name__ == "__main__":
     unittest.main()
