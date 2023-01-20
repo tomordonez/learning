@@ -13,11 +13,11 @@ class FizzBuzz:
         self._number = number
 
     def calculate_fizzbuzz(self):
-        if (self._number % 15 == 0):
+        if (self._number % 15) == 0:
             return "FizzBuzz"
-        elif (self._number % 3 == 0):
+        elif (self._number % 3) == 0:
             return "Fizz"
-        elif (self._number % 5 == 0):
+        elif (self._number % 5) == 0:
             return "Buzz"
         else:
             return str(self._number)
