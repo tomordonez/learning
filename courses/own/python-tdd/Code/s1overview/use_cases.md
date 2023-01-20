@@ -1,5 +1,5 @@
-1. Can I call FizzBuzz
-2. Get "1" when I pass in 1
+1. Can I call FizzBuzz *done*
+2. Get "1" when I pass in 1 *done*
 3. Get "2" when I pass in 2
 4. Get "Fizz" when I pass in 3
 5. Get "Buzz" when I pass in 5
