@@ -188,7 +188,7 @@ The usual TDD intro, plus 3 laws of TDD from Clean Code, reversing the prose so 
 
 **FizzBuzz Kata**
 
-This video is in PyCharm using pytest. I used VSC with unittest. First I tried my own implementation with commits for every passed test. Then watched the video to compare. Finally I optimized my test case based on the video.
+This video is in PyCharm using pytest. I used VSC with unittest. First I tried my own implementation with commits for every passed test. Then watched the video to compare.
 
 Code in `Code/s1overview/`.
 
@@ -197,3 +197,8 @@ I debated about the use cases from the video for a while. I wasn't familiar with
 In the implementation of a program, who inputs the number. Does the program ask for the next number? Or does it ask for the number of turns, and it prints all the computed results?
 
 Perhaps the implementation of the interface doesn't matter at this point. You just test the input compared to the calculated output.
+
+Thoughts about the video:
+
+* Not following PEP8 or clean code conventions. It uses methods with camelcase and variable names are difficult to understand such as `retVal`
+* It also uses weird whitespace inside methods. As seen in PEP8 [here](https://peps.python.org/pep-0008/#whitespace-in-expressions-and-statements), right after parentheses, avoid whitespace.
