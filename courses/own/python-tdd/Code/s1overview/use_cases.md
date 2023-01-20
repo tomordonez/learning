@@ -3,7 +3,7 @@
 3. Get "1" when I pass in 1 *done*
 4. Get "2" when I pass in 2 *done*
 5. Get "Fizz" when I pass in 3 *done*
-6. Get "Buzz" when I pass in 5
+6. Get "Buzz" when I pass in 5 *done*
 7. Get "Fizz" when I pass in 6 (a multiple of 3)
 8. Get "Buzz" when I pass in 10 (a multiple of 5)
 9. Get "FizzBuzz" when I pass in 15 (a multiple of 3 and 5)
