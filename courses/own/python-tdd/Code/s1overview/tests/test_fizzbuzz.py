@@ -24,6 +24,11 @@ class TestFizzBuzz(unittest.TestCase):
         fizzbuzz_result = self.fizzbuzz.calculate_fizzbuzz()
         self.assertEqual("2", fizzbuzz_result)
 
+    def test_get_fizz_when_passing_three(self):
+        self.fizzbuzz.number = 3
+        fizzbuzz_result = self.fizzbuzz.calculate_fizzbuzz()
+        self.assertEqual("Fizz", fizzbuzz_result)
+
 
 if __name__ == "__main__":
     unittest.main()
