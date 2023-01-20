@@ -11,3 +11,7 @@ class FizzBuzz:
     @number.setter
     def number(self, number):
         self._number = number
+
+    def calculate_fizzbuzz(self):
+        if self._number == 1:
+            return "1"
