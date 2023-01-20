@@ -39,6 +39,11 @@ class TestFizzBuzz(unittest.TestCase):
         fizzbuzz_result = self.fizzbuzz.calculate_fizzbuzz()
         self.assertEqual("Fizz", fizzbuzz_result)
 
+    def test_get_buzz_when_passing_multiple_of_five(self):
+        self.fizzbuzz.number = 10
+        fizzbuzz_result = self.fizzbuzz.calculate_fizzbuzz()
+        self.assertEqual("Buzz", fizzbuzz_result)
+
 
 if __name__ == "__main__":
     unittest.main()
