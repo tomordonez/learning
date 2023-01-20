@@ -5,7 +5,7 @@ com/learning/python-object-oriented-programming)
 
 # 1. Object-Oriented Python
 
-Code: `S1_OOP`
+Code: `s1oop`
 
 **Basic class definition**
 
@@ -63,7 +63,7 @@ In `Book` class
 
 # 2. Inheritance and Composition
 
-Code: `S2_Inheritance`
+Code: `s2inheritance`
 
 **Understanding inheritance**
 
@@ -139,7 +139,7 @@ My example:
 
 # 3. Magic Object Methods
 
-Code: `S3_Magic`
+Code: `s3magic`
 
 **What are magic methods**
 
@@ -214,7 +214,7 @@ Code: `S3_Magic`
   
 # 4. Data Classes
 
-Code: `S4_Class`
+Code: `s4class`
 
 **Defining a data class**
 
