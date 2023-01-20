@@ -107,7 +107,7 @@ In VSC change the `settings.json` to set the correct `-s` directory. In my examp
         ]
     }
 
-You can also add multiple directories. To be specific with a real example from my `learning` repo.
+You can also add multiple directories. Like this example:
 
 I have this directory structure:
 
@@ -134,7 +134,7 @@ I have this directory structure:
                         __init__.py
                         test_fizzbuzz.py
 
-In my `settings.json`
+In `settings.json`
 
     "python.testing.unittestArgs": [
             "-v",
@@ -147,8 +147,6 @@ In my `settings.json`
     ]
 
 I could add `python-koans` as well, although it uses the `sniffer` program to auto run the tests in the terminal. The tests have a different prefix `about_*.py`.
-
-If I were to add them I would set up the arguments like this:
 
 In `settings.json`
 
@@ -174,12 +172,33 @@ Run from the gutter on the test file or using the beaker icon
 
 **What is unit testing**
 
-Skipped
+Levels of testing:
+* Unit testing: function level
+* Component testing: library and compiled binary level
+* Systems testing: External interface of a system or subsystem
+* Performance testing: System level to verify acceptable timing/resource usage
 
 **What is TDD**
 
-Skipped
+The usual TDD intro, plus 3 laws of TDD from Clean Code, reversing the prose so it's easier to read:
+
+* Write a failing unit test, then write production code
+* Write a test small enough to fail, including compile failing
+* Write production code small enough to pass the test
 
 **FizzBuzz Kata**
 
-I followed this with iterative commits. Code in `Code/s1overview/`
+This video is in PyCharm using pytest. I used VSC with unittest. First I tried my own implementation with commits for every passed test. Then watched the video to compare.
+
+Code in `Code/s1overview/`.
+
+I debated about the use cases from the video for a while. I wasn't familiar with FizzBuzz and according to Wikipedia, this is a game where participants start counting from 1 and if they get a number divisible by `3` then they say `Fizz`, if they get a number divisible by `5` they say `Buzz`, if they get a number divisible by `15` (divisible by both 3 and 5) they say `FizzBuzz`, for any other number they say that number.
+
+In the implementation of a program, who inputs the number. Does the program ask for the next number? Or does it ask for the number of turns, and it prints all the computed results?
+
+Perhaps the implementation of the interface doesn't matter at this point. You just test the input compared to the calculated output.
+
+Thoughts about the video:
+
+* Not following PEP8 or clean code conventions. It uses methods with camelcase and variable names are difficult to understand such as `retVal`
+* It also uses weird whitespace inside methods. As seen in PEP8 [here](https://peps.python.org/pep-0008/#whitespace-in-expressions-and-statements), right after parentheses, avoid whitespace.
