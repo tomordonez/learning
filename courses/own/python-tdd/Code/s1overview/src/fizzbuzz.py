@@ -19,3 +19,5 @@ class FizzBuzz:
             return "2"
         elif self._number == 3:
             return "Fizz"
+        elif self._number == 5:
+            return "Buzz"
