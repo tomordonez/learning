@@ -6,7 +6,7 @@ class FizzBuzz:
 
     @property
     def number(self):
-        return str(self._number)
+        return self._number
 
     @number.setter
     def number(self, number):

@@ -10,13 +10,9 @@ class TestFizzBuzz(unittest.TestCase):
     def test_can_create_fizzbuzz_instance(self):
         self.assertTrue(isinstance(self.fizzbuzz, FizzBuzz))
 
-    def test_return_string_one_when_passing_int_one(self):
+    def test_get_number_when_set_number(self):
         self.fizzbuzz.number = 1
-        self.assertEqual("1", self.fizzbuzz.number)
-
-    def test_return_string_two_when_passing_int_two(self):
-        self.fizzbuzz.number = 2
-        self.assertEqual("2", self.fizzbuzz.number)
+        self.assertEqual(1, self.fizzbuzz.number)
 
 
 if __name__ == "__main__":
