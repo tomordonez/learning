@@ -35,13 +35,13 @@
 Other practices:
 
 * If it's a number or text, it's an attribute, not a class
-  * A `Sale` with `store` attribute
+  * A `Sale` initially designed with a `store` attribute
     * A `store` is not considered a number or a text
     * A `store` occupies space, then it should be a class
-    * `Sale` (attributes), `Store` (attributes)
-  * A `Flight` with `destination` attribute
+    * `Sale` (has attributes), `Store` (has attributes)
+  * A `Flight` initially designed with a `destination` attribute
     * The `destination` is an `Airport`
-    * `Flight` (attributes), `Airport` (attributes)
+    * `Flight` (has attributes), `Airport` (has attributes)
 * Modeling a `Description`
   * If an `Item` (description, price) is sold out in `Store`
     * You wouldn't be able to find an item description or price because all item instances were sold.
