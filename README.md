@@ -64,17 +64,17 @@ Projects I want to build:
 
 **Doing**
 
-| Topic  | Course                           | Source |
-|--------|----------------------------------|--------|
-| SWE    | Software Architecture            | Gatech |
-| Java   | Java and Docker                  | LL     |
-| Java   | Java Data Structures             | LL     |
-| Java   | Java Lambdas and Streams         | LL     |
-| Java   | JUnit                            | LL     |
-| Java   | Java Objects and APIs            | LL     |
-| Python | Python TDD                       | LL     |
-| Python | Python and Flask                 | LL     |
-| Cloud  | AWS Certified Cloud Practitioner | Y      |
+| Topic | Course                         | Source |
+|-------|--------------------------------|--------|
+| SWE   | Software Architecture          | Gatech |
+| Java  | Java and Docker                | LL     |
+| Java  | Java Data Structures           | LL     |
+| Java  | JUnit                          | LL     |
+| Azure | AZ-900 Azure Fundamentals      | W      |
+| Azure | DP-900 Azure Data Fundamentals | W      |
+| Azure | PL-300 PowerBI Data Analyst    | W      |
+| Azure | DP-500 Data Analyst Associate  | W      |
+| Azure | DP-203 Data Engineer Associate | W      |
 
 **Done**
 
@@ -99,6 +99,11 @@ Projects I want to build:
 
 | Topic     | Course                                          | Source |
 |-----------|-------------------------------------------------|--------|
+| Java      | Java Objects and APIs                           | LL     |
+| Python    | Python TDD                                      | LL     |
+| Python    | Python and Flask                                | LL     |
+| AWS       | AWS Certified Cloud Practitioner                | Y      |
+| Java      | Java Lambdas and Streams                        | LL     |
 | Java      | Cucumber Essential Training                     | LL     |
 | Java      | Java Algorithms                                 | LL     |
 | Java      | Advanced Java Programming                       | LL     |
@@ -124,9 +129,9 @@ Projects I want to build:
 | Analytics | Master SQL for Data Science                     | LL     |
 | DevOps    | Java and Kubernetes                             | LL     |
 | DevOps    | Learning Kubernetes                             | LL     |
-| Cloud     | Learning AWS for Developers                     | LL     |
-| Cloud     | AWS: Data Analytics                             | LL     |
-| Cloud     | AWS: Data Services                              | LL     |
+| AWS       | Learning AWS for Developers                     | LL     |
+| AWS       | AWS: Data Analytics                             | LL     |
+| AWS       | AWS: Data Services                              | LL     |
 | JS        | JavaScript Essential Training                   | LL     |
 | JS        | Learning the JavaScript Language                | LL     |
 | JS        | ReactJS Essential Training                      | LL     |
