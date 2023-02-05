@@ -53,15 +53,6 @@ Projects I want to build:
 
 ## Learning
 
-* Why Java?
-  * My current Gatech class is in Java, and it expects OOP, DB, and application experience
-* Why Python and SQL?
-  * I want to increase skills in data engineering
-* Why AWS and Azure?
-  * Because everything is in the cloud now
-* Why JS?
-  * Everything UI is JS or it uses dashboard software
-
 **Doing**
 
 | Topic | Course                         | Source |
