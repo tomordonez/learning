@@ -75,12 +75,22 @@ The answer says that there is no need to use `stash` and instead use `git checko
 
 ## Update local branch with remote main
 
-Trying to figure out if this workflow makes sense or if it's incorrect:
+**Terminal**
 
-1. My main branch is restricted (can't commit/push directly to remote)
-2. Work on local feature branch `B1`, commit, push to remote, create PR
-3. In GitHub, merge PR with main
-4. Some changes were made to main, now my local `B1` is behind
-5. How to update `B1` with remote main?
-   * Do I switch to `main`, update with `git pull`, switch to `B1` and do `git merge main` or `git rebase main`?
-   * Do I stay in `B1` and update with `git fetch; git rebase origin/main` or `git pull --rebase`?
+	git checkout my-branch
+	git rebase origin/main
+
+If rebase can't be done:
+
+	git checkout main
+	git pull
+	git checkout my-branch
+	git merge main
+
+**IntelliJ**
+
+1. Go to `main` branch
+2. Top menu `Git/pull`
+3. Navigate to `my-branch` drop down menu
+4. Select `rebase main to my-branch`
+5. Switch to `my-branch`
