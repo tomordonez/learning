@@ -89,6 +89,8 @@ If rebase can't be done:
 
 **IntelliJ**
 
+This doesn't work as expected. Pending review later.
+
 1. Go to `main` branch
 2. Top menu `Git/pull`
 3. Navigate to `my-branch` drop down menu
