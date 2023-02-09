@@ -37,11 +37,13 @@ Changing the instance to A3 with 7GB gives `$17.44/month`
 
 However, when creating a VM below, there aren't `A` instances. The lowest letter is `B`.
  
-## Create a Virtual Machine
+## Create a Virtual Machine in Azure
 
-In the search type `virtual machine` and select the service.
+Go to your Azure dashboard. (Or open a free Azure account)
 
-On the drop down click `Create` and then `Azure virtual machine`
+In the search, type `virtual machine` and select the service.
+
+On the drop down, click `Create` and then `Azure virtual machine`
 
 **Project details**
 
@@ -117,7 +119,7 @@ Open the program
 * Create an RDP connection
 * Enter a name like `azure-pbi`
 * Protocol select `RDP`
-* Server: Enter the IP address of the VM (see below)
+* Server: Enter the `IP address` of the VM (see below)
 * Enter user and pwd
 * (Optional) Select a shared folder
   * Create a folder in `home` called `azure-pbi`
@@ -129,7 +131,9 @@ Open the program
 
 Go to the VM, then `Connect` drop down, select `RDP`.
 
-If you are on Windows or OSX. Click on `Download RDP File` to connect to the VM. If you are on Linux, follow above steps.
+If you are on Windows or OSX. Click on `Download RDP File` to connect to the VM.
+
+If you are on Linux, the IP number of the VM is on this screen, then follow above steps.
 
 If it asks to accept the certificate, select `Yes`.
 
@@ -167,7 +171,7 @@ Add fields to X and Y axis to see the data.
 
 When done working on PowerBI.
 
-* Shut down the machine.
+* Shut down the machine in Windows
   * Go to the bottom bar, shut down.
   * The RDP connection should close.
 * Go to Azure
@@ -179,6 +183,7 @@ As seen in [this](https://build5nines.com/properly-shutdown-azure-vm-to-save-mon
 * Go to Azure
 * Find the VM
 * Left menu Operations
+* Enter a time to shutdown, then Save.
 
 ## Connecting Again
 
