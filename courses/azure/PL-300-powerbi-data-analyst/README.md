@@ -115,6 +115,58 @@ Analytics categories:
 
 ## Get started building with Power BI
 
+**Intro**
+
+* Parts of PBI
+  * PBI Desktop
+  * PBI Service (view reports online)
+  * PBI native apps
+* Download PBI
+  * Windows Store App (auto updates)
+  * Download from web (manual updates)
+
+**Use PBI**
+
+* Create report in PBI desktop
+* Publish to PBI service and shared
+* Consumers view reports on web or mobile apps
+
+**Building blocks for PBI**
+
+`Visualizations`
+* Simple or complex representation of data
+* Present data to provide context and insights
+
+`Datasets`
+* Collection of data to create visualizations
+* One or many sources combined
+  * For example: 3 dataset fields, one website table, an Excel table
+* Filter to focus on specific data
+  * Visualize data based on subset
+
+`Reports`
+* Collection of visualizations in one or more pages
+
+`Dashboards`
+* Share reports/visualization collections with (one-page canvas) dashboards
+* Share with other users/groups that can interact with the dashboard
+
+`Tiles`
+* Rectangular box, holding a visual on a dashboard
+
+**Use the PBI service**
+
+* `Apps`: Pre-packaged visuals/presets/reports when connecting a data source
+  * An app could be connecting to your Github account (or other sources)
+  * Or an app pre-packaged by your organization
+* Create a Github dashboard
+  * Get data
+  * Services/Get
+  * Select Github and authenticate
+  * Explore dashboard and reports
+* Update data
+  * Go to the dataset and update now or schedule
+
 ***
 
 # Prepare data for analysis
