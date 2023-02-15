@@ -7,7 +7,7 @@
    2. Don't forget to switch branches to commit to different course/topic
 2. Commit frequently
    1. Commit the changes in the branch before switching branches
-3. Push all branches to remote
+3. Push all branches to remote `git push --all origin`
 4. In remote, PR and merge all branches
 5. Back in local, rebase all branches
    1. Switch to branch, then `git rebase origin/main`
