@@ -3,35 +3,37 @@
 This repo contains a summary of books I am reading.
 
 **Reading**
-* Thinking in Java 4th Edition
+
+* Thinking in Java 4th Edition (Bruce Eckel)
+* Applying UML and Patterns (Craig Larman)
+* Star Schema (Christopher Adamson)
+
+**Read some/paused**
+
 * Clean Code
 * Working Effectively with Legacy Code
-* Applying UML and Patterns
+* Learning Python, Lutz
+* Programming Python, Lutz
+* Warren Buffett and the interpretation of financial statements
+
 
 **Backlog**
+
 * Test Driven Development By Example
 * The Art of Unit Testing
 * Agile, Principles, Patterns, and Practices
 * Growing Object Oriented Software Guided by Tests
 * Head First Object Oriented Analysis and Design
-* Learning Python, Lutz
-* Programming Python, Lutz
 * Spark, The Definitive Guide
 * Data Pipelines with Apache Airflow
 * AWS Certified Cloud Practitioner Study Guide
-* AWS in Action
 * Algorithms Illuminated
 * Math for Computer Science
-* Warren Buffett and the interpretation of financial statements
+
 
 **Done**
-* Steve Jobs Biography
 
-**Other Books (no summary)**
-* Reading
-  * Crime and Punishment
-* Backlog
-  * Hyperspace by Michio Kaku
+* Steve Jobs Biography
 
 ## Documenting summaries
 
