@@ -174,6 +174,18 @@ Analytics categories:
 Source [here](https://learn.microsoft.com/en-us/training/paths/prepare-data-power-bi/)
 
 ## Get data in Power BI
+
+**Intro**
+**Get data from files**
+**Get data from relational data sources**
+**Get data from a NoSQL database**
+**Get data from online services**
+**Select a storage mode**
+**Get data from Azure Analysis Services**
+**Fix performance issues**
+**Resolve data import errors**
+**Exercise: Prepare data in PBI Desktop**
+
 ## Clean, transform, and load data
 
 ***
