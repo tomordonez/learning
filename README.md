@@ -2,13 +2,20 @@
 
 This repo contains:
 * `gatech`: Summary of courses I am taking at Gatech (only what I can publish publicly to meet honor code)
-* `courses`: Summary of courses I am taking, including code and documentation.
+* `courses`: Summary of other courses I am taking, including code and documentation.
 * `reading`: Summary of books I am reading.
 * `docs`: Documentation/tutorials to set up courses.
 
 My blog also has documentation/tutorials of topics I learned. [Tom Ordonez Blog](https://www.tomordonez.com/)
 
 ## Experience
+
+**Work**
+
+* Built a dashboard for a supply chain team to find competitors near fulfillment centers (Python, GCP, PowerBI)
+* Built a dashboard for a talent team to track efforts in diversity recruiting (SQL, PowerBI)
+* Built an internal web app to automate delivery of talent pipelines. (Python, SQL, Bash, Power Automate)
+* Other projects using PowerBI and Azure.
 
 **Gatech**
 
@@ -36,18 +43,12 @@ My blog also has documentation/tutorials of topics I learned. [Tom Ordonez Blog]
 * Human Computer Interaction
   * Wrote extensive research documentation on UX research and agile development.
 
-**Work**
-
-* Built a dashboard for a supply chain team to find competitors near fulfillment centers (Python, GCP, PowerBI)
-* Built a dashboard for a talent team to track efforts in diversity recruiting (SQL, PowerBI)
-* Built an internal web app to automate delivery of talent pipelines. (Python, SQL, Bash, Power Automate)
-
 **Personal**
 
 Projects I want to build:
 
 * Web app dashboard to show my experience with data engineering
-  * Tech stack: Backend (Python or Java, PySpark, SQL), Frontend (React), Deployment (Airflow, Terraform, K8s, AWS)
+  * Tech stack: Backend (Python or Java, PySpark, SQL, Azure), Frontend (React), Deployment (Airflow, Terraform, K8s, Azure)
 * One-page web apps with calculators
   * A better version of what you see online without all the annoying ads
 
@@ -56,21 +57,19 @@ Projects I want to build:
 **Doing**
 
 | Topic | Course                         | Source |
-|-------|--------------------------------|--------|
+| ----- | ------------------------------ | ------ |
 | SWE   | Software Architecture          | Gatech |
 | Java  | Java and Docker                | LL     |
 | Java  | Java Data Structures           | LL     |
-| Java  | JUnit                          | LL     |
 | Azure | AZ-900 Azure Fundamentals      | W      |
 | Azure | DP-900 Azure Data Fundamentals | W      |
 | Azure | PL-300 PowerBI Data Analyst    | W      |
-| Azure | DP-500 Data Analyst Associate  | W      |
-| Azure | DP-203 Data Engineer Associate | W      |
+
 
 **Done**
 
 | Topic   | Course                     | Source |
-|---------|----------------------------|--------|
+| ------- | -------------------------- | ------ |
 | SWE     | SOLID Principles           | LL     |
 | Python  | Python Koans               | W      |
 | Python  | Python OOP                 | LL     |
@@ -89,8 +88,11 @@ Projects I want to build:
 **Backlog**
 
 | Topic     | Course                                          | Source |
-|-----------|-------------------------------------------------|--------|
+| --------- | ----------------------------------------------- | ------ |
+| Azure     | DP-500 Data Analyst Associate                   | W      |
+| Azure     | DP-203 Data Engineer Associate                  | W      |
 | Java      | Java Objects and APIs                           | LL     |
+| Java      | JUnit                                           | LL     |
 | Python    | Python TDD                                      | LL     |
 | Python    | Python and Flask                                | LL     |
 | AWS       | AWS Certified Cloud Practitioner                | Y      |
