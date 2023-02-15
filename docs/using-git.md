@@ -1,19 +1,35 @@
 # Using Git
 
+## Workflow Summary
+
+1. Work on a branch (named after course/topic folder name)
+   1. Don't modify files that don't belong to the branch/course/topic
+   2. Don't forget to switch branches to commit to different course/topic
+2. Commit frequently
+   1. Commit the changes in the branch before switching branches
+3. Push all branches to remote `git push --all origin`
+4. In remote, PR and merge all branches
+5. Back in local, rebase all branches
+   1. Switch to branch, then `git rebase origin/main`
+
 ## Branches
 
-I went through a few workflows for creating branches. I tried `course/section/summary` but this turns out to be too many branches. Now I am using a branch per course with dashes separating words, all lower case `course-name`
+Use a branch per course/topic (same as the corresponding folder name).
+
+* With dashes separating words
+* All lower case `course-name`
 
 ## Commits
 
 **Commit frequency**
 
-Following an answer in Stackoverflow [here](https://softwareengineering.stackexchange.com/a/74765), it recommends to commit every time a new test passes. Here is my guideline:
+Commit frequently on the corresponding branch. Don't update files that don't belong to the branch.
 
 * When you modify a class or method
 * When you refactor something
 * When you add/delete/move a lot of files
 * When you pass a test
+* When you create/update documentation
 
 **Commit message**
 
@@ -37,13 +53,13 @@ Where:
 **CLI**
 
     (main)$ git checkout -b branch-name 
-    (react-BMP)$ git add .
-    (react-BMP)$ git commit -m "Subject line"
-    (react-BMP)$ git push -u origin branch-name
+    (branch-name)$ git add .
+    (branch-name)$ git commit -m "Subject line"
+    (branch-name)$ git push -u origin branch-name
 
 In GitHub create a PR and merge with main. If updating local main then:
 
-    (react-BMP)$ git checkout main
+    (branch-name)$ git checkout main
     (main)$ git pull
 
 **IntelliJ/PyCharm**
@@ -89,7 +105,7 @@ If rebase can't be done:
 
 **IntelliJ**
 
-This doesn't work as expected. Pending review later.
+This doesn't work as expected. I asked in StackOverflow [here](https://stackoverflow.com/questions/75355160/how-to-update-local-branch-with-remote-main-in-intellij), however, one answer didn't work, and the other wasn't related to IntelliJ, just recommended to use the terminal.
 
 1. Go to `main` branch
 2. Top menu `Git/pull`

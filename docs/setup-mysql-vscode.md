@@ -3,7 +3,7 @@
 How to setup MySQL in VScode.
 
 * Install `MySQL` in your OS
-* Install a `MySQL` extension in VScode
+* Install a `MySQL` extension in VScode.
 
 ## Install MySQL in Linux
 
