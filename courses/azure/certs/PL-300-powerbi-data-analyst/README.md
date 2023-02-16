@@ -176,12 +176,162 @@ Source [here](https://learn.microsoft.com/en-us/training/paths/prepare-data-powe
 ## Get data in Power BI
 
 **Intro**
+
+Workflow:
+* Connect to data sources
+* User Power Query to clean data
+* Build reports in PBI
+* Publish combined dataset to PBI service
+
+Example `Tailwind Traders` data:
+* Sales data in `SQL Server`
+* HR Data in `Excel`
+* Warehouse JSON data in `Cosmos DB`
+* Finance projects in `Azure Analysis`
+* Sales goals in `SharePoint`
+
 **Get data from files**
+
+Flat files:
+* One data table with same structure for every row
+* CSV, txt, Excel, or fixed width files
+
+Scenario:
+* HR team has an Excel file with employee data:
+  * Employee name
+  * Hire date
+  * Position
+  * Manager
+* Use PBI reports to use this data and other sources
+
+Flat file location:
+* `Local`: A dataset is created in PBI with the loaded file. However not synced if the source file is changed
+* `OneDrive Business`: Source is synced with PBI dataset
+* `OneDrive Personal`: Source is synced if login is persistent `Keep me signed in`
+* `SharePoint Team Site`: Source is synced with PBI dataset
+
+Connect to data in a file:
+* In PBI, get data, Excel
+* Open `Employee Data` (excel file)
+* Select the tab and Load or Transform Data
+
+Change the source file:
+* In PBI, Data source settings
+* Select file, change source, OK
+ 
 **Get data from relational data sources**
+
+Scenario:
+* Sales team has an on-prem SQL Server database
+
+Connect to data:
+* In PBI, get data, SQL Server
+* Enter server name, datatabase name, connectivity mode `Import`
+* Advanced options (see below for SQL query)
+* Sign in
+  * Windows: Azure AD
+  * Database: SQL Server user
+  * Microsoft Account: Used for Azure services
+
+Select data to import:
+* Select the table(s) and Load or Transform
+
+Import data with SQL query (not recommended, for reference only)
+* Recommendation is creating a View in the database and loading that view
+* In `Connect with data`, in `Advanced Options`
+* Enter a SQL query to load the table
+* Include relationship columns
+
+Change data source settings
+* Often required to meet a 90d pwd change policy
+* In PBI, Home
+  * Transform data, Data source settings
+  * Right click source
+* In PBI, Power Query
+  * Home, Data source settings
+  * Or on the right side Query Settings
+
+Create a view in the DB to load sales data > 2019.
+
+	USE salesDB;
+
+	CREATE VIEW sales_since_2020 AS
+	SELECT
+	  id
+	  , name
+	  , salesamount
+	FROM
+	  sales
+	WHERE
+	  order_date >= '1/1/2020';
+
+Import data with SQL query aka Query folding (Revised)
+* In PBI, Get Data, SQL Server, Enter server name, database name
+* Advanced options, enter query
+  * `SELECT * FROM sales_since_2020;`
+* Sign in to AD or DB
+
 **Get data from a NoSQL database**
+
+Scenario:
+* SWE team created an app for warehouse to manage shipping and tracking
+* It uses the NoSQL Cosmos DB to store JSON docs
+
+Connect to Azure Cosmos DB:
+* In PBI, Get data, More, Azure, Azure Cosmos DB
+* Enter DB credentials
+  * Specify the endpoint URL to get the data from (In Azure find `Primary Key` and `Read-only Keys`)
+  * Or enter DB and collection name
+
+Import JSON file:
+* Select the table
+* Edit (since it only shows JSON objects)
+* Power Query, use column expander (top right), to select columns
+* Review selected data
+* Close and Apply
+
 **Get data from online services**
+
+Scenario:
+* Sales goals stored in SharePoint (list)
+
+Connect to data:
+* PBI, Get data, Online services, SharePoint Online List
+* Get the base SharePoint URL before the `Lists` resource
+* Enter the URL, Connect, Sign in to Microsoft account
+
+Choose data to import:
+* Select the list to load (or transform)
+
 **Select a storage mode**
+
+3 types of storage modes:
+* `Import`
+  * Default mode to import a local copy of the dataset
+  * Use all PBI features
+  * Data refresh can be scheduled
+* `DirectQuery`
+  * Used when a local copy is not allowed for security reasons or
+  * Used when the dataset is too large
+  * It creates a direct connection using PBI queries
+    * Relational or multidimensional
+  * Data is updated real time
+  * Queries should load data for visuals in < 5s or UX will be poor
+* `Dual`
+  * Identify some data to Import and some for DirectQuery
+
+Scenario:
+* Sales team doesn't allow to create a local copy of a dataset for security reasons
+* Other dataset is too large and it will cause performance blocks
+
+Get data with DirectQuery:
+* In PBI, Model view, Get Data
+* Select data table
+* In Properties pane, Advanced, select mode `DirectQuery`
+
 **Get data from Azure Analysis Services**
+
+
 **Fix performance issues**
 **Resolve data import errors**
 **Exercise: Prepare data in PBI Desktop**
