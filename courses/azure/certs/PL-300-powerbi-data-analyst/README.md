@@ -305,6 +305,10 @@ Choose data to import:
 
 **Select a storage mode**
 
+Scenario:
+* Sales team doesn't allow to create a local copy of a dataset for security reasons
+* Other dataset is too large and it will cause performance blocks
+
 3 types of storage modes:
 * `Import`
   * Default mode to import a local copy of the dataset
@@ -320,23 +324,135 @@ Choose data to import:
 * `Dual`
   * Identify some data to Import and some for DirectQuery
 
-Scenario:
-* Sales team doesn't allow to create a local copy of a dataset for security reasons
-* Other dataset is too large and it will cause performance blocks
-
 Get data with DirectQuery:
 * In PBI, Model view, Get Data
 * Select data table
-* In Properties pane, Advanced, select mode `DirectQuery`
+* In Properties pane, select mode `DirectQuery`
 
 **Get data from Azure Analysis Services**
 
+Scenario:
+* Sales team uses Azure Analysis Service to store sales projections
+* They want to compare this data with actual sales data in a different database.
+
+Azure Analysis Services:
+* Managed PaaS for enteprise data models
+* Use advanced modeling features
+* Combine data from multiple sources, define metrics, and secure data
+* Tabular semantic data model
+* Easier/faster way to perform data analysis with PBI
+
+Workflow:
+* Authenticate with server
+* Pick the model
+* Select the tables
+
+Azure Analysis Services vs SQL Server:
+* Data models have calculations created
+* Query the data using MDX or DAX
+
+Get Data:
+* In PBI, Get data, Azure, Azure Analysis Services database
+* Server name
+* Database
+* `Connect Live`
+  * Keep data and DAX calculations in the server
+  * Reports in PBI are updated in real time
 
 **Fix performance issues**
+
+Scenario:
+* Imported the data from SQL server using DirectQuery
+* In visuals, some tables are queried faster than others
+* Some filters are taking longer to process
+
+Recommendations:
+* Optimize performance (process data) at the source
+* Use native SQL queries (don't pull data from stored procedures)
+* Separate date and time into distinct columns
+* Use query diagnostics
+* Use query folding
+
+Using `Query Diagnostics`:
+* In PBI, Power Query Editor
+* When ready to transform data, click on `Start diagnostics`
+* When done editing, click on `Stop diagnostics`
+* Review steps performance in `Diagnose Step`
+
+Using `Query Folding`:
+* Transformations in Power Query Editor are tracked as native queries or simple `Select` SQL
+* Then these native queries are placed in the data source server
+* Benefits
+  * Efficient data refreshes since transformation is done at source
+  * Compatible with DirectQuery and Dual modes
+* Power Query Editor
+  * Go to a step and right-click
+  * If `View Native Query` is enabled then this step uses Query Folding
+    * Enabled if transformation can be translated to a `Select` SQL statement
+  * Not enabled if:
+    * Adding an index column
+    * Merge/append columns of different tables with 2 different sources
+    * Change data type of a column
+
 **Resolve data import errors**
+
+Many factors:
+* PBI imports many data sources
+* Each source can have many error messages
+* Hardware, middleware and OS can cause errors
+* Data doesn't comply with the schema
+
+Common errors:
+* `Query timeout expired`
+  * A timeout could have been set by sysadmin on the DB server to avoid overloading
+* `PBI Query error: timeout expired`
+  * Pulled too much data, limit set by sysadmin
+  * Pull data in batches by columns or rows, then Power Query to merge them
+* `Could find any data formatted as table`
+  * Usually from Excel files. Open Excel file and format as table
+* `Couldn't find file`
+  * Go to Power Query Editor
+  * Select step where file is loaded
+  * Verify file location
+* `Data type errors`
+  * Columns appear blank. Mismatch source with PBI data model
+  * Cast columns in the query with data model data type
+  * Such as `SELECT CAST(PostalCode AS varchar(10)) FROM Customer`
+
 **Exercise: Prepare data in PBI Desktop**
 
+This is part 1 of this lab:
+
+1. Prepare data in PBI desktop
+2. Load data in PBI desktop
+3. Design a data model in PBI
+4. Create DAX calculations in PBI desktop
+5. Created advanced DAX calculations in PBI desktop
+6. Design a report in PBI desktop
+7. Enhance a report in PBI desktop
+8. Perform data analysis in PBI
+9. Create a PBI dashboard
+10. Enforce row-level security
+
+Summary of some of the lab:
+* SQL server data (AdventureWorks sample DB)
+  * Tables are dimensions and facts
+* CSV file
+  * Load from Power Query Editor, Home, New Query, New source
+  * Icons on the left of column name is data type
+* Power Query Editor
+  * View/Column Quality
+    * See number of Valid, Error, and Empty
+  * View/Column Distribution
+    * Distinct and unique values
+    * If both are the same, use this as primary key
+  * View/Column Profile
+    * Value distribution barplot
+
+
 ## Clean, transform, and load data
+
+
 
 ***
 
