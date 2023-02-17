@@ -66,34 +66,57 @@ An overlay says:
 
 Click `OK` to continue.
 
-Went back to the `Basics` tab, but there were no changes to `Compute+Storage`.
-
 **Review + Create**
 
 Review all details and click `Create`. Then wait a few seconds (or minutes) for deployment.
 
-## Create a Private Link to the Azure SQL Server
+## Cannot stop SQL server
 
-**Pending troubleshoot/complete this setup**
+There isn't an option to stop the SQL server/database, like there is one for a VM. You will pay usage for the whole month.
 
-As seen in the docs, a Private Link lets you connect to Azure using a private endpoint.
+## SQL Server set up Firewall
 
-* Go to Azure portal
-* Go the SQL server
-* Under `Security` go to `Private endpoint connections`
+Go to the SQL Server:
 
-## PowerBI Get Data Azure SQL Database
+* Security/Networking/Public Access
+* Public network access
+  * Set to `Selected networks`
+  * Click `Save` (or the firewall rule will fail)
+* Firewall rules
+  * Click the plus on `Add your client IP address`
+    * This IP is dynamic so it might change
+    * Check local IP again if there are connection issues from client
+  * Enter a rule name
+* Save
+
+**PowerBI is on an Azure VM**
+
+As seen in my [Setup Power BI in an Azure VM](setup-powerbi-in-azure-vm.md). You need give SQL Server access to the Azure VM
+
+* Below Firewall rules
+* Under `Exceptions`
+  * Select `Allow Azure services and resources to access this server`
+
+
+## PowerBI Get Data from Azure SQL Database
 
 Go to PowerBI, get data, select Azure, then Azure SQL Database.
 
 * Enter the server name
+  * This is the full name from Azure Portal/SQL Server
 * Enter the database name
 * Data connectivity, select DirectQuery
   
-Sign in
+Sign in:
 
 * Select `Microsoft Account` and signin to your AD account
 
-**Error**
+Power Query/Navigator opens:
 
-Pending troubleshoot
+* Select table(s)
+* Select `Transform`
+* Save, enter a file name
+* If asked to transform, select `Apply Later`
+
+## Azure Data Studio connect to Azure SQL Database
+
