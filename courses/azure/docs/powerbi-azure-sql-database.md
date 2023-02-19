@@ -120,3 +120,7 @@ Power Query/Navigator opens:
 
 ## Azure Data Studio connect to Azure SQL Database
 
+* Create a connection to SQL Server.
+* Enter server name.
+* Select Active Directory authentication.
+* Enter an account. Create new. It opens a link to login with your AD account.
