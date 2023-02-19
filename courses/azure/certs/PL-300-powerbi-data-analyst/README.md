@@ -452,7 +452,156 @@ Summary of some of the lab:
 
 ## Clean, transform, and load data
 
+**Intro**
 
+Scenario:
+* Data is imported from many sources but it's not prepared for analysis
+* Columns contain errors, null values, incorrect data types
+* Unique identifiers are duplicated
+* A column contains combined data (like address, city, state, zip)
+
+Clean data benefits:
+* Measure and columns produce accurate results
+* Tables are organized
+* Complicated columns are split into simpler ones
+
+Objectives:
+* Correct data inconsistencies
+* Apply value replacements
+* Profile data
+* Transform data types
+* Combine queries
+* Use naming conventions
+* Edit M code
+
+**Shape the initial data**
+
+Scenario:
+* One dataset was in CSV
+* Another one came from an ERP
+* Some data is not needed or it's in the wrong format
+
+*I created this setup since the documentation doesn't provide one*
+
+Setup a CSV called `sales2017.csv`
+
+	,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+	,,,,,,,,,,,,,
+	ProductSubcategoryID,,,,,,,,,,,,,
+	1,7800,7900,1200,1500,1200,1000,500,3000,1200,800,900,45000
+	3,500,3000,1200,800,900,45000,7800,7900,1200,1500,1200,1000
+	2,7800,7900,1200,1500,1200,1000,500,3000,1200,800,900,45000
+
+Setup a CSV called `sales_since_2018.csv`
+
+	year,2018,2019
+	January,15000,16000
+	February,15000,16000
+	March,15000,16000
+	April,15000,16000
+	May,15000,16000
+	June,15000,16000
+	July,15000,16000
+	August,15000,16000
+	September,15000,16000
+	October,15000,16000
+	November,15000,16000
+	December,15000,16000
+
+Setup a Database called `pbipl300studying` in Azure
+* Select `Compute+Storage` as `Basic`
+
+In Azure Data Studio
+* Connect to the server and select the DB
+* Create a schema `CREATE SCHEMA PL300; GO`
+* Create tables
+
+Setup a SQL Table called `Product`:
+
+	ID, ProductName
+	1,Bikes
+	2,Clothing
+
+SQL:
+
+	CREATE TABLE PL300.Product
+		(ProductID int PRIMARY KEY IDENTITY (1,1),
+		 ProductName nvarchar(25) NOT NULL);
+	GO
+
+	INSERT INTO PL300.Product (ProductName)
+	VALUES
+		(N'Bikes'),
+		(N'Clothing');
+	GO
+
+Setup a SQL Table called `ProductSubcategory`:
+
+	ID,ProductSubcategoryName,ProductID
+	1,Mountain Bikes,1
+	2,Road Bikes,1
+	3,Gloves,2
+
+SQL:
+
+	CREATE TABLE PL300.ProductSubcategory
+		(ProductSubcategoryID int PRIMARY KEY IDENTITY (1,1),
+		 ProductSubcategoryName nvarchar(25) NOT NULL,
+		 ProductID int NOT NULL,
+		 FOREIGN KEY (ProductID) REFERENCES PL300.Product (ProductID)
+		 );
+	GO
+
+	INSERT INTO PL300.ProductSubcategory (
+		ProductSubcategoryName,
+		ProductID
+	)
+	VALUES
+		(N'Mountain Bikes',1),
+		(N'Road Bikes',1),
+		(N'Gloves',2);
+	GO
+
+*Back in the documentation, do the following*
+
+Power Query Editor
+* In PBI, Transform data
+* In the `sales2017.csv` query
+  * Fix the headers (Use first row as headers)
+  * Rename the month names
+  * Remove top blank rows
+  * Unpivot columns that contain months
+  * Add column with `2017` in all rows
+* In the `sales_since_2018` query
+  * Unpivot columns
+    * Select columns `2018` and `2019`
+    * Select `Transform` then `Unpivot`
+  * Rename column:
+    * `Year` to `Month`
+    * `Attribute` to `Year`
+    * `Value` to `SalesAmount`
+* Select `Close & Apply`
+* Go to `Model`
+* Drag/drop from `ProductSubcategory` the field `ProductSubcategoryID` to `Sales2017`
+  * Create a relationship
+  * Cardinality: `1:1`
+
+Pivot column
+* In the case of flat files with a lot of data
+* Do a quick EDA with an aggregation (Pivot)
+* In Power Query Editor/Transform/Pivot Column
+* Select the Values column, for example, `Subcategory Name`
+* Select Aggregate, for example, `Count(All)`
+  
+Apply changes:
+* Select `Close & Apply`
+
+**Simplify the data structure**
+**Evaluate and change column data types**
+**Combine multiple tables into a single table**
+**Profile data in PBI**
+**Use Advanced Editor to modify M code**
+**Exercise: Load data in PBI Desktop**
 
 ***
 
