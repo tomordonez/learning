@@ -584,7 +584,7 @@ Power Query Editor
 * Go to `Model`
 * Drag/drop from `ProductSubcategory` the field `ProductSubcategoryID` to `Sales2017`
   * Create a relationship
-  * Cardinality: `1:1`
+  * Cardinality: `1:Many`
 
 Pivot column
 * In the case of flat files with a lot of data
@@ -597,20 +597,216 @@ Apply changes:
 * Select `Close & Apply`
 
 **Simplify the data structure**
+
+* Rename queries to user-friendly names
+* Replace values
+  * Select column, replace values
+  * Replace null values in number columns with zero
+* Remove duplicates
+  * Create a copy of the table
+  * Remove duplicates and rename table
+* Best practices
+  * Avoid long names and abbreviations
+
 **Evaluate and change column data types**
+
+* Wrong data types can cause errors in calculations
+  * Wrong date type
+  * Hierarchy date doesn' work
+  * Higher chances of errors from flat files
+* Verify all the columns have the correct data types
+  * Type icon next to column
+  * Although PBI autodetects data types by scanning the first 1000 rows
+* Change column data type
+  * Select column, Transform, Data Type or
+  * Go to the left of a column name, click data type icon
+* Close/Apply
+
+
+Best practice for `Date` tables
+(From experience, these details are not in this doc)
+
+* `Hierarchy Date`
+  * Autocreated on Import connections
+  * Cannot access this table directly
+  * The setting can be enabled/disabled in PBI globally or per PBI file
+  * It creates: Year, Quarter, Month, Day
+  * It cannot be customized to add for instance `Week` or `Last30Days`
+* `Create a Date table` (one of these options)
+  * `Date table in source`
+    * Responsible: db admin
+    * Complexity (from DA POV): hard
+    * Best performance for report refresh
+  * `Date table in Power Query using M`
+    * Responsible: Data analyst
+    * Complexity: medium
+  * `Date table in In PBI using DAX`
+    * Responsible: Data analyst
+    * Complexity: easy
+      * `DueDate = CALENDARAUTO()` (optional int parameter with last month of fiscal year)
+        * Order values in ascending order
+        * Select column and check that rows and distinct values are equal
+      * It meets the requirements to mark a date table
+        * A column of data type `Date`
+        * Column contains complete years
+        * Column does not have missing dates
+    * Worst performance for report refresh
+  * `Use a PBI template` that has a date table
+
 **Combine multiple tables into a single table**
+
+Why join tables?
+* Too many tables and overcomplicated model
+* Many tables have the same role
+* A table has columns that fit into a different one
+* Create a custom table/column from other ones
+
+`Append queries`
+* Scenario
+  * Sales team wants to create a contact directory where data is in Employee, Supplier, and Customer
+* The tables (ideally) must have columns with the same name
+  * Common columns: companyName, personName, phone
+  * Otherwise, rename the columns before joining the table
+* Appending will join by rows.
+  * If one table has 100 rows and the other 200. The final result will be 300 rows.
+  * It will also add non-matching columns (like a SQL outer join)
+* Power Query Editor
+  * Home/Append Queries as New
+  * Select the tables
+
+`Merge queries`
+* Scenario
+  * Sales team wants to see Order and OrderDetails combined
+* It requires a common column
+  * Similar to SQL join (left, outer, inner)
+* Power Query Editor
+  * Merge Queries as New
+  * Choose tables, matching column, Join kind
+
+
 **Profile data in PBI**
+
+(This is similar to EDA but with built-in features)
+
+* Examine data structures
+  * Open the model to see the structure of tables, attributes, relationships, and cardinalities
+* Power Query Editor
+  * View/Data Preview
+    * Find anomalies, errors, initial insights
+  * `Column distribution`
+    * Shown below column name
+    * Count of distinct and unique
+    * If both counts are the same, this could be as UID
+  * `Column quality`
+    * Shown below column name
+    * Percentage of valid, error, empty
+    * Ideally valid is 100%
+  * `Column profile`
+    * Shown on the footer
+    * `Column statistics`
+      * Based on the total rows if max is <= `1000`
+        * Default can be changed from `1000`
+        * In status bar change to `Column profiling based on entire data set`
+        * Insight: Verify total rows queried
+      * Also shows:
+        * Error count, empty count, min, max, distinct, unique
+        * Insight: Verify min, max match business requirement
+    * `Value distribution`
+      * Barchart of distinct count
+      * Insight: Verify data matches business requirement
+
+
 **Use Advanced Editor to modify M code**
+
+Why use M code?
+* In Power Query Editor, all the steps create M code
+* View/Advanced Editor to view code
+* Change code to modify a step, although recommended to use the UI
+* Written top/down
+
 **Exercise: Load data in PBI Desktop**
+
+* T1: Setup/Load data
+  * Dataset is `AdventureWorksDW2020`
+* T2: Configure Salesperson query
+  * Rename tables prefixed with `Dim` or `Fact`
+  * Go the column `SalesPersonFlag`, in the dropdown uncheck `False`
+  * Uncheck columns in Home/Choose columns/Choose columns
+    * Select: EmployeeKey, EmployeeNationalIDAlternateKey, FirstName, LastName, Title, EmailAddress
+  * Merge `FirstName` and `LastName`
+    * Select both columns, right click, merge, separator (Space), column name `Salesperson`
+  * Rename `EmployeeNationalIDAlternateKey` to `EmployeeID`
+  * Rename `EmailAddress` to `UPN` (User Principal Name)
+* T3: Configure the SalespersonRegion query
+  * Rename the query and remove the Dim columns
+* T4: Configure the Product query
+  * Rename the query from `DimProduct` to `Product`
+  * Find `FinishedGoodsFlag` column and select only `True`
+  * Select only columns: ProductKey, EnglishProductName, StandardCost, Color, DimProductSubcategory
+  * Expand `DimProductSubcategory` (since it has `Values` links)
+    * Keep only `EnglishProductSubcategoryName` and `DimProductCategory`
+    * Uncheck `Use Original Column Name as Prefix` or it will prefix:
+      * `DimProductSubcategoryEnglishProductSubcategoryName`
+      * Since there are no repeated columns, uncheck this option
+  * Expand `DimProductCategory`
+    * Keep only `EnglishProductCategoryName`
+  * Rename columns
+    * EnglishProductName to Product
+    * StandardCost to Standard Cost (include a space)
+    * EnglishProductSubcategoryName to Subcategory
+    * EnglishProductCategoryName to Category
+* T5: Configure the Reseller query
+  * Rename query, columns, correct values in `Business Type`
+* Other tasks highlights
+  * Added M code to verify if a column has null values
+  * Unpivot columns
+    * When there are too many columns
+    * Select the columns (not to unpivot)
+    * Right click and `Unpivot other columns`
+  * Create a date column from two columns with Year and MonthNumber
+    * Add Column/Column From Example
+    * Year has `2017` and `MonthNumber `7`
+    * In the first cell of the new column enter `7/1/2017`
+  * Multiply a column by 1,000
+    * Select column
+    * Transform/Standard/Multiply
+    * Enter `1000`
+  * Merge two tables
+    * Go to one table
+    * Home/Merge Queries
+    * Top table, select column to match
+    * Select bottom table and column to match
+    * Select privacy as `Organizational`
+  * Disable loading a query/table
+    * Select query
+    * In Query settings/All properties
+    * Uncheck `Enable load to report`
+
+Check your knowledge:
+* What is a risk of having null values in a numeric column
+  * Incorrect: That function `SUM` of data will be incorrect
+    * `SUM` will ignore `NULL` values and calculate correctly
+  * Correct: That function `AVERAGE` of data will be incorrect
+    * `AVERAGE` takes the total and divides by the number of non-null values. Since `NULL` is equivalent to zero, the average will be different from the accurate average
+* If you have two queries with different data but same column headers and you want to combine them use:
+  * Append
+* Which is not a best practice for naming convention?
+  * Abbreviate column names
+
 
 ***
 
 # Model data in Power BI
 
 Source [here](https://learn.microsoft.com/en-us/training/paths/model-power-bi/)
+Source [here](https://learn.microsoft.com/en-us/training/paths/model-data-power-bi/)
 
+## Describe PBI Desktop models
+## Choose a PBI model framework
 ## Design a data model in Power BI
 ## Intro to creating measures using DAX
+## Add measures to PBI desktop models
+## Add calculated tables and columns to PBI desktop models
 ## Optimize a model for performance
 
 ***
