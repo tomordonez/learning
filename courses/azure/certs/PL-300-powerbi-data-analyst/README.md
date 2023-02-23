@@ -798,16 +798,115 @@ Check your knowledge:
 
 # Model data in Power BI
 
-Source [here](https://learn.microsoft.com/en-us/training/paths/model-power-bi/)
-Source [here](https://learn.microsoft.com/en-us/training/paths/model-data-power-bi/)
+Sources:
+* [Model Power BI](https://learn.microsoft.com/en-us/training/paths/model-power-bi/)
+* [Model Data Power BI](https://learn.microsoft.com/en-us/training/paths/model-data-power-bi/)
 
 ## Describe PBI Desktop models
+[Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-models/)
+
+**Intro**
+
+Tasks in developing models:
+* Connect to data
+* Transform and prepare data
+* Use DAX to define business logic (tables, columns, measures)
+* Use roles to set data permissions with row-level security
+* Publish the model to PBI
+
+
+**Star schema design**
+
+* `Fact tables`
+  * Events about a business activity (sales, stock balance)
+  * Many rows
+  * It can be summarized (total sales)
+  * Columns with dimension keys and numeric measure columns
+* `Dimension tables`
+  * Business entities (customer, supplier, date, product)
+  * Fewer rows (compared to fact tables)
+  * Used for grouping/filtering.
+  * UID column and descriptive columns
+* `Relationship`
+  * 1 to many (dimension to fact)
+
+See star schema model example in the AdventureWorks PBIX file [here](https://github.com/MicrosoftDocs/mslearn-dax-power-bi/raw/main/activities/Adventure%20Works%20DW%202020%20M01.pbix)
+
+**Review the AdventureWorks model**
+
+(This is not in the docs).
+
+* Hide the PK in the dim tables and the fact table (FK) so they aren't shown in Fields
+* Some Keys might be incorrectly configured to be summarized
+* I initially thought that `Sales Order` should be decoupled to `Sales Order` and `Line Item`, since the design patterns of object oriented programming show the two objects in different classes.
+  * However, from a data modeling perspective, aren't `Sales Order` and `Line Item`, business events? Therefore fact tables? You can't connect two fact tables in a star schema.
+  * According to [this](https://www.sqlbi.com/articles/header-detail-vs-star-schema-models-in-tabular-and-power-bi/) post, the recommendation is to join `Sales Order` and `Line Item` into a table called `Sales`
+  * Then the data model in AdventureWorks is incorrect since it shows a dimension table `Sales Order` and fact table `Sales`. Also, in the star model the relationship from Dim to Fact is 1 to *. In this data model it shows a 1 to 1 relationship.
+  * Also, according to [this](https://learn.microsoft.com/en-us/power-bi/guidance/star-schema) doc on Microsoft about star schema, tables have to be normalized.
+    * Sales table has to be normalized to show only keys from other tables
+      * In AdventurWorks Sales table not sure why it has columns `Product Standard Cost`, `Unit Price`, and `Unit Price Discount Pct`, where these should be in the `Product` table
+
+**Analytic queries**
+
+Analytic query:
+* Query that produces a result
+* PBI visuals query the model using DAX
+
+Analytic query phases:
+1. Filter
+   1. Slice/target specific data
+   2. Done on entire report, page, or visual
+   3. Also on RLS
+2. Group
+   1. Divide query into groups
+3. Summarize
+   1. Produce a single value with sum, count, others
+
+**Configure report visuals**
+
+Configure a visual during design:
+1. Select visual
+2. Map dataset fields to the visual
+3. Configure mapped fields (rename, summarize or not)
+4. Apply format options, labels, etc.
+
+Workflow: Filter > Group > Summarize:
+* Using AdventureWorks
+* Add a stacked column visual
+* Filter by Date/Fiscal Year/FY2020
+* Group by adding Date/Month to X
+* Summarize by adding Sales/Sales Amount to Y
+
+Fields has three resources:
+* Columns
+  * Filter, group, summarize
+* Hierarchy levels
+  * Filter, group
+* Measures
+  * filter, summarize
+    * Filter only when a parent Column filter is used
+    * For ex:
+      * Column `Month`
+      * Measure `Sales Amount`
+      * Filter with `is greater than`
+
 ## Choose a PBI model framework
+[Source](https://learn.microsoft.com/en-us/training/modules/choose-power-bi-model-framework/)
+
 ## Design a data model in Power BI
+[Source](https://learn.microsoft.com/en-us/training/modules/design-model-power-bi/)
+
 ## Intro to creating measures using DAX
+[Source](https://learn.microsoft.com/en-us/training/modules/create-measures-dax-power-bi/)
+
 ## Add measures to PBI desktop models
+[Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-add-measures/)
+
 ## Add calculated tables and columns to PBI desktop models
+[Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-add-calculated-tables/)
+
 ## Optimize a model for performance
+[Source](https://learn.microsoft.com/en-us/training/modules/optimize-model-power-bi/)
 
 ***
 
