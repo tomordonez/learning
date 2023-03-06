@@ -877,7 +877,7 @@ Workflow: Filter > Group > Summarize:
 * Group by adding Date/Month to X
 * Summarize by adding Sales/Sales Amount to Y
 
-Fields has three resources:
+`Fields` has three resources:
 * Columns
   * Filter, group, summarize
 * Hierarchy levels
@@ -893,11 +893,430 @@ Fields has three resources:
 ## Choose a PBI model framework
 [Source](https://learn.microsoft.com/en-us/training/modules/choose-power-bi-model-framework/)
 
+**Intro**
+
+* Frameworks for building data model
+* Based on Azure Analysis Services (AAS) and SQL Server Analysis Services (SSAS)
+
+**Describe PBI model fundamentals**
+
+*Data model*
+* Semantic representation of a schema
+* In PBI it is the representation of all data sources into one model
+* The model can be queried using analytic languages DAX or MDX
+  * PBI uses DAX
+  * Paginated reports and "Analyze in Excel" uses MDX
+
+*PBI dataset*
+* Develop a model in PBI, when published to a workspace, it is a dataset
+* A dataset can also be a data source or a model in AAS or SSAS
+
+*Analytic query*
+* PBI sends an analytic query to the model when visualizing data
+* The query has three phases: Filter, group, summarize
+* Filter
+  * Slicing
+  * Applied to report, page, visual using a dim table column
+  * It can apply RLS
+  * Values not visible in result
+* Group
+  * Dicing results into groups
+  * Values visible in result
+* Summarize
+  * Produces a single result with an aggregation like sum, min, max, etc
+  * Created using DAX or from a data source fact table
+* Example
+  * Filter by year
+  * Group by quarter
+  * Summarize by total sales
+
+*Tabular model*
+* Consists of one or more tables of columns, relationships, hierarchies, calculations
+
+*Star schema design*
+* Classify model tables as dimensions or facts
+* Dimensions
+  * Dimensions have 1 to * relationship to the fact
+  * Entities like products, people, companies
+* Facts
+  * Fact tables have FK columns (to the dimension tables) and numeric columns
+
+*Table storage mode*
+* Import (data is stored or cached in the model)
+* DirectQuery (query to the data source, data not stored locally)
+* Dual (PBI determines most efficient path)
+
+*Model framework*
+* Import model: Import storage
+* DirectQuery: DirectQuery storage and belong to same source group
+* Composite: More than one source group
+
+**Determine when to develop an import model**
+
+Benefits:
+* Many data sources that can be integrated
+* Query using DAX and M
+* Model is cached in memory, fast performance
+* Supports dim/fact tables
+
+Limitations:
+* 1GB compressed model in shared capacity
+* 10GB+ compressed model in dedicated capacity
+* Manual or scheduled refresh
+  * Shared: 8 times per day
+  * Dedicated: 48 times per day
+* Large models can take a long time to refresh
+  * Default is delete/insert all data
+  * Alternatively use incremental partition refresh
+
+Optimize data reductions:
+* Remove unnecessary columns, rows
+* Use numeric data types
+* Use custom columns instead of calculated columns
+* Group/summarize to narrow down the must have data
+* Disable PQ query load and auto date/time
+* Alternatively use DirectQuery
+
+**Determine when to develop a DirectQuery model**
+
+Benefits:
+* Used for tables with DirectQuery storage and belong to same source group (Import or DirectQuery)
+* Model large or fast-changing data sources
+* Enforce source RLS (inherited from source with single sign-on)
+* Use when data cannot be cached/exported for policy restrictions
+* Create specialized datasets
+  * Connect to dataset and convert to local model (original dataset is remote model)
+  * Extend local model (dim, fact, modify/add columns)
+  * Extensions become a composite model
+
+Limitations:
+* Not all data sources supported
+* All PowerQuery M transformations not supported (pivot/unpivot)
+  * Queries must translate to native queries at source
+* Performance can be slower if source is not optimized (indexes, materialized views)
+* Can impact source performance. Partner with DBO to review query process.
+
+Optimize:
+* Optimize data source
+* DirectQuery user-defined aggregation tables
+  * Sort of materialized views but in local or remote model
+  * They can query a materialized view at source
+
+**Determine when to develop a composite model**
+
+Benefits:
+* Design flexibility for import and DirectQuery
+* Increase performance of DirectQuery with cached data
+* In a remote model, extend with calculated columns/tables
+
+Limitations:
+* Import data source needs refresh and can get out of sync with DirectQuery
+* Impact on performance when query uses both source groups
+* Modifications to local model (downstream) can impact remote model (upstream)
+* Relationships between Import and DQ are "limited relationships".
+  * PBI might be unable to determine one side of the limited relationship
+
+Optimize:
+* User-defined or automatic Import aggregation tables (automatic is a premium feature)
+* Set dual storage mode for tables
+* In import model, set incremental refresh, get latest data using DirectQuery
+
+**Choose a model framework**
+
+Import:
+* Most options, design flexibility, fast performance
+* Apply data reductions to increase performance
+* Cannot switch to DirectQuery
+* Create hybrid dual storage tables for performance (PBI adds a partition for incremental refresh)
+
+DirectQuery:
+* Data source is too large and/or updates constantly
+* Report is required in real time
+* Use import aggregation tables in dual storage to improve performance
+* Can switch to Import
+* Create specialized models, extend remote model with local model (like OOP inheritance)
+
+Composite:
+* Increase performance of DirectQuery
+* Fast query from Import
+* Extend a dataset or AAS model
+
 ## Design a data model in Power BI
 [Source](https://learn.microsoft.com/en-us/training/modules/design-model-power-bi/)
 
+**Intro**
+
+*Good data models:*
+
+* Faster data exploration, simpler to build accurate reports
+* Tables with PK, FK, relationships with different data sources
+
+*Star schema:*
+
+* Fact tables, dimension tables
+  * Fact tables are larger
+  * Dim tables have fewer unique values
+
+
+**Work with tables**
+
+* Fewer tables with simpler and user-friendly structure
+* After PQ, in Model tab, `Ctrl+Click` any item to see its properties
+* Change properties to simplify the model. It updates values in dataset
+* Manage relationships with only one active per table
+
+**Create a date table**
+
+*Benefits:*
+
+* Dim table with custom hierarchy than default
+* Decouple date from fact and/or dim tables
+
+*Three ways of making a date table:*
+
+* `Source data`
+  * Import date table from source if available
+* `DAX`
+  * Create a table with `Dates = CALENDAR(DATE(min-date), DATE(max-date))`
+    * With explicity min/max date range
+  * Create a table with `Dates = CALENDARAUTO()`
+    * Auto generate range based on min/max dates from model
+  * Add manual hierarchy or custom date-columns
+    * `Year = YEAR(Dates[Date])`
+    * `Month = MONTH(Dates[Date])`
+    * `WeekNumber = WEEKNUM(Dates[Date])`
+    * `DayOfWeek = FORMAT(Dates[Date], "DDDD")`
+  * Create relationships between this and other tables
+    * Go to Model
+    * Manage Relationships
+    * From Dates to Fact table
+    * 1 to many
+    * Select Date columns
+* `PowerQuery`
+  * Go to Transform data
+  * Create a new blank query
+  * `= List.Dates(#date(year,month,day), 365*10, #duration(1,0,0,0))`
+    * `year,month,day` the min range like `2010,10,1`
+    * `365*10` generates the max range with `365` days and `10` years
+    * `#duration(1,0,0,0)` each value is `1` day, `0` hours, `0` minutes, `0` seconds
+  * Or use `= List.Dates(Date.FromText("2010-10-1"), 365*10, Duration.FromText("1.0:0:0"))`
+    * `Date.FromText("2010-10-1")` outputs to `#date(2010,10,1)`
+    * `Duration.FromText("1.0:0:0")` outputs to `#duration(1,0,0,0)`
+    * Whatever way is easier to remember
+  * Go to transform/Conver to Table
+  * Change type to Date
+  * Add columns for year, month, day name
+* Mark Date table
+  * Go to Visual
+  * Fields, right click Date table
+  * Mark as date table
+  * Choose Date column
+* Create a Measure
+  * For example in a `Sales` table, with either a total line or a qty * sales
+  * `#Total Sales = SUM(Sales['Amount'])`
+* Create a table visual
+  * From Date table (Year, Month). From Order table (OrderQty)
+  * From Measures (#Total Sales)
+
+**Work with dimensions**
+
+*Hierarchy dimensions*
+
+* `Date`
+  * Use the date hierarchy to filter by year, month, day, or other custom date format
+* `Category/Subcategory`
+  * For example a Product belongs to a category and subcategory
+  * Or a person has a skill and subskill
+  * In visual/fields
+    * Right click a column to build a hierarchy
+    * For example table Product, column Category
+    * Right click Category
+    * Click `New hierarchy`
+    * Drag/drop Subcategory under this hierarchy
+    * Add hierarchy to axis field and total sales in values
+* `Parent-child Org Chart`
+  * For example an org chart where a manager has managers and each has employees
+  * In this example, there are 3 levels of management
+  * Given that a person has an employeeID (both manager and employee)
+  * Create a DAX `PATH` column of levels
+    * This function only works on `Import` storage
+      * Convert from `DirectQuery` to `Import`
+      * Go to Model, click on the table, go to properties, advanced
+      * If it recommends to change to `Dual`, it also won't work there
+      * Change to `Import`
+    * The column has the format `Level1-ManagerID | Level2 - ManagerID | Level3 - EmployeeID`
+    * `Path = PATH(ID_ColumnName, Parent_ColumnName)`
+    * Such as `Path = PATH(Employee[EmployeeID], Employee[ManagerID])`
+  * Then flatten the levels with `PATHITEM` columns
+    * `OrgLevel1 = PATHITEM(Employee[Path], 1)`
+    * `OrgLevel2 = PATHITEM(Employee[Path], 2)`
+    * `OrgLevel3 = PATHITEM(Employee[Path], 3)`
+  * Then in Visual/Field create a hierarchy for Employee table
+    * Create under column `OrgLevel1`
+* `Parent-child Product Category`
+  * (This is not in the docs)
+  * With the default sample DB in Azure SQL Database (adventureworks)
+  * There is a table `SalesLT ProductCategory`
+    * There are three columns: `ProductCategoryID`, `ParentProductCategoryID`, `Name`
+      * Example rows
+        * `1, , Bikes`, `2, , Components`, `3, , Clothing`, `4, , Accessories`
+        * `5,1, Mountain Bikes`, `6,1,Road Bikes`
+    * Create a column to map the integer `ParentProductCategoryID` to a string value in `Name`
+      * `ColumnName = LOOKUPVALUE(TableName[ColumnTarget], TableName[ColumnSource], [SearchValue])`
+        * To shorten the names for documentation purpose only
+          * Table `SalesLT ProductCategory` is `PC`
+          * `CatID`, `ParentCatID`, `Name`
+      * `ParentName = LOOKUPVALUE(PC[Name], PC[CatID], [ParentCatID])`
+  * Then use `PATH` (DAX)
+    * `Path = PATH(Child, Parent)` like:
+      * `Path = PATH(PC[Name], PC[ParentName])`
+      * Example output:
+        * `Bikes`, `Components`, `Clothing`, `Accessories`, `Bikes | Mountain Bikes`, `Bikes | Road Bikes`
+  * Then unpivot `Path` column into `Category` and `SubCategory`
+    * `Category = PATHITEM(PC[Path],  1)`
+    * `SubCategory = PATHITEM(PC[Path], 2)`
+  * Go to `Report/Fields`
+    * Under table `SalesLT ProductCategory`
+    * Right click `Category`
+    * Enter new hierarchy
+    * On the `SubCategory` column, three dots, move to this hierarchy
+    * It shows:
+      * ParentCategory Hierarchy
+        * Category
+        * SubCategory
+    * Create `Stacked bar chart`
+      * Move to Y axis the whole hierarchy
+      * Move to X axis a `Line Total` from a `Sales` table
+      * It shows `Category vs Total`
+      * On the visual use the double arrow down to go to the next hierarchy level
+      * It shows `SubCategory vs Total`
+
+*Role-playing dimensions*
+
+* A dim table can have active relationships with more than 1 fact table
+* A date dim table can be related to factSales and factOrder
+
+**Define data granularity**
+
+* Partner with stakeholders to define granularity of reports
+* For example
+  * A company has 1000 refrigerated trucks that report their temperature
+  * How often to capture the data, hourly, daily average, or min/max limits
+  * Granularity affects speed of reporting
+
+*Change data granularity to build a relationship between two tables*
+* Given a dataset with tables `Budget`, `Sales`, and `Date`
+  * `Budget` has: `Amount`, `Month`, `Value`, `Year`
+    * No date column
+    * No relationship with `Date` table
+  * `Sales` has: `OrderDate`, `Sales`
+  * `Date` is a generated date table: `Date`, `Month`, `Quarter`, `Year`
+* Create a table report by `Year`, `Quarter`, `Month`, `TotalSales`, `BudgetAmount`
+  * In `Budget` create a date column using `Month` and `Year`
+    * `Month` and `Year` must be formatted as text
+    * In PowerQuery `Date = Date.FromText([Month]&"-"&[Year])`
+    * Format the `Date` column as data type Date
+  * Connect this date with the `Date` table
+  * Create a measure `TotalSales = SUM(TableName[SubTotal])`
+  * Create table report
+
+**Work with relationships and cardinality**
+
+* Ideal relationships are 1 to many. Unidirectional From Dim to Fact
+* A 1 to 1 relationship might be simplified to 1 table
+  * Such as Table `ProductID` and Table `Product` with a 1-1
+* Avoid Many to Many as it might cause ambiguity
+  * When creating a many-many relationship
+  * PBI shows a warning, make sure that each column doesn't have unique values
+  
+*Cross-filter direction*
+
+* Unidirectional from Dim to Fact
+* With bidirectional filtering can be done from each side, however, lower performance
+
+*Cardinality and cross-filter*
+
+* For 1-1, only option is bi-directional, filtering to one distinct value
+* For Many-Many, choose uni or bi-directional
+  * With bi-directional it will create multiple paths among the tables
+  * The result of might be different by filtering from each side
+
+**Resolve modeling challenges**
+
+* Circular dependencies can exist among tables
+* A calculated column depends on other columns
+  * Table `Sales`
+  * Column `TotalSales = Qty * Price`
+* A column in a table might depend on columns in other tables
+  * A table `dSalesPerson` 1-* with `fSales` *-1 with `dCustomer`
+  * Changing a Customer results in a change in Sales and then a change in SalesPerson
+
+**Exercise: Model data in PBI, Part 1**
+
+*Lab Story*
+
+1. Prepare Data in Power BI Desktop
+2. Load Data in Power BI Desktop
+*3. Design a Data Model in Power BI*
+4. Create DAX Calculations in Power BI Desktop
+5. Create Advanced DAX Calculations in Power BI Desktop
+6. Design a Report in Power BI Desktop
+7. Enhance a Report in Power BI Desktop
+8. Perform Data Analysis in Power BI
+9. Create a Power BI Dashboard
+10. Enforce Row-Level Security
+
+*Ex1: Create Model Relationships*
+
+* Active relationships propagate filters
+* Inactive relationships can exist when there are many relatioship paths
+
+*Ex2: Configure Tables*
+
+* When creating hierarchies in the Model view
+  * Click on a column that belongs to the hierarchy (outside the grouping)
+  * Use `Data category`
+    * It provides hints to the report designer
+* In Model view, select column, Properties
+  * Use `Description` which is revealed in a tooltip when hovering over the field
+  * Use the `Advanced/Summarize by` to `Average`
+    * By default, numeric columns summarize by `Sum`
+    * If the column represents a rate use `Average`
+* Hide columns
+  * If they are used only for relationships
+  * Or used in row-level security
+  * Or calculation logic
+
+*Ex3: Review the model interface*
+
+* Disable auto date if the FY is different than the default
+  * By default the FY is set to Jan 1
+  * To disable this behavior go to `File/Options and Settings/Options/Current File/Data Load`
+  * Then uncheck `Auto date/time`
+  * The default Date hierarchies are removed.
+
+*Ex4: Create quick measures*
+
+* Right-click a table, then `New quick measure`
+* Use the measure tools to modify the format
+* When a table has more than one path to the Fact table
+  * It will filter by the path with the fewer tables
+  * If using a different path
+  * Select the default path (relationship) and set to inactive
+  * Change the direction of the path if it doesn't flow towards the Fact table
+
+
 ## Intro to creating measures using DAX
 [Source](https://learn.microsoft.com/en-us/training/modules/create-measures-dax-power-bi/)
+
+**Intro to DAX**
+**Understand context**
+**Use the Calculate function**
+**Use relationships effectively**
+**Create semi-additive measures**
+**Exercise: Intro to DAX**
+**Work with time intelligence**
+**Exercise: Time intelligence and measures in DAX**
 
 ## Add measures to PBI desktop models
 [Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-add-measures/)
