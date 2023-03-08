@@ -1310,13 +1310,227 @@ Composite:
 [Source](https://learn.microsoft.com/en-us/training/modules/create-measures-dax-power-bi/)
 
 **Intro to DAX**
+
+* `Use calculated columns`
+  * In Reports/Fields. Go to a table, for example `Sales`
+  * Go to the ellipsis and select `New column`
+  * Use DAX for the calculation, based on the corresponding table/columns
+    * `TotalPrice = TableName[Quantity] * TableName[Unit Price]`
+  * It creates a column with calculation for each row
+  * This type of column increases the size of the dataset
+* `Create a custom column (3 ways)`
+  * Create at the source in SQL
+    * Use a view
+  * Create in PowerQuery
+    * Use M to create a column
+  * Create a calculated column
+    * As shown before
+* `Use measures`
+  * Create aggregations for an entire column
+  * Queried on demand when creating visuals
+  * Use quick measure for the UI (easier than coding it from scratch)
+* `Create a quick measure`
+  * Go to Reports/Fields. Go to a table, column, ellipsis
+  * Click `New quick measure`
+  * Select the calculation from the UI
+* `Create a new measure`
+  * Go to Reports/Fields. Go to a table, column, ellipsis
+  * Click `New measure`
+  * It doesn't use the UI. Enter the formula/code in the cell
+  * You can autocomplete table/column names
+
 **Understand context**
+
+* Create one measure for example `Total Sales`
+  * `Total Sales = SUM(Sales[Total Price])`
+* Create three visuals
+  * Total Sales (for all the Sales table)
+  * Total Sales by Year
+  * Total Sales by ProductID
+* Click on a visual (for example) a bar from a bar chart
+  * The other visuals are filtered based on this context
+
 **Use the Calculate function**
+
+* Isolate the context with `CALCULATE` for example `Total Sales in 2015`
+  * `Total Sales in 2015 = CALCULATE(SUM(Sales[Total Price]), YEAR(Sales[OrderDate]) = 2015)`
+* Create three visuals
+  * Total Sales (add both measures `Total Sales` and `Total Sales in 2015`)
+  * Total Sales by Year
+  * Total Sales by ProductID
+* Click on a visual, when selecting `2016`, the visual remains at `2015`
+  * It overrides the default behavior when filtering one visual affects others
+
 **Use relationships effectively**
+
+* Override `inactive relationships` with `USERELATIONSHIP()`
+* Given two tables
+  * `Date`
+  * `Sales`
+    * Including columns `OrderDate` and `ShipDate`
+    * Active relationship from `Date` to `OrderDate`
+      * Creating a visual will allow filtering from Date
+    * Inactive from `Date` to `ShipDate`
+      * Creating a visual won't allow filtering from Date
+* Create a measure `Sales by ShipDate`
+  * `Sales by ShipDate = CALCULATE(SUM(Sales[TotalPrice]), USERELATIONSHIP(Sales[ShipDate], Calendar[Date]))`
+  * The measure doesn't affect the model relationship or sets it to Active
+  * The visual now allows to filter by `ShipDate`
+
 **Create semi-additive measures**
+
+* Filter/stop a sum from affecting all values
+* For example `Inventory Count`
+  * Given Monday has a count of 100
+  * And Tuesday has a count of 150
+  * Calculate the total inventory count to date
+  * `Total Inventory Count = SUM(Warehouse[Inventory Count])`
+    * This results in 250 (incorrect result, since it should be 150)
+  * `Total Inventory Count = CALCULATE(SUM(Warehouse[Inventory Count]), LASTDATE(Date[Date]))`
+    * This results in 150
+
 **Exercise: Intro to DAX**
+
+
+Prepare Data in Power BI Desktop
+Load Data in Power BI Desktop
+Design a Data Model in Power BI
+*4. Create DAX Calculations in Power BI Desktop*
+Create Advanced DAX Calculations in Power BI Desktop
+Design a Report in Power BI Desktop
+Enhance a Report in Power BI Desktop
+Perform Data Analysis in Power BI
+Create a Power BI Dashboard
+Enforce Row-Level Security
+
+*Ex1: Create Calculated Tables*
+
+* Calculated tables are defined using DAX
+  * They increase the size of the data model
+  * Can't be used to load data from external sources
+  * They only transform data based on what is already loaded in the model
+* Create a `Date` table in the Data view
+  * `Date = CALENDARAUTO(6)` where `6` is the final month of the year
+  * Create a column `Year`
+    * `Year = "FY" & YEAR('Date'[Date]) + IF(MONTH('Date'[Date]) > 6, 1)`
+  * Create a column `Quarter`
+    * Using nested IF function statements such as:
+      * `Quarter = 'Date'[Year] & " Q" & IF(MONTH('Date'[Year]) <= 3, 3, IF(MONTH('Date'[Year]) <= 6, 4, ...))`
+  * Create a wacky `MonthKey` to order by FY Month
+    * `MonthKey = (YEAR('Date'[Date]) * 100) + MONTH('Date'[Date])`
+      * Will produce results like: 201707, 201708, 201709, 201710, 201711, 201712, 201801, 201802...
+      * I created my formula with this:
+        * `MonthKey = IF(MONTH('Date'[Date]) >= 7, MONTH('Date'[Date]) - 6, MONTH('Date'[Date]) + 6)`
+        * It creates an index from 1 to 12, with the shifted FY starting in July
+    * In the Report view
+    * Select the column `Month`
+    * At the top menu Column tools, Sort by Column, select `MonthKey`
+  * In Report view
+    * In Date table, right click `Year` and create hierarchy with `Quarter` and `Month`
+    * Select Date table and Mark as date table
+  
+*Ex2: Create Measures*
+
+* A column in `Sales` table, `Unit Price` was summarized as `Average`
+* However, numeric columns allow report authors to decide how to summarize
+  * The summarize detail can be changed in the visualization design
+  * Authors might choose the wrong summarization measure and produce incorrect reports
+  * Approach: Hide numeric columns, use aggregation logic with measures
+  * In `Sales` create a new measure
+    * `Avg Price = AVERAGE(Sales[Unit Price])`
+* Using `HASONEVALUE`
+  * `Target = IF(HASONEVALUE('Salesperson'[Salesperson]), SUM(Targets[TargetAmount]))`
+  * It tests if a single value in `Salesperson` column is filtered
+  * If true, it returns the sum of target amounts for only that salesperson
+  * If false, it returns blank
+    * The total cell at the bottom of the table will be blank
+
 **Work with time intelligence**
+
+*Total Sales Year to Date*
+
+* Given a matrix visual of Sales by Month (row) and by Year (column)
+  * The total increments for each month of the year
+    * For example
+      * 2014
+        * June $0, July $30, Aug $50, Sep $80, Oct $130
+      * 2015
+        * The aggregated value resets when the year change
+* Show the aggregated values without resetting it when the year changes
+  * Use `TOTALYTD`:
+    * `Total Sales YTD = TOTALYTD(SUM('Sales'[Total Price]), Dates[Date])` 
+
+*Total Sales vs Sales Previous Month*
+
+* Given a matrix visual of Sales by Year (row)
+* Use a measure for the column `Total Sales`
+  * `Total Sales = SUM('Sales'[Total Price])`
+* Use a measure for the column `Total Sales Previous Month`
+  * `... = CALCULATE([Total Sales], PREVIOUSMONTH(Dates[Date]))`
+
 **Exercise: Time intelligence and measures in DAX**
+
+Prepare Data in Power BI Desktop
+Load Data in Power BI Desktop
+Design a Data Model in Power BI
+Create DAX Calculations in Power BI Desktop
+*5. Create Advanced DAX Calculations in Power BI Desktop*
+Design a Report in Power BI Desktop
+Enhance a Report in Power BI Desktop
+Perform Data Analysis in Power BI
+Create a Power BI Dashboard
+Enforce Row-Level Security
+
+*Ex1: Work with filter context*
+
+* In a matrix with hierarchy field in rows, add `Regions` hierarchy (Group, Country, Region)
+  * Instead of expanding downwards, visualize the children in columns
+    * Go to Format your visual
+    * Search for `stepped`
+    * Set `Stepped layout` to `Off`
+  * Add `Sales[Sales]` column to Values
+    * For each Region row, it shows a total sales value
+* Use `CALCULATE` and `REMOVEFILTERS`
+  * Create a `Sales All Region` measure that sums all regions, remove `Region` filters (if selected)
+  * `Sales All Region = CALCULATE(SUM(Sales[Sales]), REMOVEFILTERS(Region))`
+    * `REMOVEFILTERS` can take no arguments, a table, a column, or multiple columns
+    * In this case it takes the table `Region` (removing filters for all columns)
+* Use `DIVIDE` to get a percent of grand total for `Region` (whole table)
+  * Modify the measure to divide the sum of sales by region over sum of all regions
+  * `Sales % All Region = DIVIDE(SUM(Sales[Sales]), CALCULATE(SUM(Sales[Sales]), REMOVEFILTERS(Region)))`
+    * The first `SUM(Sales[Sales])` is the total sales by Region, based on the hierarchy
+    * The 2nd `SUM(Sales[Sales])` is the total sales with the `Region` hierarchy removed
+* Use `DIVIDE` to get a percent of grand total for Group and Country
+  * Use the same formula but use `REMOVEFILTERS` to exclude the column `Region[Region]`
+  * `Sales % Country = DIVIDE(SUM(Sales[Sales]), CALCULATE(SUM(Sales[Sales]), REMOVEFILTERS(Region[Region])))`
+  * However, this shows a percentage for all rows, including the total rows
+* Use `ISINSCOPE` to keep values only on those rows where the hierarchy is by `Region`
+  * `Sales % Country = IF(ISINSCOPE(Region[Region]), do the rest of the DAX formula...)`
+  * You can use a boolean like this:
+    * `IF(ISINSCOPE(Region[Region]) || ISINSCOPE(Region[Country]), do something, else do that)`
+
+*Ex2: Work with time intelligence*
+
+* Create a YTD Sales for FY ending June
+  * `SALES YTD = TOTALYTD(SUM(Sales[Sales]), Dates[Date], "6-30")`
+    * If no end date `6-30` is given (Jun 30), then it defaults to `12-31` (Dec 31)
+* Create a YoY Sales Growth
+  * Use `VAR` and `RETURN`
+    * Define `VAR` similar to JS, enclosing all the statements in the variable
+      * `VAR SalesPriorYear = statements...`
+      * Variables can only be accessed with the scope of the measure definition
+    * Use `RETURN` after the `VAR` definition
+      * `RETURN SalesPriorYear`
+      * Calculate growth with difference of current-last year over last year sales
+  * Use `PARALLELPERIOD` to define a previous year
+
+Formula
+
+    Sales YoY Growth =
+        VAR SalesPriorYear = 
+            CALCULATE(SUM(Sales[Sales]), PARALLELPERIOD(Dates[Date], -12, MONTH))
+        RETURN
+            DIVIDE(SUM(Sales[Sales]) - SalesPriorYear, SalesPriorYear))
 
 ## Add measures to PBI desktop models
 [Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-add-measures/)
