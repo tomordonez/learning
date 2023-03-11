@@ -1535,11 +1535,96 @@ Formula
 ## Add measures to PBI desktop models
 [Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-add-measures/)
 
+**Intro**
+
+* Measures are implicit (auto-calculated by PBI) or explicit (using DAX)
+* If a column is numeric
+  * PBI by default sets the Summarization property
+  * This can be disabled to `Don't summarize`
+  * Columns with `Total` names are set to `Sum`
+  * Columns with `Unit` names are set to `Average`
+* If a column is not numeric
+  * PBI doesn't summarize by default
+  * Text columns
+    * Can be summarized by count(distinct), count, first (alphabetically), last (alphabetically)
+  * Date columns
+    * Summarized by earliest, latest, count(distinct), count
+  * Boolean columns
+    * Summarized by count(distinct), count
+* Limits of implicit measures
+  * A report author can set the incorrect summarization property to a column
+  * This is restricted by creating a DAX measure and hiding the original column
+  * They don't work when the model is queries using MDX (Analyze in Excel, or an MDX query)
+
+**Create simple measures**
+
+* Measures aren't call `calculated measures`
+  * This word is used only to describe `calculated tables` or `calculated columns`
+* Measures can't access tables or columns directly
+  * They use tables/columns as parameters of an aggregation function
+  * There are a lot of DAX functions that do something specific
+  * Instead of counting rows like `COUNT(Sales[Sales Order])` do `COUNTROWS(Sales)`
+* Use `New measure`
+  * `Revenue = SUM(Sales[Total Sales])`
+  * `Cost = SUM(Sales[Total Cost])`
+  * `Average Price = AVERAGE(Sales[Unit Price])`
+  * `Order Count = COUNTDISTINCT(Sales[Sales Order])`
+  * `Order Line Count = COUNTROWS(Sales)`
+* Format the measure after each definition
+
+**Create compound measures**
+
+* Replace the calculated column `Profit Amount` with a `Profit` measure that uses other measures
+* `Profit = [Revenue] - [Cost]`
+
+**Create quick measures**
+
+* Create a profit margin measure with `Quick measure`
+* Use `DIVISION`
+* As numerator `Profit`
+* As denominator `Revenue`
+* It creates this DAX `Profit divided by Revenue = DIVISION([Profit], [Revenue])`
+* Set the format to percentage with 2 decimals
+
+**Calculated columns vs Measures**
+
+* Calculated columns
+  * They add a column to the dataset
+  * Evaluated with `row context` at refresh time
+  * In `import` they store a value for each row
+  * Can be used to group/filter/summarize
+  * Calculated using DAX
+* Measures
+  * They don't add a column
+  * Evaluated with `filter context` at query time
+  * They don't store values
+  * Can be used to summarize
+  * Calculated using DAX
+
 ## Add calculated tables and columns to PBI desktop models
 [Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-add-calculated-tables/)
 
+**Choose a technique to add a column**
+
+* Create the column at the source in a table or view, then load it with PowerQuery
+* Create the column with M in PowerQuery
+  * This is preferred for model performance
+* Create the column with DAX to model tables
+
+*Tables and calculated column*
+
+* If the table is calculated
+  * Add a calculated column
+* If the table is not calculated
+  * Add a calculated column IF
+    * It depends on summarized data
+    * It needs specialized DAX functions like `RELATED` and `RELATEDTABLE` to normalize recursions
+
 ## Optimize a model for performance
 [Source](https://learn.microsoft.com/en-us/training/modules/optimize-model-power-bi/)
+
+## Use DAX iterator functions
+[Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-iterator-functions/)
 
 ***
 
@@ -1548,9 +1633,163 @@ Formula
 Source [here](https://learn.microsoft.com/en-us/training/paths/visualize-data-power-bi/)
 
 ## Work with PBI visuals
+
+**Add visualization items to reports**
+
+* Select columns from Fields, and PBI auto selects a visual
+* Then change the visual if required
+
+**Choose an effective visualization**
+
+* Table and matrix
+* Bar and column charts
+  * Stacked charts show a measure by two dimensions
+* Line and area charts
+* Pie, donut, treemaps
+  * Use treemap for visualizing
+    * Large amount of data
+    * Proportions
+    * Distribution patterns
+* Combo charts (bars with lines)
+* Card and multi-row card
+  * Statistics, measures
+* Funnel
+  * Multiple level from high to low
+  * Sales conversions
+* Gauge
+  * Shows min/max and progress
+  * The take a lot of visual space
+* Waterfall
+  * Aka bridge chart, shows running total
+  * Show series of positive/negative changes
+  * Visualize changes over time
+  * Category (Month Name), Breakdown (Product Name), Values (Sales)
+* Scatter chart
+  * Compare large number of data points to find patterns
+* Maps
+  * Default is Bing Maps or use ArcGIS
+* Slicer
+  * Better UI filter visuals
+* Q&A
+  * Enter text with question
+  * You can set a list of suggested questions
+  * It helps create a visual based on the question
+
+
+**Format and configure visualizations**
+
+* Title
+* Background
+* Tooltip fields
+  * Go to a visual, add a tooltip
+* Tooltip visuals
+  * Create a new report page
+  * Open `Format`, expand `Page Size` and select `Tooltip`
+  * Turn the `Tooltip` slider to ON
+  * Create visuals as any other report page
+  * Select the tooltips to display for each visual
+  * Return to the first report page
+    * Select a Visual, then Format, go to Tooltip
+    * Turn the Tooltip to ON
+    * Select a tooltip page from the Page list
+
+**Import a custom visual**
+
+* Import custom visual from AppSource
+* Custom visuals can be PBI certified or not
+* If custom visuals are allowed in the org optin for PBI certified
+* Not certified might have security risks
+* You can build your own using the SDK (it uses `NodeJS` and exports to PBI Visual Tools `.pbiviz` file)
+* In Visualizations
+  * Go to the 3 dots
+  * Get more visuals
+  * It opens AppSource
+  * Select a PBI certified visual
+
+**Add R or Python visual**
+
+* Adding either R or Python visual creates a visual placeholder and code editor
+* Add fields to the visual creates a dataframe with those fields
+* Write and execute the script to create a visual
+* Go to PBI/Options/Global settings to check that R or Python's path is found
+* Alternatively add a visual from AppSource
+* To refresh the data in PBI service
+  * Use a personal gateway
+
+**Work with KPIs**
+
+* Use the KPI visual
+  * It requires two measures
+    * `Indicator`
+      * For example `TotalSales
+    * `Target goals`
+      * A `Goal` measure
+  * Then a time series
+    * `Trend axis`
+      * For example `Month`
+
+**Exercise: Design a report**
+
+Prepare Data in Power BI Desktop
+Load Data in Power BI Desktop
+Design a Data Model in Power BI
+Create DAX Calculations in Power BI Desktop
+Create Advanced DAX Calculations in Power BI Desktop
+*6. Design a Report in Power BI Desktop*
+Enhance a Report in Power BI Desktop
+Perform Data Analysis in Power BI
+Create a Power BI Dashboard
+Enforce Row-Level Security
+
+*Ex1: Create a report*
+
+* Create 3 pages
+* 1st page
+  * Add image, slicer, line/stacked column chart, bar chart
+* 2nd page
+  * Slicer, matrix
+* 3rd page
+  * Multi-row card with metrics, stacked bar chart
+
+*Ex2: Explore the report*
+
+* Publish to PBI service
+  
 ## Create a data driven story with PBI reports
+
+**Intro**
+**Design a report layout**
+**Add buttons, bookmarks, and selections**
+**Design report navigation**
+**Use basic interactions**
+**Use advanced interactions and drill through**
+**Configure conditional formatting**
+**Apply slicing, filtering, and sorting**
+**Publish and export reports**
+**Comment on reports**
+**Tune report performance**
+**Optimize reports for mobile use**
+**Exercise: Enhance PBI reports with slicers, interactions, and formatting**
+
 ## Create dashboards
+
+**Intro**
+**Configure data alerts**
+**Explore data by asking questions**
+**Add a dashboard theme**
+**Pin a live page to a dashboard**
+**Configure a real-time dashboard**
+**Configure data classification**
+**Set mobile view**
+**Exercise: Create a PBI dashboard**
+
 ## Create paginated reports
+
+**Intro**
+**Get data**
+**Create a paginated report**
+**Work with charts on the report**
+**Publish the report**
 
 ***
 
