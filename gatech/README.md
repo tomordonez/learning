@@ -1,11 +1,8 @@
 # Courses
 
-**In Progress**
-
-* Spring 2023: Software Architecture
-
 **Completed**
 
+* Software Architecture: Completed half but dropped due to time/other priorities. Read most of the book and completed two revisions of a class diagram.
 * AI Ethics: Fairness and bias of AI and machine learning models (NLP, Computer Vision, ML) using Python, Pandas, Numpy.
 * Software Development: SDLC, Java, JUnit, TDD, Android, Git, IntelliJ IDEA
 * Database Design: Data modeling (IFD, EER), SQL, MySQL
