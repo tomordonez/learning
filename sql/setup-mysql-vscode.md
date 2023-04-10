@@ -2,10 +2,10 @@
 
 How to setup MySQL in VScode.
 
-* Install `MySQL` in your OS
-* Install a `MySQL` extension in VScode.
+- Install `MySQL` in your OS
+- Install a `MySQL` extension in VScode.
 
-## Install MySQL in Linux
+## Install MySQL in Ubuntu
 
 Install MySQL in Ubuntu:
 
@@ -38,8 +38,21 @@ Check the network status:
 
 More details in the Ubuntu page [here](https://ubuntu.com/server/docs/databases-mysql)
 
-    LISTEN  0   70   127.0.0.1:33060    0.0.0.0:*   users:(("mysqld",pid=842814,fd=21))      
+    LISTEN  0   70   127.0.0.1:33060    0.0.0.0:*   users:(("mysqld",pid=842814,fd=21))
     LISTEN  0   151  127.0.0.1:mysql    0.0.0.0:*   users:(("mysqld",pid=842814,fd=23))
+
+## Install MySQL in Fedora
+
+More details in my website [Install MySQL on Linux with MariaDB](https://www.tomordonez.com/install-mysql-linux-mariadb/)
+
+    sudo dnf install mariadb mariadb-server mariadb-devel
+    sudo systemctl start mariadb
+
+Configure with:
+
+    sudo mysql_secure_installation
+
+After creating a user, you can skip everything below until `Connect localhost in VScode`
 
 ## Install a MySQL extension in VScode
 
@@ -47,13 +60,13 @@ In VScode look for the `MySQL` extension (developed by Jun Han).
 
 After installing, go to Explorer (icon), and a new tab shows `MySQL`
 
-* Browse to this tab and it will show a `plus +` icon
-* Click on `+` and enter the host `localhost`
-* Enter the (default) username `root`
-* The default root password is empty. Just press `Enter`
-* Leave the default port `3306`
-* Press `Enter` again if there is an optional field
-* A new connection `localhost` shows up under the `MySQL` tab
+- Browse to this tab and it will show a `plus +` icon
+- Click on `+` and enter the host `localhost`
+- Enter the (default) username `root`
+- The default root password is empty. Just press `Enter`
+- Leave the default port `3306`
+- Press `Enter` again if there is an optional field
+- A new connection `localhost` shows up under the `MySQL` tab
 
 **ER_NOT_SUPPORTED_AUTH_MODE**
 
@@ -91,27 +104,26 @@ Delete the `localhost` connection previously created.
 
 Create a new connection again:
 
-* host: `localhost`
-* user: `youruser`
-* Password: The one you created
-* Port number (default): `3306`
-* Optional SSL certificate: Press Enter
-* Expand the `localhost` connection
+- host: `localhost`
+- user: `youruser`
+- Password: The one you created
+- Port number (default): `3306`
+- Optional SSL certificate: Press Enter
+- Expand the `localhost` connection
 
 ## Create a new database
 
 **Naming convention**
 
-* For databases and tables, use lowercase and underscore
-* For SQL statements, use all upper case (although not required)
-
+- For databases and tables, use lowercase and underscore
+- For SQL statements, use all upper case (although not required)
 
 Right click on `localhost`:
 
-* Select `New query`
-* Enter the query `CREATE DATABASE your_database_name;`
-* Right click on that window and `Run MySQL Query`
-* Right click on `localhost` and `Refresh`
+- Select `New query`
+- Enter the query `CREATE DATABASE your_database_name;`
+- Right click on that window and `Run MySQL Query`
+- Right click on `localhost` and `Refresh`
 
 **Create a table**
 
@@ -152,4 +164,3 @@ Always select the database before entering other statements or you will get a `N
 
     USE your_db;
     SHOW TABLES;
-
