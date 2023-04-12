@@ -6,6 +6,7 @@ target/
 *.pyc
 classpath.index
 .attach_pid*
+.vscode/*
 java/java-essential-training/Code/out/*
 python/python-koans/python3/*
 python/!python-koans/python3/koans/
