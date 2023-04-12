@@ -2,7 +2,7 @@
 
 ## Workflow Summary
 
-1. Work on a branch (named after course/topic folder name)
+1. Work on a branch (named after a topic directory)
    1. Don't modify files that don't belong to the branch/course/topic
    2. Don't forget to switch branches to commit to different course/topic
 2. Commit frequently
@@ -10,14 +10,11 @@
 3. Push all branches to remote `git push --all origin`
 4. In remote, PR and merge all branches
 5. Back in local, rebase all branches
-   1. Switch to branch, then `git rebase origin/main`
+   1. Switch to a branch, then `git rebase origin/main`
 
 ## Branches
 
-Use a branch per course/topic (same as the corresponding folder name).
-
-* With dashes separating words
-* All lower case `course-name`
+Use a branch per topic directory
 
 ## Commits
 
@@ -33,20 +30,20 @@ Commit frequently on the corresponding branch. Don't update files that don't bel
 
 **Commit message**
 
-Use the subject only in one line with a shorter `issue-number` and a total of less than 50 characters (VSC shows a warning for this limit). Follow this template:
+In general:
 
-    issue-number: Imperative verb then short summary < 50 chars
+* One line and less than 50 characters (VSC shows a warning limit)
+* Start with an imperative verb (present tense)
+* Then short summary
 
-Such as:
+If using JIRA:
 
-    java-OOP/4: Pass test for add method
+* Use the syntax `issue-number: message`
 
-Where:
+(Optional) if following a course with sections:
 
-* The issue number follows `branch/section_number`
-* Then a colon `:`
-* Action verb. For example `Pass`
-* Then a summary in less than 50 characters
+* Although the norm is to stick to only changing files that correspond to the branch
+* Use the prefix `course-directory/chapter-number: message` such as `java-oop/4: Pass test for add method`
 
 ## Creating branches
 
