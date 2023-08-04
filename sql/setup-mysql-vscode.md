@@ -5,6 +5,10 @@ How to setup MySQL in VScode.
 - Install `MySQL` in your OS
 - Install a `MySQL` extension in VScode.
 
+**I don't use MySQL on VScode anymore**
+
+I moved again to MySQL Workbench after being unhappy about the MySQL and VScode integration with 3rd party modules. In general I am not so happy about VScode after using it for a while. The upside is that it doesn't consume much memory. Like Walter White said there is a huge comparison between Classic Coke and Regular Cola. PyCharm is great for Python. Like IntelliJ is great for Java. VScode is like 'let's duct tape every language with unmaintained 3rd party tools'.
+
 ## Install MySQL in Ubuntu
 
 Install MySQL in Ubuntu:
@@ -139,7 +143,9 @@ Use the typical SQL syntax to create a table and populate it with some data.
 
 Right click anywhere on this window and `Run MySQL Query`. Then refresh the connection.
 
-**Create a table from CSV**
+**Create a table from CSV: This doesn't work anymore**
+
+I tried this again but it didn't work anymore. Here is the historical doc for reference.
 
 It is easier to create a MySQL table from CSV using the command line.
 
