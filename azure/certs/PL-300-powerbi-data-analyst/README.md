@@ -1623,6 +1623,8 @@ Formula
 ## Optimize a model for performance
 [Source](https://learn.microsoft.com/en-us/training/modules/optimize-model-power-bi/)
 
+**completed: pending notes**
+
 ## Use DAX iterator functions
 [Source](https://learn.microsoft.com/en-us/training/modules/dax-power-bi-iterator-functions/)
 
@@ -1658,7 +1660,7 @@ Source [here](https://learn.microsoft.com/en-us/training/paths/visualize-data-po
   * Sales conversions
 * Gauge
   * Shows min/max and progress
-  * The take a lot of visual space
+  * They take a lot of visual space
 * Waterfall
   * Aka bridge chart, shows running total
   * Show series of positive/negative changes
@@ -1757,6 +1759,8 @@ Enforce Row-Level Security
   
 ## Create a data driven story with PBI reports
 
+**Completed. Pending notes**
+
 **Intro**
 **Design a report layout**
 **Add buttons, bookmarks, and selections**
@@ -1773,6 +1777,8 @@ Enforce Row-Level Security
 
 ## Create dashboards
 
+**Completed. Pending notes**
+
 **Intro**
 **Configure data alerts**
 **Explore data by asking questions**
@@ -1784,6 +1790,8 @@ Enforce Row-Level Security
 **Exercise: Create a PBI dashboard**
 
 ## Create paginated reports
+
+**Completed. Pending notes**
 
 **Intro**
 **Get data**
