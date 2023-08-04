@@ -9,10 +9,9 @@ This repo contains topics I am interested in, including summaries/code of course
 * Tools
 * Books
 
-## My Blogs
+## My Blog
 
-* Azure, Power BI and Analytics: [https://azureblog.tomordonez.com/](https://azureblog.tomordonez.com/)
-* Python, Linux, Software Engineering: [https://www.tomordonez.com/](https://www.tomordonez.com/)
+Python, Linux, Software Engineering, Azure, Power BI and Analytics: [https://tomordonez.com/](https://tomordonez.com/)
 
 ## Experience
 
